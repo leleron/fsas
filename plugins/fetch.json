@@ -1,0 +1,92 @@
+{
+    "cordova-plugin-whitelist": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-whitelist@1"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "com.phonegap.plugins.smartLinkConnect": {
+        "source": {
+            "type": "local",
+            "path": "C:\\FLYCO\\plugins\\SmartlinkConnect"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "com.phonegap.plugins.espressifConnect": {
+        "source": {
+            "type": "local",
+            "path": "C:\\FLYCO\\plugins\\EspressifConnect"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "org.apache.cordova.wifiinfo": {
+        "source": {
+            "type": "local",
+            "path": "C:\\FLYCO\\plugins\\PhoneGap-WifiInfoPlugin-master"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-camera": {
+        "source": {
+            "type": "local",
+            "path": "C:\\FLYCO\\plugins\\cordova-plugin-camera-master"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "com.phonegap.plugins.isFirst": {
+        "source": {
+            "type": "local",
+            "path": "C:\\FLYCO\\plugins\\IsFirst"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "com.phonegap.plugins.fileOperate": {
+        "source": {
+            "type": "local",
+            "path": "C:\\FLYCO\\FileOperate"
+        }
+    },
+    "com.phonegap.plugins.thirdLogin": {
+        "source": {
+            "type": "local",
+            "path": "C:\\FLYCO\\ThirdLogin"
+        }
+    },
+    "com.phonegap.plugins.baidushare": {
+        "source": {
+            "type": "local",
+            "path": "C:\\FLYCO\\Baidushare"
+        }
+    },
+    "com.phonegap.plugins.picOperate": {
+        "source": {
+            "type": "local",
+            "path": "C:\\FLYCO\\plugins\\PicOperate"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-inappbrowser": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-inappbrowser"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "com.phonegap.plugins.codeScan": {
+        "source": {
+            "type": "local",
+            "path": "C:\\FLYCO\\plugins\\CodeScan"
+        },
+        "is_top_level": true,
+        "variables": {}
+    }
+}

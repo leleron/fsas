@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/FSAS_MOBILE/!svn/ver/1262/trunk/fsas/plugins/com.phonegap.plugins.thirdLogin/src/android
+END
+commons-httpclient-3.1.jar
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/FSAS_MOBILE/!svn/ver/831/trunk/fsas/plugins/com.phonegap.plugins.thirdLogin/src/android/commons-httpclient-3.1.jar
+END
+ThirdLogin.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/FSAS_MOBILE/!svn/ver/831/trunk/fsas/plugins/com.phonegap.plugins.thirdLogin/src/android/ThirdLogin.java
+END
+mta-sdk-1.0.0.jar
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/FSAS_MOBILE/!svn/ver/831/trunk/fsas/plugins/com.phonegap.plugins.thirdLogin/src/android/mta-sdk-1.0.0.jar
+END
+fastjson-1.1.39.jar
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/FSAS_MOBILE/!svn/ver/831/trunk/fsas/plugins/com.phonegap.plugins.thirdLogin/src/android/fastjson-1.1.39.jar
+END
+JdActivity.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/FSAS_MOBILE/!svn/ver/831/trunk/fsas/plugins/com.phonegap.plugins.thirdLogin/src/android/JdActivity.java
+END
+MySSLProtocolSocketFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svn/FSAS_MOBILE/!svn/ver/831/trunk/fsas/plugins/com.phonegap.plugins.thirdLogin/src/android/MySSLProtocolSocketFactory.java
+END
+WxActivity.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/FSAS_MOBILE/!svn/ver/831/trunk/fsas/plugins/com.phonegap.plugins.thirdLogin/src/android/WxActivity.java
+END
+android-support-v13.jar
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/FSAS_MOBILE/!svn/ver/831/trunk/fsas/plugins/com.phonegap.plugins.thirdLogin/src/android/android-support-v13.jar
+END
+HttpUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/FSAS_MOBILE/!svn/ver/831/trunk/fsas/plugins/com.phonegap.plugins.thirdLogin/src/android/HttpUtil.java
+END
+open_sdk.jar
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/FSAS_MOBILE/!svn/ver/831/trunk/fsas/plugins/com.phonegap.plugins.thirdLogin/src/android/open_sdk.jar
+END
+QqActivity.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/FSAS_MOBILE/!svn/ver/831/trunk/fsas/plugins/com.phonegap.plugins.thirdLogin/src/android/QqActivity.java
+END
+libammsdk.jar
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/FSAS_MOBILE/!svn/ver/831/trunk/fsas/plugins/com.phonegap.plugins.thirdLogin/src/android/libammsdk.jar
+END

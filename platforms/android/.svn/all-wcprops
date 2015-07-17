@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/FSAS_MOBILE/!svn/ver/1262/trunk/fsas/platforms/android
+END
+.classpath
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/FSAS_MOBILE/!svn/ver/1262/trunk/fsas/platforms/android/.classpath
+END
+project.properties
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/FSAS_MOBILE/!svn/ver/1031/trunk/fsas/platforms/android/project.properties
+END
+.project
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/FSAS_MOBILE/!svn/ver/156/trunk/fsas/platforms/android/.project
+END
+.gitignore
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/FSAS_MOBILE/!svn/ver/154/trunk/fsas/platforms/android/.gitignore
+END
+AndroidManifest.xml
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/FSAS_MOBILE/!svn/ver/1262/trunk/fsas/platforms/android/AndroidManifest.xml
+END
+gradlew.bat
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/FSAS_MOBILE/!svn/ver/154/trunk/fsas/platforms/android/gradlew.bat
+END
+build.gradle
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/FSAS_MOBILE/!svn/ver/1262/trunk/fsas/platforms/android/build.gradle
+END
+settings.gradle
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/FSAS_MOBILE/!svn/ver/1262/trunk/fsas/platforms/android/settings.gradle
+END

@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/FSAS_MOBILE/!svn/ver/633/trunk/fsas/plugins/cordova-plugin-camera/www
+END
+CameraConstants.js
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/FSAS_MOBILE/!svn/ver/633/trunk/fsas/plugins/cordova-plugin-camera/www/CameraConstants.js
+END
+Camera.js
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/FSAS_MOBILE/!svn/ver/168/trunk/fsas/plugins/cordova-plugin-camera/www/Camera.js
+END
+CameraPopoverHandle.js
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/FSAS_MOBILE/!svn/ver/168/trunk/fsas/plugins/cordova-plugin-camera/www/CameraPopoverHandle.js
+END
+CameraPopoverOptions.js
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/FSAS_MOBILE/!svn/ver/168/trunk/fsas/plugins/cordova-plugin-camera/www/CameraPopoverOptions.js
+END

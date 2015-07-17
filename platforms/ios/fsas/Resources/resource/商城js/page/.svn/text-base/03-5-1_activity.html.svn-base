@@ -1,0 +1,24 @@
+<div class="active">
+    <ul class="list">
+        <li>
+            <a href="#" id="device1" class="item_name" data-deviceid="device1">
+                <img src="">
+
+                <h3>活动1</h3>
+            </a>
+        </li>
+        <li>
+            <a href="#" id="device2" class="item_name" data-deviceid="device2">
+                <img src="">
+
+                <h3>活动2</h3>
+            </a>
+        </li>
+        <li>
+            <a href="#" id="device3" class="item_name" data-deviceid="device2" onclick="AddToFavourite()">
+                <img src="">
+                <h3>活动 TEST</h3>
+            </a>
+        </li>
+    </ul>
+</div>

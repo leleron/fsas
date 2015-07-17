@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/FSAS_MOBILE/!svn/ver/745/trunk/fsas/platforms/ios/Pods/ZXingObjC/ZXingObjC/qrcode/detector
+END
+ZXQRCodeAlignmentPatternFinder.m
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svn/FSAS_MOBILE/!svn/ver/745/trunk/fsas/platforms/ios/Pods/ZXingObjC/ZXingObjC/qrcode/detector/ZXQRCodeAlignmentPatternFinder.m
+END
+ZXQRCodeDetector.h
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/FSAS_MOBILE/!svn/ver/745/trunk/fsas/platforms/ios/Pods/ZXingObjC/ZXingObjC/qrcode/detector/ZXQRCodeDetector.h
+END
+ZXQRCodeFinderPattern.m
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/FSAS_MOBILE/!svn/ver/745/trunk/fsas/platforms/ios/Pods/ZXingObjC/ZXingObjC/qrcode/detector/ZXQRCodeFinderPattern.m
+END
+ZXQRCodeAlignmentPattern.h
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/FSAS_MOBILE/!svn/ver/745/trunk/fsas/platforms/ios/Pods/ZXingObjC/ZXingObjC/qrcode/detector/ZXQRCodeAlignmentPattern.h
+END
+ZXQRCodeFinderPatternFinder.h
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/FSAS_MOBILE/!svn/ver/745/trunk/fsas/platforms/ios/Pods/ZXingObjC/ZXingObjC/qrcode/detector/ZXQRCodeFinderPatternFinder.h
+END
+ZXQRCodeDetector.m
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/FSAS_MOBILE/!svn/ver/745/trunk/fsas/platforms/ios/Pods/ZXingObjC/ZXingObjC/qrcode/detector/ZXQRCodeDetector.m
+END
+ZXQRCodeAlignmentPattern.m
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/FSAS_MOBILE/!svn/ver/745/trunk/fsas/platforms/ios/Pods/ZXingObjC/ZXingObjC/qrcode/detector/ZXQRCodeAlignmentPattern.m
+END
+ZXQRCodeFinderPatternInfo.h
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/FSAS_MOBILE/!svn/ver/745/trunk/fsas/platforms/ios/Pods/ZXingObjC/ZXingObjC/qrcode/detector/ZXQRCodeFinderPatternInfo.h
+END
+ZXQRCodeFinderPatternFinder.m
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/FSAS_MOBILE/!svn/ver/745/trunk/fsas/platforms/ios/Pods/ZXingObjC/ZXingObjC/qrcode/detector/ZXQRCodeFinderPatternFinder.m
+END
+ZXQRCodeAlignmentPatternFinder.h
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svn/FSAS_MOBILE/!svn/ver/745/trunk/fsas/platforms/ios/Pods/ZXingObjC/ZXingObjC/qrcode/detector/ZXQRCodeAlignmentPatternFinder.h
+END
+ZXQRCodeFinderPattern.h
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/FSAS_MOBILE/!svn/ver/745/trunk/fsas/platforms/ios/Pods/ZXingObjC/ZXingObjC/qrcode/detector/ZXQRCodeFinderPattern.h
+END
+ZXQRCodeFinderPatternInfo.m
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/FSAS_MOBILE/!svn/ver/745/trunk/fsas/platforms/ios/Pods/ZXingObjC/ZXingObjC/qrcode/detector/ZXQRCodeFinderPatternInfo.m
+END

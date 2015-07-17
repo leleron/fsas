@@ -1,0 +1,119 @@
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/FLYCO/!svn/ver/85/MOBILE/IOS/%E9%A3%9E%E7%A7%91%E5%95%86%E5%9F%8EAPP/Empty/class/login/entity
+END
+updateUserInfoEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svn/FLYCO/!svn/ver/85/MOBILE/IOS/%E9%A3%9E%E7%A7%91%E5%95%86%E5%9F%8EAPP/Empty/class/login/entity/updateUserInfoEntity.h
+END
+UserInfo.h
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/FLYCO/!svn/ver/85/MOBILE/IOS/%E9%A3%9E%E7%A7%91%E5%95%86%E5%9F%8EAPP/Empty/class/login/entity/UserInfo.h
+END
+updateUserInfoEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svn/FLYCO/!svn/ver/85/MOBILE/IOS/%E9%A3%9E%E7%A7%91%E5%95%86%E5%9F%8EAPP/Empty/class/login/entity/updateUserInfoEntity.m
+END
+UserInfo.m
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/FLYCO/!svn/ver/85/MOBILE/IOS/%E9%A3%9E%E7%A7%91%E5%95%86%E5%9F%8EAPP/Empty/class/login/entity/UserInfo.m
+END
+WXUpdateTokenEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/FLYCO/!svn/ver/85/MOBILE/IOS/%E9%A3%9E%E7%A7%91%E5%95%86%E5%9F%8EAPP/Empty/class/login/entity/WXUpdateTokenEntity.h
+END
+WXUpdateTokenEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/FLYCO/!svn/ver/85/MOBILE/IOS/%E9%A3%9E%E7%A7%91%E5%95%86%E5%9F%8EAPP/Empty/class/login/entity/WXUpdateTokenEntity.m
+END
+loginEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/FLYCO/!svn/ver/85/MOBILE/IOS/%E9%A3%9E%E7%A7%91%E5%95%86%E5%9F%8EAPP/Empty/class/login/entity/loginEntity.h
+END
+WXUserInfoEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/FLYCO/!svn/ver/85/MOBILE/IOS/%E9%A3%9E%E7%A7%91%E5%95%86%E5%9F%8EAPP/Empty/class/login/entity/WXUserInfoEntity.h
+END
+getCodeEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/FLYCO/!svn/ver/85/MOBILE/IOS/%E9%A3%9E%E7%A7%91%E5%95%86%E5%9F%8EAPP/Empty/class/login/entity/getCodeEntity.h
+END
+identifyEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/FLYCO/!svn/ver/85/MOBILE/IOS/%E9%A3%9E%E7%A7%91%E5%95%86%E5%9F%8EAPP/Empty/class/login/entity/identifyEntity.h
+END
+loginEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/FLYCO/!svn/ver/85/MOBILE/IOS/%E9%A3%9E%E7%A7%91%E5%95%86%E5%9F%8EAPP/Empty/class/login/entity/loginEntity.m
+END
+WXUserInfoEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/FLYCO/!svn/ver/85/MOBILE/IOS/%E9%A3%9E%E7%A7%91%E5%95%86%E5%9F%8EAPP/Empty/class/login/entity/WXUserInfoEntity.m
+END
+getCodeEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/FLYCO/!svn/ver/85/MOBILE/IOS/%E9%A3%9E%E7%A7%91%E5%95%86%E5%9F%8EAPP/Empty/class/login/entity/getCodeEntity.m
+END
+forgetPswEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/FLYCO/!svn/ver/85/MOBILE/IOS/%E9%A3%9E%E7%A7%91%E5%95%86%E5%9F%8EAPP/Empty/class/login/entity/forgetPswEntity.h
+END
+identifyEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/FLYCO/!svn/ver/85/MOBILE/IOS/%E9%A3%9E%E7%A7%91%E5%95%86%E5%9F%8EAPP/Empty/class/login/entity/identifyEntity.m
+END
+WXAccessTokenEntity.h
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/FLYCO/!svn/ver/85/MOBILE/IOS/%E9%A3%9E%E7%A7%91%E5%95%86%E5%9F%8EAPP/Empty/class/login/entity/WXAccessTokenEntity.h
+END
+Empty.ipa
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/FLYCO/!svn/ver/85/MOBILE/IOS/%E9%A3%9E%E7%A7%91%E5%95%86%E5%9F%8EAPP/Empty/class/login/entity/Empty.ipa
+END
+forgetPswEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/FLYCO/!svn/ver/85/MOBILE/IOS/%E9%A3%9E%E7%A7%91%E5%95%86%E5%9F%8EAPP/Empty/class/login/entity/forgetPswEntity.m
+END
+WXAccessTokenEntity.m
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/FLYCO/!svn/ver/85/MOBILE/IOS/%E9%A3%9E%E7%A7%91%E5%95%86%E5%9F%8EAPP/Empty/class/login/entity/WXAccessTokenEntity.m
+END

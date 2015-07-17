@@ -1,0 +1,364 @@
+<!--<html>-->
+
+<!--<head>-->
+
+<!--<meta charset="utf-8" />-->
+
+<!--<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />-->
+
+<!--<title>飞科商城</title>-->
+
+<!--<link href="../css/base.css" rel="stylesheet" type="text/css">-->
+
+<!--<link href="../css/global.css" rel="stylesheet" type="text/css">-->
+
+<!--<script src="js/jquery-1.7.2.min.js"></script>-->
+
+<!--<script src="js/swiper.js"></script>-->
+
+<!--</head>-->
+
+
+
+<!--<body>-->
+
+<!--<header class="all">-->
+
+    <!--<a href="javascript:;" class="home">-->
+
+        <!--<div class="home">-->
+
+        <!--</div>-->
+
+    <!--</a>-->
+
+        <!--<span class="cur">-->
+
+            <!--参数-->
+
+        <!--</span>-->
+
+        <!--<span>-->
+
+            <!--详情-->
+
+        <!--</span>-->
+
+        <!--<span>-->
+
+            <!--评价-->
+
+        <!--</span>-->
+
+    <!--<a href="javascript:;" class="shortCar">-->
+
+        <!--<div class="shortCar">-->
+
+            <!--<span>1</span>-->
+
+        <!--</div>-->
+
+    <!--</a>-->
+
+<!--</header>-->
+
+
+
+<!--banner-->
+
+<div id="banner">
+
+    <div class="swiper-wrapper">
+
+        <div class="swiper-slide swiper-slide-duplicate">
+
+            <a ><img src="images/mall/mobile/banner/1.jpg"></a>
+
+        </div>
+
+        <div class="swiper-slide swiper-slide-duplicate">
+
+            <a ><img src="images/mall/mobile/banner/1.jpg"></a>
+
+        </div>
+
+        <div class="swiper-slide swiper-slide-duplicate">
+
+            <a ><img src="images/mall/mobile/banner/1.jpg"></a>
+
+        </div>
+
+        <div class="swiper-slide swiper-slide-duplicate">
+
+            <a ><img src="images/mall/mobile/banner/1.jpg"></a>
+
+        </div>
+
+    </div>
+
+    <div class="pagination">
+
+    </div>
+
+</div>
+
+
+
+<div class="prodetails">
+
+    <div class="fav">
+
+        <span></span><br/><br/>
+
+        已收藏
+
+    </div>
+
+    <h4>飞科FS359剃须刀<br/>全身水洗/充插两用/全球电压</h4>
+
+    <div class="tuanprice">
+
+        <strong>149</strong>.00元 <span>团购价</span>
+
+        <em><strong>154人已购买</strong>数量有限，赶快下单吧</em>
+
+    </div>
+
+    <div class="num">
+
+        购买数量：
+
+        <a href="javascript:;">-</a>
+
+        <input type="text" />
+
+        <a href="javascript:;">+</a>
+
+        库存<span>16628</span>件
+
+    </div>
+
+    <p>
+
+        首次注册即送100积分点击立即购买可现金抵用<br/>
+
+        每日签到点击商品评论可获取相应积分<br/>
+
+        全场买满24元顺丰包邮
+
+    </p>
+
+</div>
+
+
+
+<div class="dataPro">
+
+    <div>
+
+        运费
+
+        <p>0元</p>
+
+    </div>
+
+    <div>
+
+        客户评价
+
+        <p>268</p>
+
+    </div>
+
+    <div>
+
+        总销量
+
+        <p>490450</p>
+
+    </div>
+
+</div>
+
+
+
+<div class="btnSecPro">
+
+    <a class="cur" href="#">参团</a>
+
+</div>
+
+
+
+<div class="canshu">
+
+    <a href="javascript:;" class="cur">规格参数<i></i></a>
+
+    <div class="canshuCon w">
+
+        <div class="fl">主体</div>
+
+        <div class="fr">
+
+            <p>品牌<span>飞科</span></p>
+
+            <p>品牌<span>飞科</span></p>
+
+            <p>品牌<span>飞科</span></p>
+
+            <p>品牌<span>飞科</span></p>
+
+        </div>
+
+        <div class="clear"></div>
+
+    </div>
+
+    <div class="canshuCon g">
+
+        <div class="fl">主体</div>
+
+        <div class="fr">
+
+            <p>品牌<span>飞科</span></p>
+
+            <p>品牌<span>飞科</span></p>
+
+            <p>品牌<span>飞科</span></p>
+
+            <p>品牌<span>飞科</span></p>
+
+        </div>
+
+        <div class="clear"></div>
+
+    </div>
+
+</div>
+
+
+
+<div class="canshu">
+
+    <a href="javascript:;">商品详情<i></i></a>
+
+</div>
+
+
+
+<div class="canshu">
+
+    <a href="javascript:;">商品评价<i></i></a>
+
+</div>
+
+
+
+<div class="tuijianT">推荐商品</div>
+
+
+
+<div class="tuijianCon">
+
+    <a href="#">
+
+        <img src="images/mall/goods/FS359/FS359_000_01.jpg" />
+
+        <span>79元</span>
+
+    </a>
+
+    <a href="#">
+
+        <img src="images/mall/goods/FS359/FS359_000_01.jpg" />
+
+        <span>79元</span>
+
+    </a>
+
+    <a href="#">
+
+        <img src="images/mall/goods/FS359/FS359_000_01.jpg" />
+
+        <span>79元</span>
+
+    </a>
+
+    <div class="clear"></div>
+
+</div>
+
+
+
+<script type="text/javascript">
+
+    window.onload = function() {
+
+
+        var mySwiper2 = new Swiper('#banner',{
+
+            autoplay:5000,
+
+            visibilityFullFit : true,
+
+            loop:true,
+
+            pagination : '.pagination',
+
+        });
+    }
+
+</script>
+
+<!--</body>-->
+
+
+
+<!--</html>-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

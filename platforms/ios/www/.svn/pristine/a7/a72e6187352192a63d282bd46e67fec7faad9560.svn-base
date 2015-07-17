@@ -1,0 +1,1222 @@
+﻿$(function () {
+    $.afui.launch();
+    
+    // 商城主页
+    $("#mallIndex,#mallSearchResult,#mallCategory,#mallList,#newProduct,#secKill,#groupon,#seckillItem,#grouponItem,#commodityDetails1,#commodityDetails2,#commodityDetails3").on("backcomplete", function (e) {
+        $(".cartButton").show();
+    });
+
+
+    // 商城主页
+    $("#mallIndex").on("panelload", function (e) {        
+        //$(".backButton.back").css('display','none');
+        $("footer").show();
+        $(".categoryButton").show();
+        $(".cartButton").show();
+        $(".headSearchIcon").show();
+        $("#headSearch").show();
+        var mySwiper = new Swiper('#banner', {
+            autoplay: 5000,
+            //visibilityFullFit : true,
+            loop: true
+            //pagination : '.swiper-pagination'
+        });
+        //$("#search_box").width($(window).width()-180).css("display","block");
+    });
+
+    $("#mallIndex").on("panelunload", function (e) {        
+        //this.setBackButtonVisibility(true);
+        //$(".backButton.back").css('display','block');
+        $("footer").hide();
+        $(".categoryButton").hide();
+        $(".cartButton").hide();
+        $(".headSearchIcon").hide();
+        $("#headSearch").hide();
+    });
+
+    $("#mallSearchResult").on("panelload", function (e) {
+        $(".cartButton").show();        
+    });
+    $("#mallSearchResult").on("panelunload", function (e) {
+        $(".cartButton").hide();       
+    });
+
+    $("#mallCategory").on("panelload", function (e) {
+        $(".cartButton").show();        
+    });
+    $("#mallCategory").on("panelunload", function (e) {
+        $(".cartButton").hide();      
+    });
+
+    $("#mallList").on("panelload", function (e) {
+        $(".cartButton").show();
+    });
+    $("#mallList").on("panelunload", function (e) {
+        $(".cartButton").hide();
+    });
+
+    $("#newProduct").on("panelload", function (e) {
+        $(".cartButton").show();
+    });
+    $("#newProduct").on("panelunload", function (e) {
+        $(".cartButton").hide();
+    });
+
+    $("#secKill").on("panelload", function (e) {
+        
+        $(".cartButton").show();
+        console.log("secKill:panel load");
+    });
+    $("#secKill").on("panelunload", function (e) {
+        $(".cartButton").hide();
+        console.log("secKill:panel unload");
+    });
+
+    $("#groupon").on("panelload", function (e) {
+        $(".cartButton").show();
+    });
+    $("#groupon").on("panelunload", function (e) {
+        $(".cartButton").hide();
+    });
+
+    $("#groupon").on("panelload", function (e) {
+        $(".cartButton").show();
+    });
+    $("#groupon").on("panelunload", function (e) {
+        $(".cartButton").hide();
+    });
+
+    $("#pay").on("panelload", function (e) {
+        //TODO 隐藏backbutton
+    });
+    $("#pay").on("panelunload", function (e) {
+        //TODO 显示backbutton
+    });
+
+    $("#seckillItem").on("panelload", function (e) {
+        $(".cartButton").show();
+    });
+    $("#seckillItem").on("panelunload", function (e) {
+        $(".cartButton").hide();
+    });
+
+    $("#grouponItem").on("panelload", function (e) {
+        $(".cartButton").show();
+    });
+    $("#grouponItem").on("panelunload", function (e) {
+        $(".cartButton").hide();
+    });
+
+    //商品详情页面
+    $("#commodityDetails1").on("panelload", function (e) {
+        $(".cartButton").show();
+
+        var goodsDetailSwiper = new Swiper('#goodsDetail', {
+
+        });
+
+        var myCommoditySwiper = new Swiper('#CommodityBanner', {
+            pagination: '.swiper-pagination'
+        });
+    });
+    $("#commodityDetails1").on("panelunload", function (e) {
+        $(".cartButton").hide();
+    });
+
+    $("#commodityDetails2").on("panelload", function (e) {
+        $(".cartButton").show();
+    });
+    $("#commodityDetails2").on("panelunload", function (e) {
+        $(".cartButton").hide();
+    });
+
+    $("#commodityDetails3").on("panelload", function (e) {
+        $(".cartButton").show();
+    });
+    $("#commodityDetails3").on("panelunload", function (e) {
+        $(".cartButton").hide();
+    });
+
+    // news_top
+    $("#UserCenter").on("panelload", function (e) {
+        // $.afui.loadContent("#main");
+
+        var uid = hlp.getparam(1);
+
+        // tpl_mtlist
+        svc.getuserprofile(uid, function (r) {
+
+            hlp.binddata(r, "#mtlist", "tpl_mtlist");
+
+        });
+    });
+
+    // 3.1.4.1.1 个人商城
+    $("#myMall").on("panelload", function (e) {
+        "use strict";
+
+        // 刷新购物车图标
+        RefreahShopCarIcon();
+    });
+
+    // 3.1.4.1.4.1 退款单
+    $("#refundList").on("panelload", function (e) {
+        "use strict";
+
+        svc.getRefundList(loj.UserName, function (res) {
+            if (res.data == null) {
+                res.data = "";
+            }
+
+            //apply_time: "2015-03-24 15:12:43"
+            //order_sn: "150228000097"
+            //refund_money: "133"
+            //returns_order_sn: "14271811633500"
+            //returns_status: "1"
+
+            for (var i = 0; i < res.data.length; i++) {
+                res.data[i]["returns_statusString"] = ReturnsStatusMapping[res.data[i].returns_status];
+            }
+
+            hlp.bindtpl(res.data, "#refundListDiv", "refundList_itemAdd");
+
+            // 退款列表画面： 按下订单 处理
+            $("#refundList a.tkListItem").bind("tap", function (e) {
+                var returnsOrderSn = $(this).attr("returns_order_sn");
+
+                var selectedOrderInfo = undefined;
+
+                for (var i = 0; i < res.data.length; i++) {
+                    if (returnsOrderSn == res.data[i].returns_order_sn) {
+                        selectedOrderInfo = res.data[i];
+                        break;
+                    }
+                }
+
+                hlp.log("Navigate to good detial page. returns_order_sn:" + returnsOrderSn + " User id:" + loj.UserName + " orderInfo:" + selectedOrderInfo);
+
+                hlp.panelObj["orderInfo"] = selectedOrderInfo;
+
+                $.afui.loadContent("#refundDetail");
+            });
+        });
+    });
+
+    // 3.1.4.1.4.1 退款单详细 画面参数：hlp.panelObj["orderInfo"];
+    $("#refundDetail").on("panelload", function (e) {
+        "use strict";
+
+        var orderInfo = hlp.panelObj["orderInfo"];
+
+        // apply_time: "1427181158"
+        // consignee: ""
+        // lastupdate_time: null
+        // mobile: null
+        // order_sn: "150228000097"
+        // receiver_address: ""
+        // refund_goods: ""
+        // refund_mark: "da"
+        // refund_money: "133"
+        // refund_reason: "我不想要了"
+        // resend_goods: ""
+        // return_desc: ""
+        // return_options: ""
+        // return_type: "0"
+        // returns_order_sn: "14271811589586"
+        // returns_status: "1"
+        // tel: null
+        // zipcode: ""
+
+        svc.getRefundOrReturnDetail(orderInfo.returns_order_sn, function (res) {
+            res.data.order_info["returns_statusString"] = ReturnsStatusMapping[res.data.order_info.returns_status];
+
+            hlp.bindtpl(res.data.order_info, "#refundDetailorderDetailDiv", "refundDetail_orderDetailAdd");
+
+        // 使用 退货单详细 画面的模板
+            hlp.bindtpl(res.data.goods_info, "#refundDetailDiv", "returnDetail_itemAdd");
+
+        $("#refundDetail li.tkListItem a.returnDetailItem").bind("tap", function (e) {
+            var goodsSn = $(this).attr("goods_sn");
+
+            hlp.log("Navigate to good detial page. goodsSn:" + goodsSn + " User id:" + loj.UserName);
+        });
+    });
+    });
+
+    $("#refundDetail").on("panelunload", function (e) {
+        "use strict";
+
+        delete hlp.panelObj["orderInfo"];
+    });
+
+    // 3.1.4.1.4.2 退货单
+    $("#returnList").on("panelload", function (e) {
+        "use strict";
+
+        svc.getReturnList(loj.UserName, function (res) {
+            if (res.data == null) {
+                res.data = "";
+            }
+
+            //apply_time: "2015-03-24 18:44:13"
+            //goods_thumb: "http://121.41.169.212:30002/sources/goods/FS372/FS372_000_01--w_80_h_80.jpg"
+            //order_sn: "141205000157"
+            //refund_goods: "a:1:{i:0;a:9:{s:7:"barcode";s:13:"6949123303725";s:10:"goods_name";s:9:"剃须刀";s:8:"ext_attr";s:0:"";s:11:"goods_price";s:5:"99.00";s:12:"goods_number";s:1:"2";s:9:"deal_code";s:12:"141205000157";s:9:"goods_img";s:37:"/sources/goods/FS372/FS372_000_01.jpg";s:8:"goods_sn";s:5:"FS372";s:6:"reason";s:3:"dAD";}}"
+            //returns_order_sn: "14271938539292"
+            //returns_status: "2"
+            //total_money: 99
+
+            for (var i = 0; i < res.data.length; i++) {
+                res.data[i]["returns_statusString"] = ReturnsStatusMapping[res.data[i].returns_status];
+            }
+
+            hlp.bindtpl(res.data, "#returnListDiv", "returnList_itemAdd");
+
+            // 退货列表画面： 按下订单 处理
+            $("#returnList a.tkListItem").bind("tap", function (e) {
+                var returnsOrderSn = $(this).attr("returns_order_sn");
+
+                var selectedOrderInfo = undefined;
+
+                for (var i = 0; i < res.data.length; i++) {
+                    if (returnsOrderSn == res.data[i].returns_order_sn) {
+                        selectedOrderInfo = res.data[i];
+                    }
+                }
+
+                hlp.log("Navigate to good detial page. returns_order_sn:" + returnsOrderSn + " User id:" + loj.UserName + " orderInfo:" + selectedOrderInfo);
+
+                hlp.panelObj["orderInfo"] = selectedOrderInfo;
+
+                $.afui.loadContent("#returnDetail");
+            });
+        });
+    });
+
+    // 3.1.4.1.4.2.1 退货单详细 画面参数：hlp.panelObj["orderInfo"];
+    $("#returnDetail").on("panelload", function (e) {
+        "use strict";
+
+        // order_info
+        //apply_time: "1427193853"
+        //consignee: "sadfas "
+        //lastupdate_time: "2015-03-24 18:44:40"
+        //mobile: "18801618932"
+        //order_sn: "141205000157"
+        //receiver_address: "宁夏回族自治区 石嘴山市 惠农区 Dd"
+        //refund_goods: "a:1:{i:0;a:9:{s:7:"barcode";s:13:"6949123303725";s:10:"goods_name";s:9:"剃须刀";s:8:"ext_attr";s:0:"";s:11:"goods_price";s:5:"99.00";s:12:"goods_number";s:1:"2";s:9:"deal_code";s:12:"141205000157";s:9:"goods_img";s:37:"/sources/goods/FS372/FS372_000_01.jpg";s:8:"goods_sn";s:5:"FS372";s:6:"reason";s:3:"dAD";}}"
+        //refund_mark: null
+        //refund_money: "0"
+        //refund_reason: null
+        //resend_goods: "a:0:{}"
+        //return_desc: "您需退回商品↵剃须刀 2件↵"
+        //return_options: "a:3:{s:10:"order_info";a:27:{s:16:"returns_order_sn";s:14:"14271938539292";s:9:"total_fee";s:6:"198.00";s:12:"return_money";d:198;s:12:"shipping_fee";i:0;s:9:"user_name";s:14:"err118@163.com";s:13:"receiver_name";s:7:"sadfas ";s:6:"is_cod";i:2;s:16:"receiver_address";s:47:"宁夏回族自治区 石嘴山市 惠农区 Dd";s:12:"receiver_zip";s:6:"466200";s:15:"receiver_mobile";s:11:"18801618932";s:12:"receiver_tel";s:0:"";s:14:"receiver_email";s:0:"";s:8:"pay_code";s:3:"cod";s:6:"pay_id";s:1:"1";s:8:"pay_name";s:12:"货到付款";s:13:"shipping_code";s:2:"sf";s:11:"shipping_id";s:1:"7";s:13:"shipping_name";s:13:"顺丰速运 ";s:9:"order_msg";s:0:"";s:8:"add_time";i:1427193853;s:7:"country";s:1:"1";s:8:"province";s:6:"640000";s:4:"city";s:6:"640200";s:8:"district";s:6:"640205";s:7:"address";s:2:"Dd";s:9:"best_time";s:57:"只有双休日、假日送货（工作日不用送货）";s:13:"sign_building";i:0;}s:12:"refund_goods";a:1:{i:0;a:9:{s:7:"barcode";s:13:"6949123303725";s:10:"goods_name";s:9:"剃须刀";s:8:"ext_attr";s:0:"";s:11:"goods_price";s:5:"99.00";s:12:"goods_number";s:1:"2";s:9:"deal_code";s:12:"141205000157";s:9:"goods_img";s:37:"/sources/goods/FS372/FS372_000_01.jpg";s:8:"goods_sn";s:5:"FS372";s:6:"reason";s:3:"dAD";}}s:12:"resend_goods";a:0:{}}"
+        //return_type: "1"
+        //returns_order_sn: "14271938539292"
+        //returns_status: "2"
+        //tel: ""
+        //zipcode: "466200"
+
+        // goods_info
+        //ext_desc: "颜色: 通色 尺码: 通码 "
+        //goods_number: "2"
+        //goods_thumb: "http://121.41.169.212:30002/sources/goods/FS372/FS372_big--w_80_h_80.jpg"
+        //name: "飞科FS372剃须刀"
+        //sn: "FS372"
+        
+        var orderInfo = hlp.panelObj["orderInfo"];
+
+        svc.getRefundOrReturnDetail(orderInfo.returns_order_sn, function (res) {
+            res.data.order_info["returns_statusString"] = ReturnsStatusMapping[res.data.order_info.returns_status];
+
+            hlp.bindtpl(res.data.order_info, "#returnDetailorderDetailDiv", "returnDetail_orderDetailAdd");
+
+            hlp.bindtpl(res.data.goods_info, "#returnDetailDiv", "returnDetail_itemAdd");
+
+        $("#returnDetail li.tkListItem a.returnDetailItem").bind("tap", function (e) {
+            var goodsSn = $(this).attr("goods_sn");
+
+            hlp.log("Navigate to good detial page. goodsSn:" + goodsSn + " User id:" + loj.UserName);
+        });
+    });
+
+        
+    });
+
+    $("#returnDetail").on("panelunload", function (e) {
+        "use strict";
+
+        delete hlp.panelObj["orderInfo"];
+    });
+
+    // 3.1.4.1.5.1 收货地址管理
+    $("#addressManage").on("panelload", function (e) {
+        "use strict";
+
+        svc.getAddressList(loj.UserName, function (res) {
+            if (res.data == null) {
+                res.data = "";
+            }
+
+            //hlp.log("#addressManage mock: reveiced data.");
+            //res = {
+            //    "status": "SUCCESS",
+            //    "message": "查询成功",
+            //    "data": [
+            //        { "address_id": "26131", "address_name": null, "user_id": "18101817799", "consignee": " \u5f20\u96ea\u6885", "email": "", "country": "1", "province": "上海1", "city": "上海市", "district": "0", "address": "\u5174\u6d77\u8def\u5546\u8054\u5bb6\u56edA\u680b\u697c2\u5355\u51434011 ", "zipcode": "", "tel": "", "mobile": "18101817799", "sign_building": null, "best_time": null, "default_address": "1", "add_time": null, "country_name": "\u4e2d\u56fd", "province_name": "\u6d77\u5357\u7701", "city_name": "\u743c\u6d77\u5e02", "district_name": false },
+            //        { "address_id": "26132", "address_name": null, "user_id": "18101817799", "consignee": " \u5f20\u96ea\u6885", "email": "", "country": "2", "province": "ShangHai2", "city": "ShangHai", "district": "0", "address": "\u5174\u6d77\u8def\u5546\u8054\u5bb6\u56edA\u680b\u697c2\u5355\u51434012 ", "zipcode": "", "tel": "", "mobile": "18101817799", "sign_building": null, "best_time": null, "default_address": "0", "add_time": null, "country_name": "\u4e2d\u56fd", "province_name": "\u6d77\u5357\u7701", "city_name": "\u743c\u6d77\u5e02", "district_name": false },
+            //        { "address_id": "26133", "address_name": null, "user_id": "18101817799", "consignee": " \u5f20\u96ea\u6885", "email": "", "country": "1", "province": "省3", "city": "469002", "district": "0", "address": "\u5174\u6d77\u8def\u5546\u8054\u5bb6\u56edA\u680b\u697c2\u5355\u51434013 ", "zipcode": "", "tel": "", "mobile": "18101817799", "sign_building": null, "best_time": null, "default_address": "0", "add_time": null, "country_name": "\u4e2d\u56fd", "province_name": "\u6d77\u5357\u7701", "city_name": "\u743c\u6d77\u5e02", "district_name": false }
+            //    ]
+            //};
+
+            // 设置默认地址
+            for (var i = 0; i < res.data.length; i++) {
+                if (res.data[i].default_address == "1") {
+                    res.data[i]["default_address_prop"] = "cur";
+                    break;
+                }
+            }
+
+            hlp.bindtpl(res.data, "#addressManageDiv", "addressManage_itemAdd");
+
+            $("#addressManageDiv li.tkListItem a").bind("tap", function (e) {
+                var addressId = $(this).attr("address_id");
+
+                var selectedAddressInfo = undefined;
+
+                for (var i = 0; i < res.data.length; i++) {
+                    if (addressId == res.data[i].address_id) {
+                        selectedAddressInfo = res.data[i];
+                    }
+                }
+
+                hlp.panelObj["addressInfo"] = selectedAddressInfo;
+
+                hlp.log("Navigate to Addredd edit page. address_id:" + addressId + " User id:" + loj.UserName + " addressInfo:" + selectedAddressInfo);
+
+                $.afui.loadContent("#addressEdit");
+            });
+
+            $("#addressManageDiv li.addBtn a").one("tap", function (e) {
+                // TODO Navigate to address add page
+
+                hlp.log("Navigate to Addredd add page. User id:" + loj.UserName);
+
+                $.afui.loadContent("#addressAdd");
+            });
+        });
+    });
+
+    // 3.1.4.1.5.2 新增收货地址
+    $("#addressAdd").on("panelload", function (e) {
+        "use strict";
+
+        // 地址Selection初始化
+        InitAddressSelects(
+            "#addressAdd form#addAddressForm div.addressBg select#address_province", "addAddress_province",
+            "#addressAdd form#addAddressForm div.addressBg select#address_city", "addAddress_city",
+            "#addressAdd form#addAddressForm div.addressBg select#address_district", "addAddress_district",
+            "address_itemAdd");
+
+        // 重置表单
+        $("#addressAdd #addAddressForm input").each(function () { $(this).val(""); });
+        $("#addressAdd #addAddressForm select").each(function () {
+            if ($(this) && $(this)[0]) {
+                $(this)[0].selectedIndex = 0;
+            }
+        });
+
+        var form = $("#addressAdd #addAddressForm");
+        var options = addressFromVaildOptions;
+        options["errorPlacement"] = function (error, element) {
+            if (form.attr("check_status") == "false") {
+                form.attr("check_status", "true");
+                if (error[0]) {
+                    hlp.myalert(error[0].innerHTML);
+                }
+            }
+        };
+
+        // TODO Sync the vaild rule
+        form.validate(options).resetForm();
+    });
+
+    // 3.1.4.1.5.3 收货地址修改
+    $("#addressEdit").on("panelload", function (e) {
+        "use strict";
+
+        // 初始化表单
+        var addressInfo = hlp.panelObj["addressInfo"];
+
+        // 地址Selection初始化
+        InitAddressSelects(
+            "#addressEdit form#editAddressForm div.addressBg select#editAddress_province", "editAddress_province",
+            "#addressEdit form#editAddressForm div.addressBg select#editAddress_city", "editAddress_city",
+            "#addressEdit form#editAddressForm div.addressBg select#editAddress_district", "editAddress_district",
+            "addressEdit_itemAdd", addressInfo);
+
+        //$("#addressEdit #editAddressForm select[name=address_consignee]").attr("text", addressInfo.province_name);
+        //$("#addressEdit #editAddressForm select[name=address_consignee]").attr("text", addressInfo.city_name);
+        //$("#addressEdit #editAddressForm select[name=address_consignee]").attr("text", addressInfo.district_name);
+        //$("#addressEdit #editAddressForm select[name=address_consignee]").val(addressInfo.province);
+        //$("#addressEdit #editAddressForm select[name=address_consignee]").val(addressInfo.city);
+        //$("#addressEdit #editAddressForm select[name=address_consignee]").val(addressInfo.district);
+
+        //$("#addressEdit #editAddressForm select[name=address_province] option[value=" + addressInfo.province + "]").attr("select", "selected");
+        //$("#addressEdit #editAddressForm select[name=address_city] option[value=" + addressInfo.city + "]").attr("select", "selected");
+        //$("#addressEdit #editAddressForm select[name=address_district] option[value=" + addressInfo.district + "]").attr("select", "selected");
+
+
+        $("#addressEdit #editAddressForm input[name=address_consignee]").val(addressInfo.consignee);
+        $("#addressEdit #editAddressForm input[name=address_address]").val(addressInfo.address);
+        $("#addressEdit #editAddressForm input[name=address_zipcode]").val(addressInfo.zipcode);
+        $("#addressEdit #editAddressForm input[name=address_tel]").val(addressInfo.tel);
+        $("#addressEdit #editAddressForm input[name=address_mobile]").val(addressInfo.mobile);
+        $("#addressEdit #editAddressForm input[name=address_id]").val(addressInfo.address_id);
+
+        var form = $("#addressEdit #editAddressForm");
+
+        var options = addressFromVaildOptions;
+        options["errorPlacement"] = function (error, element) {
+            if (form.attr("check_status") == "false") {
+                form.attr("check_status", "true");
+                if (error[0]) {
+                    hlp.myalert(error[0].innerHTML);
+                }
+            }
+        };
+        form.validate(options).resetForm();
+
+        // 收货地址 删除 对话框 确定按钮
+        $("#addressEdit div.layOutDel a.btnOk").off("tap").on("tap", function (e) {
+            hlp.log("myFavorite del item submit. addressId:" + addressInfo.address_id + " User id:" + loj.UserName);
+
+            $("#addressEdit div.layOutDel").fadeTo("fast", 0, function () { $("#addressEdit div.layOutDel").css("display", "none"); });
+
+            svc.delAddress(addressInfo.address_id, loj.UserName, function (res) {
+                hlp.log("myFavorite del item submitted. status:" + res.status + " message:" + res.message);
+
+                $.afui.goBack();
+            });
+        });
+
+        // 收货地址 删除 对话框 取消按钮
+        $("#addressEdit div.layOutDel a.btnNo").off("tap").on("tap", function (e) {
+            $("#addressEdit div.layOutDel").fadeTo("fast", 0, function () { $("#addressEdit div.layOutDel").css("display", "none"); });
+        });
+    });
+
+    $("#addressEdit").on("panelunload", function (e) {
+        "use strict";
+
+        delete hlp.panelObj["addressInfo"];
+    });
+
+    // 3.1.4.1.6 我的收藏
+    $("#myFavorite").on("panelload", function (e) {
+        "use strict";
+
+        hlp.log("#myFavorite panelload.");
+
+        RefreshMyFavorite();
+
+        // 我的收藏 删除 对话框 确定按钮
+        $("#myFavorite div.layOutDel a.btnOk").off("tap").on("tap", function (e) {
+            var goodsSn = $(".myGoodsSn").val();
+
+            hlp.log("myFavorite del item submit. goodsSn:" + goodsSn + " User id:" + loj.UserName);
+
+            $(".layOutDel").fadeTo("fast", 0, function () {
+                $(".layOutDel").css("display", "none");
+            });
+
+            svc.delFavourite(loj.UserName, goodsSn, function (res) {
+                RefreshMyFavorite();
+            });
+        });
+
+        // 我的收藏 删除 对话框 取消按钮
+        $("#myFavorite div.layOutDel a.btnNo").off("tap").on("tap", function (e) {
+            $("#myFavorite div.layOutDel").fadeTo("fast", 0, function () { $("#myFavorite div.layOutDel").css("display", "none"); });
+        });
+    });
+
+    // 3.1.4.1.7.1 已评价商品
+    $("#evaluatedList").on("panelload", function (e) {
+        "use strict";
+
+        hlp.log("#evaluatedList panelload.");
+
+        svc.getGoodsComment(loj.UserName, 1, function (res) {
+            if (res.data == null) {
+                res.data = "";
+            }
+
+            // TODO svc.getGoodsComment Mock data
+            res = {
+                "status": "SUCCESS",
+                "message": "查询成功",
+                "data": [
+                    {
+                        "goods_name": "\u98de\u79d1FH6620\u7535\u5439\u98ce01",
+                        "goods_thumb": "images/mall/goods/FS359/FS359_000_01--w_50_h_50.jpg",
+                        "comment_rank": "4",
+                        "content": "\u5bb6\u7528\u5c31\u975e\u5e38\u4e0d\u9519\uff0c\u8d5e\u4e00\u4e2a\u3002\u552f\u4e00\u5c31\u662f\u4e0e\u4e13\u4e1a\u7ea7\u7684\u5bf9\u6bd4\uff0c\u98ce\u529b\u5c0f\u4e86\u70b9\uff0c\u5176\u5b83\u90fd\u597d\u3002",
+                        "answer": null,
+                        "comment_id": "12938",
+                        "status": "0",
+                        "allow_amend": "1",
+                        "goods_sn": "FH6620",
+                        "add_time": "1434636716",
+                        "ext_desc": "\u989c\u8272: \u901a\u8272 \u5c3a\u7801: \u901a\u7801 "
+                    }, {
+                        "goods_name": "\u98de\u79d1FH6620\u7535\u5439\u98ce02",
+                        "goods_thumb": "images/mall/goods/FS359/FS359_000_01--w_50_h_50.jpg",
+                        "comment_rank": "4",
+                        "content": "\u5bb6\u7528\u5c31\u975e\u5e38\u4e0d\u9519\uff0c\u8d5e\u4e00\u4e2a\u3002\u552f\u4e00\u5c31\u662f\u4e0e\u4e13\u4e1a\u7ea7\u7684\u5bf9\u6bd4\uff0c\u98ce\u529b\u5c0f\u4e86\u70b9\uff0c\u5176\u5b83\u90fd\u597d\u3002",
+                        "answer": null,
+                        "comment_id": "12938",
+                        "status": "0",
+                        "allow_amend": "1",
+                        "goods_sn": "FH6620",
+                        "add_time": "1434636716",
+                        "ext_desc": "\u989c\u8272: \u901a\u8272 \u5c3a\u7801: \u901a\u7801 "
+                    }
+                ]
+            };
+
+            for (var i = 0; i < res.data.length; i++) {
+                var rank = parseInt(res.data[i].comment_rank);
+
+                if (rank == 0 || rank == NaN) {
+                    res.data[i]["rankStarStyle"] = "display: none;";
+                } else {
+                    res.data[i]["rankStarStyle"] = "width:" + ((rank - 1) * 20).toString() + "%;";
+                }
+            }
+
+            hlp.bindtpl(res.data, "#evaluationSubmitEvaluatedListDiv", "evaluatedList_itemAdd");
+
+            $("#evaluationSubmitEvaluatedListDiv li.tkListItem").bind("tap", function (e) {
+                // TODO order SN
+                var orderSn = $(this).attr("order_sn");
+
+                var goodSn = $(this).attr("goods_sn");
+
+                var goodInfo = undefined;
+
+                for (var i = 0; i < res.data.length; i++) {
+                    if (goodSn == res.data[i].goods_sn) {
+                        goodInfo = res.data[i];
+                    }
+                }
+
+                hlp.panelObj["goodInfo"] = goodInfo;
+
+                hlp.log("Navigate to evaluation append page. order_sn:" + orderSn + " goods_sn:" + goodSn + " User id:" + loj.UserName + " goodInfo:" + goodInfo);
+
+                $.afui.loadContent("#evaluateMore");
+            });
+        });
+    });
+
+    // 3.1.4.1.7.2 未评价商品
+    $("#evaluateReady").on("panelload", function(e) {
+        "use strict";
+
+        hlp.log("#evaluateReady panelload.");
+
+        svc.getGoodsNocomment(loj.UserName, 1, function (res) {
+            if (res.data == null) {
+                res.data = "";
+            }
+
+            res = {
+                "status": "SUCCESS",
+                "message": "查询成功",
+                "data": [
+                    {
+                        "goods_name": "\u98de\u79d1FS352\u5243\u987b\u52000",
+                        "goods_thumb": "\/sources\/goods\/FS352\/FS352_big.jpg",
+                        "shop_price": "400.00",
+                        "add_time": "2014-09-26 09:55:16"
+                    }, {
+                        "goods_name": "\u98de\u79d1FS352\u5243\u987b\u52001",
+                        "goods_thumb": "\/sources\/goods\/FS352\/FS352_big.jpg",
+                        "shop_price": "401.00",
+                        "add_time": "2014-09-26 09:55:16"
+                    }
+                ]
+            };
+
+            hlp.bindtpl(res.data, "#evaluateReadyListDiv", "evaluateReadyList_itemAdd");
+
+            $("#evaluateReadyListDiv li.tkListItem").bind("tap", function (e) {
+                // TODO order SN
+                var orderSn = $(this).attr("order_sn");
+
+                var goodSn = $(this).attr("goods_sn");
+
+                var goodInfo = undefined;
+
+                for (var i = 0; i < res.data.length; i++) {
+                    if (goodSn == res.data[i].goods_sn) {
+                        goodInfo = res.data[i];
+                    }
+                }
+
+                hlp.panelObj["goodInfo"] = goodInfo;
+
+                hlp.log("Navigate to evaluation add page. order_sn:" + orderSn + " goods_sn:" + goodSn + " User id:" + loj.UserName + " goodInfo:" + goodInfo);
+
+                $.afui.loadContent("#evaluationSubmit");
+            });
+
+        });
+    });
+
+    // 追加评价
+    $("#evaluateMore").on("panelload", function(e) {
+        "use strict";
+
+        var goodInfo = hlp.panelObj["goodInfo"];
+        
+        $("#evaluateMoreDiv div#evaluateMore_comment_rank div").each(function() {
+            $(this).attr("class", "starGrey");
+        });
+        $("#evaluateMoreDiv textarea#evaluateMore_textarea").val("");
+
+        // 设置商品图片
+        $("#evaluateMoreDiv img#evaluateMoreGoodsThumb").attr("src", goodInfo.goods_thumb);
+        
+        // 初始化星级评价控件
+        $("#evaluateMoreDiv div#evaluateMore_comment_rank div#evaluateMoreRankStar1").off("tap").on("tap", function (e) {
+            if ($(this).attr("class") == "star") {
+                if ($("#evaluateMoreDiv div#evaluateMore_comment_rank div#evaluateMoreRankStar2").attr("class") == "star") {
+                    for (var j = 2; j <= 5; j++) {
+                        $("#evaluateMoreDiv div#evaluateMore_comment_rank div#evaluateMoreRankStar" + j).attr("class", "starGrey");
+                    }
+                } else {
+                    for (var j = 1; j <= 5; j++) {
+                        $("#evaluateMoreDiv div#evaluateMore_comment_rank div#evaluateMoreRankStar" + j).attr("class", "starGrey");
+                    }
+                }
+            } else {
+                $("#evaluateMoreDiv div#evaluateMore_comment_rank div#evaluateMoreRankStar1").attr("class", "star");
+            }
+        });
+
+        for (var i = 2; i <= 5; i++) {
+            $("#evaluateMoreDiv div#evaluateMore_comment_rank div#evaluateMoreRankStar" + i).off("tap").on("tap", function (e) {
+                var currentStarId = $(this).attr("id");
+
+                hlp.log("div#evaluateMoreRankStar tap event handled id:" + currentStarId);
+
+                for (var j = 1; j <= 5; j++) {
+                    if (("evaluateMoreRankStar" + j) <= currentStarId) {
+                        $("#evaluateMoreDiv div#evaluateMore_comment_rank div#evaluateMoreRankStar" + j).attr("class", "star");
+                    } else {
+                        $("#evaluateMoreDiv div#evaluateMore_comment_rank div#evaluateMoreRankStar" + j).attr("class", "starGrey");
+                    }
+                }
+            });
+        }
+
+        // 设置评价内容控件
+        $("#evaluateMoreDiv textarea#evaluateMore_textarea").off("keyup").on("keyup", function (e) {
+            hlp.log("#evaluateMoreDiv textarea#evaluateMore_textarea keyup event handled");
+
+            var textContent = $(this).val();
+
+            $("#evaluateMoreDiv span#evaluateMore_textCount").html((140 - textContent.length).toString() + "字");
+        });
+
+        $("#evaluateMoreDiv div#evaluateMore_photo").off("tap").on("tap", function (e) {
+            hlp.log("#evaluateMoreDiv div#evaluateMore_photo tap event handled");
+
+            // TODO 拍照选取图片
+            //getPictureFromCamera(function (imgdata) {
+            //    var imageSrc = imgdata;
+            //    $("#showicon").attr("src", "data:image/jpg;image/png;base64," + imageSrc);
+            //    hlp.log("before updateUserInfo call...");
+            //    var tokenId = loj.Credential;
+            //    var username = "";
+            //    svc.updateUserInfo(tokenId, username, imageSrc, function (r) {
+            //        hlp.log("inside updateUserInfo call...");
+            //        $.afui.loadContent("#myInfo");
+            //    });
+            //}, function (error) {
+            //    hlp.myalert(error);
+            //});
+        });
+
+    });
+
+    $("#evaluateMore").on("panelload", function (e) {
+        "use strict";
+
+        delete hlp.panelObj["goodInfo"];
+    });
+
+    // 发表评价
+    $("#evaluationSubmit").on("panelload", function (e) {
+        "use strict";
+
+        var goodInfo = hlp.panelObj["goodInfo"];
+
+        // 设置商品图片
+        $("#evaluationSubmitDiv img#evaluationSubmitGoodsThumb").attr("src", goodInfo.goods_thumb);
+
+        // 初始化星级评价控件
+        $("#evaluationSubmitDiv div#evaluationSubmit_comment_rank div#evaluationSubmitRankStar1").off("tap").on("tap", function (e) {
+            if ($(this).attr("class") == "star") {
+                if ($("#evaluationSubmitDiv div#evaluationSubmit_comment_rank div#evaluationSubmitRankStar2").attr("class") == "star") {
+                    for (var j = 2; j <= 5; j++) {
+                        $("#evaluationSubmitDiv div#evaluationSubmit_comment_rank div#evaluationSubmitRankStar" + j).attr("class", "starGrey");
+                    }
+                } else {
+                    for (var j = 1; j <= 5; j++) {
+                        $("#evaluationSubmitDiv div#evaluationSubmit_comment_rank div#evaluationSubmitRankStar" + j).attr("class", "starGrey");
+                    }
+                }
+            } else {
+                $("#evaluationSubmitDiv div#evaluationSubmit_comment_rank div#evaluationSubmitRankStar1").attr("class", "star");
+            }
+        });
+        for (var i = 2; i <= 5; i++) {
+            $("#evaluationSubmitDiv div#evaluationSubmit_comment_rank div#evaluationSubmitRankStar" + i).off("tap").on("tap", function (e) {
+                var currentStarId = $(this).attr("id");
+
+                hlp.log("div#evaluationSubmitRankStar tap event handled id:" + currentStarId);
+
+                for (var j = 1; j <= 5; j++) {
+                    if (("evaluationSubmitRankStar" + j) <= currentStarId) {
+                        $("#evaluationSubmitDiv div#evaluationSubmit_comment_rank div#evaluationSubmitRankStar" + j).attr("class", "star");
+                    } else {
+                        $("#evaluationSubmitDiv div#evaluationSubmit_comment_rank div#evaluationSubmitRankStar" + j).attr("class", "starGrey");
+                    }
+                }
+            });
+        }
+
+        // 设置评价内容控件
+        $("#evaluationSubmitDiv textarea#evaluationSubmit_textarea").off("keyup").on("keyup", function (e) {
+            hlp.log("#evaluationSubmitDiv textarea#evaluationSubmit_textarea keyup event handled");
+
+            var textContent = $(this).val();
+
+            $("#evaluationSubmitDiv span#evaluationSubmit_textCount").html((140 - textContent.length).toString() + "字");
+        });
+
+        $("#evaluationSubmitDiv div#evaluationSubmit_photo").off("tap").on("tap", function (e) {
+            hlp.log("#evaluationSubmitDiv div#evaluationSubmit_photo tap event handled");
+
+            // TODO 拍照选取图片
+            //getPictureFromCamera(function (imgdata) {
+            //    var imageSrc = imgdata;
+            //    $("#showicon").attr("src", "data:image/jpg;image/png;base64," + imageSrc);
+            //    hlp.log("before updateUserInfo call...");
+            //    var tokenId = loj.Credential;
+            //    var username = "";
+            //    svc.updateUserInfo(tokenId, username, imageSrc, function (r) {
+            //        hlp.log("inside updateUserInfo call...");
+            //        $.afui.loadContent("#myInfo");
+            //    });
+            //}, function (error) {
+            //    hlp.myalert(error);
+            //});
+        });
+    });
+
+    $("#evaluationSubmit").on("panelload", function (e) {
+        "use strict";
+
+        delete hlp.panelObj["goodInfo"];
+    });
+
+});
+
+jQuery.validator.addMethod("checkAddressSelectionRequire",
+    function (value, element, param) {
+        if (param) {
+            return value != "-1";
+        }
+
+        return true;
+    }, "请选择省市");
+
+jQuery.validator.addMethod("regularExpressCheck",
+    function (value, element, param) {
+        if (value == "") {
+            return false;
+        } else {
+            if (!param.test(value)) {
+                return false;
+            }
+        }
+        return true;
+    }, "输入的数据不合法");
+
+jQuery.validator.addMethod("regularExpressCheckNullable",
+    function (value, element, param) {
+        if (value == "") {
+            return true;
+        } else {
+            if (!param.test(value)) {
+                return false;
+            }
+        }
+        return true;
+    }, "输入的数据不合法");
+
+// TODO 我的收藏 添加到收藏
+function AddToFavourite(e) {
+    "use strict";
+
+    var goodsSn = $(".myGoodsSn").val();
+
+    hlp.log("goodsSn:" + goodsSn + " User id:" + loj.UserName);
+
+    // $.afui.loadContent("#myFavorite");
+};
+
+// 我的收藏 列表刷新
+function RefreshMyFavorite() {
+    "use strict";
+
+    hlp.log("RefreshMyFavorite svc.getMyFavouriteList.");
+
+    svc.getMyFavouriteList(loj.UserName, 1, function (res) {
+        if (res.data == null) {
+            res.data = "";
+        }
+
+        // TODO Mock TEST Data
+        //hlp.log("#myFavorite mock: reveiced data.");
+        //res =
+        //{
+        //    "status": "SUCCESS",
+        //    "message": "查询成功 ",
+        //    "data": [
+        //        {
+        //            "goods_sn": "FR6DW",
+        //            "goods_name": "FR6\u5200\u7f51",
+        //            "shop_price": "8.00",
+        //            "sales_number": "9152815",
+        //            "goods_thumb": "\/sources\/goods\/FR6DW\/FR6DW_big.jpg"
+        //        }, {
+        //            "goods_sn": "FR355DW",
+        //            "goods_name": "FS355\u5200\u7f51",
+        //            "shop_price": "29.00",
+        //            "sales_number": "292946",
+        //            "goods_thumb": "\/sources\/goods\/FR355DW\/FR355DW_big.jpg"
+        //        }
+        //    ]
+        //};
+
+        hlp.bindtpl(res.data, "#myFavouriteDiv", "myFavouriteList_itemAdd");
+
+        $("#myFavorite div.tkListItem a.del").bind("tap", function (e) {
+            $("#myFavorite div.layOutDel").css({ display: "_blank", opacity: "0" });
+            $("#myFavorite div.layOutDel").fadeTo("fast", 1);
+
+            var goodsSn = $(this).attr("goods_sn");
+            $(".myGoodsSn").val(goodsSn);
+        });
+
+        $("#myFavorite div.tkListItem img, #myFavorite div.tkListItem strong, #myFavorite div.tkListItem span").bind("tap", function (e) {
+            // TODO Navigate to good detial page
+            var goodsSn = $(this).attr("goods_sn");
+
+            hlp.log("Navigate to good detial page. goodsSn:" + goodsSn + " User id:" + loj.UserName);
+        });
+    });
+};
+
+// 画面右上角 购物车图表初始化用 返回购物车内商品数量
+function GetItemCountInShopCar(callback) {
+    "use strict";
+    // TODO Mock data
+    // TODO Interface No.15
+    var shopCarData = {
+        "status": "SUCCESS",
+        "message": "查询成功",
+        "data": [
+            { "rec_id": "26240", "goods_sn": "FS360", "goods_name": "\u98de\u79d1FS359\u5243\u987b\u52000", "market_price": "298.01", "goods_price": "149.01", "goods_thumb": "\/sources\/goods\/FS359\/FS359_big.jpg", "goods_img": "\/sources\/goods\/FS359\/FS359_big.jpg" },
+            { "rec_id": "26241", "goods_sn": "FS361", "goods_name": "\u98de\u79d1FS359\u5243\u987b\u52001", "market_price": "298.02", "goods_price": "149.02", "goods_thumb": "\/sources\/goods\/FS359\/FS359_big.jpg", "goods_img": "\/sources\/goods\/FS359\/FS359_big.jpg" },
+            { "rec_id": "26242", "goods_sn": "FS362", "goods_name": "\u98de\u79d1FS359\u5243\u987b\u52002", "market_price": "298.03", "goods_price": "149.03", "goods_thumb": "\/sources\/goods\/FS359\/FS359_big.jpg", "goods_img": "\/sources\/goods\/FS359\/FS359_big.jpg" },
+        ]
+    };
+
+    if (callback) {
+        callback(shopCarData.data.length);
+    }
+
+    return shopCarData.data.length;
+};
+
+// 刷新购物车图标的商品数量
+function RefreahShopCarIcon() {
+    "use strict";
+
+    GetItemCountInShopCar(function (count) {
+        $("header a.cartButton div.shortCar span").each(function () {
+            $(this).text(count);
+        });
+    });
+};
+
+// 添加新的收货地址
+function AddAddress() {
+    "use strict";
+
+    hlp.log("AddAddress() Called. UserName:" + loj.UserName);
+
+    var form = $("#addressAdd #addAddressForm");
+
+    form.attr("check_status", "false");
+
+    if (form.valid()) {
+        hlp.log("AddAddress() Submit. UserName:" + loj.UserName);
+
+        var data = {
+            "user_id": loj.UserName,
+            "consignee": $("#addressAdd #addAddressForm input[name=address_consignee]").val(),
+            "province": $("#addressAdd #addAddressForm select[name=address_province]").val(),
+            "city": $("#addressAdd #addAddressForm select[name=address_city]").val(),
+            "district": $("#addressAdd #addAddressForm select[name=address_district]").val(),
+            "address": $("#addressAdd #addAddressForm input[name=address_address]").val(),
+            "email": "",
+            "zipcode": $("#addressAdd #addAddressForm input[name=address_zipcode]").val(),
+            "tel": $("#addressAdd #addAddressForm input[name=address_tel]").val(),
+            "mobile": $("#addressAdd #addAddressForm input[name=address_mobile]").val()
+        };
+
+        hlp.log("AddAddress() data:" + data);
+
+        svc.addAddress(data, function (res) {
+            if (res.status == "SUCCESS") {
+                hlp.myalert(res.message);
+
+                $.afui.goBack();
+            } else {
+                hlp.log("svc.addAddress failed. message:" + res.message);
+
+                hlp.myalert("添加地址失败");
+            }
+        });
+    }
+};
+
+// 编辑收货地址 提交
+function EditAddress() {
+    "use strict";
+
+    var form = $("#addressEdit #editAddressForm");
+
+    form.attr("check_status", "false");
+
+    if (form.valid()) {
+        hlp.log("EditAddress() Submit. UserName:" + loj.UserName);
+
+        var data = {
+            "user_id": loj.UserName,
+            "address_id": $("#addressEdit #editAddressForm input[name=address_id]").val(),
+            "consignee": $("#addressEdit #editAddressForm input[name=address_consignee]").val(),
+            "province": $("#addressEdit #editAddressForm select[name=address_province]").val(),
+            "city": $("#addressEdit #editAddressForm select[name=address_city]").val(),
+            "district": $("#addressEdit #editAddressForm select[name=address_district]").val(),
+            "address": $("#addressEdit #editAddressForm input[name=address_address]").val(),
+            "email": "",
+            "zipcode": $("#addressEdit #editAddressForm input[name=address_zipcode]").val(),
+            "tel": $("#addressEdit #editAddressForm input[name=address_tel]").val(),
+            "mobile": $("#addressEdit #editAddressForm input[name=address_mobile]").val()
+        };
+
+        hlp.log("EditAddress() Called. UserName:" + loj.UserName);
+
+        svc.editAddressList(data, function (res) {
+            if (res.status == "SUCCESS") {
+                hlp.myalert(res.message);
+
+                $.afui.goBack();
+            } else {
+                hlp.log("svc.editAddressList failed. message:" + res.message);
+
+                hlp.myalert("更新地址失败");
+            }
+        });
+    };
+};
+
+// 编辑收货地址 删除
+function DelAddress() {
+    "use strict";
+
+    $("#addressEdit div.layOutDel").css({ display: "_blank", opacity: "0" });
+    $("#addressEdit div.layOutDel").fadeTo("fast", 1);
+};
+
+// 提交评价
+function SubmitEvaluation() {
+    "use strict";
+
+    
+};
+
+// 初始化地址选择器
+// provinceJq： 选择省所用的select标签的jquery选择器字串
+// provinceElemId： 选择省所用的select标签的ID
+// cityJq： 选择市所用的select标签的jquery选择器字串
+// cityElemId： 选择市所用的select标签的ID
+// districtJq： 选择市区所用的select标签的jquery选择器字串
+// districtElemId： 选择市区所用的select标签的ID
+// templateId： 模板标签ID
+// addressInfo: addressInfo.province, addressInfo.city, addressInfo.district
+function InitAddressSelects(provinceJq, provinceElemId, cityJq, cityElemId, districtJq, districtElemId, templateId, addressInfo) {
+    svc.getRegionList(1, 1, function (res) {
+        hlp.bindtpl(res.data, "#" + provinceElemId, templateId);
+
+        if (addressInfo && addressInfo != null && typeof (addressInfo) != "undefined" && addressInfo.province && addressInfo.province != "") {
+            $(provinceJq).val(addressInfo.province);
+
+            svc.getRegionList(addressInfo.province, 2, function (res2) {
+                hlp.bindtpl(res2.data, "#" + cityElemId, templateId);
+
+                if (addressInfo.city && addressInfo.city != "") {
+                    $(cityJq).val(addressInfo.city);
+                }
+
+                svc.getRegionList(addressInfo.city, 3, function (res3) {
+                    hlp.bindtpl(res3.data, "#" + districtElemId, templateId);
+
+                    if (addressInfo.district && addressInfo.district != "") {
+                        $(districtJq).val(addressInfo.district);
+                    }
+                });
+            });
+        }
+
+        $(provinceJq).bind("change", function (e) {
+            var selectedProvinceValue = $(this).val();
+            hlp.log(provinceJq + " change event handled. selected value:" + selectedProvinceValue);
+
+            if (selectedProvinceValue == "-1") {
+                return;
+            }
+
+            svc.getRegionList(selectedProvinceValue, 2, function (res) {
+                hlp.bindtpl(res.data, "#" + cityElemId, templateId);
+
+                $(cityJq).bind("change", function (e) {
+                    var selectedCityValue = $(this).val();
+                    hlp.log(cityJq + " change event handled. selected value:" + selectedCityValue);
+
+                    if (selectedCityValue == "-1") {
+                        return;
+                    }
+
+                    svc.getRegionList(selectedCityValue, 3, function (res) {
+                        hlp.bindtpl(res.data, "#" + districtElemId, templateId);
+                    });
+                });
+            });
+        });
+    });
+};
+
+var ReturnsStatusMapping = {
+    "0": "取消",
+    "1": "已提交",
+    "2": "已受理",
+    "3": "已完成"
+};
+
+var addressFromVaildOptions = {
+    rules: {
+        address_consignee: {
+            required: true,
+            maxlength: 20
+        },
+        address_province: {
+            checkAddressSelectionRequire: true
+        },
+        address_city: {
+            checkAddressSelectionRequire: true
+        },
+        address_district: {
+            checkAddressSelectionRequire: true
+        },
+        address_address: {
+            required: true,
+            maxlength: 60,
+            minlength: 5
+        },
+        //address_zipcode: {
+        //    digits: true,
+        //    maxlength: 6,
+        //    minlength: 6
+        //},
+        address_tel: {
+            regularExpressCheckNullable: /^([0-9]{3,4}-)?[0-9]{7,8}$/
+        },
+        //address_mobile: {
+        //    required: true,
+        //    digits: true,
+        //    maxlength: 11
+        //},
+        address_zipcode: {
+            regularExpressCheck: /^[0-9][0-9]{5}$/
+        },
+        address_mobile: {
+            regularExpressCheck: /^0{0,1}(13[0-9]|15[0-9]|18[0-9]|14[0-9])[0-9]{8}$/
+        }
+
+    },
+    onfocusout: false,
+    onclick: false,
+    messages: {
+        address_consignee: {
+            required: "请填写姓名",
+            maxlength: "姓名请保持在20个字符以内"
+        },
+        address_province: {
+            checkAddressSelectionRequire: "请选择省"
+        },
+        address_city: {
+            checkAddressSelectionRequire: "请选择市"
+        },
+        address_district: {
+            checkAddressSelectionRequire: "请选择市区"
+        },
+        address_address: {
+            required: "请输入详细地址",
+            maxlength: "地址内容太长",
+            minlength: "地址内容太短"
+        },
+        //address_zipcode: {
+        //    digits: "邮编请输入数字",
+        //    maxlength: "邮编请输入6位数字"
+        //},
+        address_tel: {
+            regularExpressCheckNullable: "请输入正确的电话号码"
+        },
+        //address_mobile: {
+        //    required: "请输入手机号码",
+        //    digits: "手机号码请输入数字",
+        //    maxlength: "手机号码请输入11位数字"
+        //}
+        address_zipcode: {
+            regularExpressCheckNullable: "邮编请输入6位数字"
+        },
+        address_mobile: {
+            regularExpressCheck: "请输入正确的11位数字作为手机号码"
+        }
+    }
+};
+
+//function OpenMyFavouriteLayOutDel(e) {
+//    $(".layOutDel").removeAttr("style");
+//    $(".layOutDel").attr("style", "display: blank; -ms-opacity: 0; opacity: 0;");
+//    $(".layOutDel").fadeTo("slow", 1);
+//};

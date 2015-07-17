@@ -1,0 +1,9 @@
+.edgeLoad-loading {
+    visibility: hidden;
+}
+
+.edgeLoad-mainPage {
+    visibility: hidden;
+}
+
+.edgeLoad-deviceControl { visibility:hidden; }

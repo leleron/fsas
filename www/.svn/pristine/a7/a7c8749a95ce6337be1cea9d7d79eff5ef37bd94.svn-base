@@ -1,0 +1,525 @@
+$(function () {
+
+    $.afui.launch();
+
+    // 在线支付
+    $("#pay").on("panelload", function (e) {
+        hlp.log("before call get pay type");
+        var panelObj = hlp.panelObj["payInformation"];
+        hlp.bindtpl(panelObj,"#orderDetailInfo","tpl_orderdetail");
+        hlp.bindtpl(panelObj,"#orderPrice","tpl_orderprice");
+        svc.getPayType(function(r) {
+             if (r.status == "SUCCESS") {
+                 hlp.bindtpl(r.data,"#payType","tpl_paytype");
+                 $("#payType li").eq(0).attr("class","act");
+                 $("#selectPayType").val($("#payType li").eq(0).attr("id"));
+                 var payType = $("#payType li");
+                 payType.off("tap").on("tap", function () {
+                     $.each(payType, function(index) {
+                         payType.eq(index).removeClass("act");
+                     });
+                     $(this).attr("class","act");
+                     $("#selectPayType").val($(this).attr("id"));
+                 });
+                 $("#actionPay").off("tap").on("tap", function () {
+                     hlp.panelObj["order"] = { "sn": $(".payOrderId").val() };
+                     $.afui.loadContent("#unpayedOrder");
+                 });
+                 $("#cancelPay").off("tap").on("tap", function () {
+                     hlp.panelObj["order"] = { "sn": $(".payOrderId").val() };
+                     $.afui.loadContent("#unpayedOrder");
+                 });
+             } else {
+                hlp.myalert(r.message);
+             }
+         });
+    });
+
+    //免注册购买
+    $("#buyWithoutRegist").off("panelload").on("panelload",function(){
+        //表单验证
+        var form = $("#buyWithout");
+        var options = addressFromVaildOptions;
+        options["errorPlacement"] = function (error, element) {
+            if (form.attr("check_status") == "false") {
+                form.attr("check_status", "true");
+                if (error[0]) {
+                    hlp.myalert(error[0].innerHTML);
+                }
+            }
+        };
+        form.validate(options).resetForm();
+        //地区列表
+        InitAddressSelects("#buyWithoutAddress_province", "buyWithoutAddress_province", "#buyWithoutAddress_city", "buyWithoutAddress_city", "#buyWithoutAddress_district", "buyWithoutAddress_district", "tpl_buyWithoutRegist", null);
+        hlp.log("before shopping-car.js svc.getPromo call");
+        svc.getPromo(function(r){
+            hlp.log("inside shopping-car.js svc.getPromo call");
+            if(r.status=="SUCCESS"){
+                var msg= r.data.desc;
+                hlp.bindtpl(msg,"#div_promoMsg","tpl_promoMsg")
+            }else{
+                hlp.myalert(r.message);
+            }
+        });
+
+        var registerFlg=false;
+        //验证码按钮
+        $("#buyWithoutSendCode").off("tap").on("tap", function () {
+            var mPoneNumber=$("#buyWithoutMPoneNumber").val();
+            refundApplyGetNumber();
+            //check用户有没有注册，注册:FAILURE,未注册：SUCCESS
+            hlp.log("before buyWithoutRegist userCheck call...");
+            svc.userCheck(mPoneNumber, function(userCheck_result) {
+                hlp.log("inside buyWithoutRegist userCheck call...");
+                if (userCheck_result.status == "SUCCESS") {//未注册
+                    registerFlg=false;
+                    hlp.myalert(userCheck_result.message);
+                }else if(userCheck_result.code=="104"){//已注册
+                    registerFlg=true;
+                    //发送验证码
+                    svc.forgerPassSend(mPoneNumber, function(r){
+                        hlp.log("inside buyWithoutRegist get my reg code.");
+                        if (r.status == "SUCCESS"){
+                            hlp.log("buyWithoutRegist get my reg code success...");
+                        }else{
+                            hlp.myalert(r.message);
+                            clearRefundApplyTm($("#refundApplyCode"));
+                        }
+                    });
+
+                }
+            });
+        });
+        //免注册购买提交按钮事件
+        $("#buyWithoutSubmit").off("tap").on("tap", function () {
+            var buyWithoutVericode=$("#buyWithoutVericode").val();
+            var mPoneNumber=$("#buyWithoutMPoneNumber").val();
+            if(buyWithoutVericode==""){
+                hlp.myalert("请填写验证码！");
+            }else{
+                form.attr("check_status", "false");
+                var validStatus = form.valid();
+
+                if( validStatus == true){
+                    var userName=$("#buyWithoutUserName").val();
+                    var province=$("#buyWithoutAddress_province").val();
+                    var city=$("#buyWithoutAddress_city").val();
+                    var district=$("#buyWithoutAddress_district").val();
+                    var address=$("#buyWithoutAddress_address").val();
+                    var zipCode=$("#buyWithoutZipCode").val();
+                    var poneNumber=$("#buyWithoutPoneNumber").val();
+                    var mPoneNumber=$("#buyWithoutMPoneNumber").val();
+                    var newAddress_data = {
+                        "user_id": loj.UserId,
+                        "consignee":userName ,
+                        "province":province ,
+                        "city":city ,
+                        "district":district ,
+                        "address": address,
+                        "email": "",
+                        "zipcode": zipCode,
+                        "tel": poneNumber,
+                        "mobile":mPoneNumber
+                    };
+
+                    //自动登录成功
+                    var codeLoginSuccessCallback=function(){
+                        newAddress_data.user_id=loj.UserId;
+                        addAddress(newAddress_data);
+                    };
+
+                    //密码登录成功
+                    var passwordLoginSuccessCallback=function(){
+                        newAddress_data.user_id=loj.UserId;
+                        addAddress(newAddress_data);
+                    };
+
+                    if(loj.UserId){
+                        //用户登录后又返回该页，第二次点击提交
+                        addAddress(newAddress_data);
+                    }else{
+                        //第一次点击提交
+                        if(registerFlg){
+                            //用户已注册，自动登录
+                            codeLogin(mPoneNumber,buyWithoutVericode,codeLoginSuccessCallback, undefined);
+                        }else{
+                            //用户未注册，自动注册并登录
+                            svc.userRegister(userName, mPoneNumber, buyWithoutVericode, buyWithoutVericode, function(userRegister_res){
+                                if (userRegister_res.status == "SUCCESS") {
+                                    hlp.log("shopping-car.js svc.userRegister success message:" + userRegister_res.message);
+                                    passwordLogin(mPoneNumber, buyWithoutVericode,passwordLoginSuccessCallback, undefined);
+                                } else {
+                                    hlp.myalert("shopping-car.js svc.userRegister failed message:" + userRegister_res.message);
+                                }
+                            });
+                        }
+                    }
+                }
+            }
+        });
+    });
+    //提交订单
+    $("#submitOrder").off("panelload").on("panelload",function(){
+        //hlp.panelObj["goods"] = [{ "sn": ***, "num": ** },{ "sn": ***, "num": ** }];
+        //var goods=hlp.panelObj["goods"];
+        //var userId="1587656256@qq.com";
+        //hlp.panelObj["goods"] = {"good":[{ "sku_sn":"6949123303602","sn":"FS360", "num": 1 },{ "sku_sn":"6949123352112","sn":"FR5211", "num": 2 },{ "sku_sn":"6949123358022","sn":"FC5802", "num": 1 }],"isCart":"0"};
+        var goodsOdj=hlp.panelObj["goods"];
+        if(!goodsOdj){
+            hlp.myalert("没有购买的商品！");
+            return;
+        }
+        //var userId=loj.UserId;
+        //var userId="8a2b4d084d98983d014d9902b5560005";
+        var userId="13621804326";
+        var goods=goodsOdj.good;
+        var request1_tokenId= loj.Credential;
+        var addressId="";
+        var invType="0";
+        var companyName="";
+        var isCart="0";
+
+        //发票
+        $("#invoice a").off("tap").on("tap", function () {
+            var this_id = $(this).attr("id");
+            if(this_id=="person"){
+                $("#company").removeClass("cur");
+                $(this).attr("class","cur");
+                $("#companyName").attr("style", "display: none");
+            }else{
+                $("#person").removeClass("cur");
+                $(this).attr("class","cur");
+                $("#companyName").attr("style", "display: block");
+            }
+        });
+        //默认地址获取失败
+        var failedCallBack=function(message){
+            hlp.myalert(message);
+        };
+        //默认地址获取成功
+        var getDefaultAddressSucceedCallBack=function(data_address){
+            if(data_address){
+                addressId=data_address.address_id;
+                //获取商品清单
+                getGoodsSimpleInfo(goods,
+                    function(sum_price,sum_price_isSpecial){
+                        var getIntegralSuccessCallback=function(integral){
+                            var priceCanUseIntegral=sum_price-sum_price_isSpecial;//可用积分抵扣的钱
+                            var useIntegralCutPrice=0;//用积分抵扣的钱
+                            if(sum_price>=24){
+                                var freight=0;
+                            }else{
+                                var freight=8;
+                                $("#freight").attr("style", "display: block");
+                            }
+
+                            var integralObj={"all":integral,"canUse":priceCanUseIntegral};
+                            if(integral<priceCanUseIntegral){
+                                integralObj.canUse=integral;
+                            }
+
+                            hlp.bindtpl(integralObj, "#div_submitOrder_integral", "tpl_submitOrder_integral");
+
+                            $('#integral').off("change").change(function(){
+                                var integral_now=$('#integral').val();
+                                if(parseInt(integral_now)>parseInt(integral)){
+                                    hlp.myalert("输入积分大于账户可用积分<br>请重新输入！");
+                                }else if(parseInt(integral_now)>parseInt(priceCanUseIntegral)){
+                                    hlp.myalert("输入积分大于本订单最多可用积分<br>请重新输入！");
+                                }else{
+                                    useIntegralCutPrice=integral_now/10;
+                                    $('#integralToCash').text(useIntegralCutPrice);
+                                    var sumTotalPrice=sum_price-useIntegralCutPrice+freight;
+                                    var summation={"price":sum_price,"integralPrice":useIntegralCutPrice,"freight":freight,"sumTotalPrice":sumTotalPrice};//最后的结算
+                                    hlp.bindtpl(summation, "#div_submitOrder_totalPrice", "tpl_submitOrder_totalPrice");
+                                }
+                            });
+                            useIntegralCutPrice=parseInt($('#integralToCash').text());//用积分抵扣的钱
+                            var sumTotalPrice=sum_price-useIntegralCutPrice+freight;
+                            var summation={"price":sum_price,"integralPrice":useIntegralCutPrice,"freight":freight,"sumTotalPrice":sumTotalPrice};//最后的结算
+                            hlp.bindtpl(summation, "#div_submitOrder_totalPrice", "tpl_submitOrder_totalPrice");
+                            $("#submitOrderPay").off("tap").on("tap", function () {
+                                var integral=$('#integral').val();
+                                var sumTotalPrice=$('#sumTotalPrice').text().split("元")[0];
+                                var submitOrderAddress=$('#submitOrderAddress').text();
+                                var addressInfo=submitOrderAddress.split(" (")[0];
+                                var personalInfo=submitOrderAddress.split(")")[1];
+                                if($("#company").attr("class")=="cur"){
+                                    invType="1";
+                                    companyName=$("#companyName").val();
+                                }else{
+                                    invType="0";
+                                    companyName="";
+                                };
+                                hlp.panelObj["payInformation"] = {
+                                    "orderId": "",
+                                    "orderPrice": sumTotalPrice,
+                                    "addressInfo":addressInfo ,
+                                    "personalInfo": personalInfo,
+                                    "invoice": invType
+                                };
+                                hlp.log("before call shopping-car.js addOrder");
+                                svc.addOrder(userId,addressId,goods,invType,companyName,integral,isCart,function(r){
+                                    hlp.log("inside call shopping-car.js addOrder");
+                                    if (r.status == "SUCCESS") {
+                                        hlp.panelObj["payInformation"].orderId= r.data.order_sn;
+                                        $.afui.loadContent("#pay");
+                                    }else{
+                                        hlp.myalert(r.message);
+                                    }
+                                })
+                            });
+                        };
+                        getIntegral(userId,getIntegralSuccessCallback,undefined);
+                    },
+                    failedCallBack);
+            }else{
+                //$.afui.loadContent("#addressSelect");
+                hlp.myalert("跳转到地址列表！")
+            }
+        };
+        //选择的AddressId
+        var selectAddressId=hlp.panelObj["selectAddressId"];
+        if(!selectAddressId){
+            //获取默认地址
+            getDefaultAddress(userId,getDefaultAddressSucceedCallBack, failedCallBack);
+        }else{
+            //获取选择的地址
+            getSelectedAddress(userId,selectAddressId.address_id,getDefaultAddressSucceedCallBack, failedCallBack);
+        };
+    });
+});
+//获取默认地址
+var getDefaultAddress=function(userId,succeedHandler, failedHandler){
+    hlp.log("before call shopping-car.js getDefaultAddress");
+    svc.getDefaultAddress(userId, function(r){
+        hlp.log("inside call shopping-car.js getDefaultAddress");
+        if (r.status == "SUCCESS") {
+            var data_address=r.data;
+            if(data_address){
+                var address=data_address.province_name+" "+data_address.city_name+" "+data_address.district_name+" "+data_address.address+" "+"("+data_address.zipcode+")";
+                var mobileAndName=data_address.consignee+" "+data_address.mobile;
+                var defaultAddress={"address":address,"mobileAndName":mobileAndName};
+                hlp.panelObj["selectAddressId"]={"address_id":data_address.address_id};
+                hlp.bindtpl(defaultAddress, "#div_submitOrder_address", "tpl_submitOrder_address");
+                if(succeedHandler){
+                    succeedHandler(data_address);
+                }
+            }else{
+                if(failedHandler){
+                    failedHandler(r.message);
+                }
+            }
+        }else{
+            if(failedHandler){
+                failedHandler(r.message);
+            }
+        }
+    });
+};
+
+//获取选择的地址
+var getSelectedAddress=function(userId,address_id,succeedHandler, failedHandler){
+    hlp.log("before call shopping-car.js getAddressList with addressId");
+    svc.getAddressListByAddressId(userId, address_id, function(r){
+        hlp.log("inside call shopping-car.js getAddressList with addressId");
+        if (r.status == "SUCCESS") {
+            var addressObj=r.data;
+            var address=addressObj.province_name+" "+addressObj.city_name+" "+addressObj.district_name+" "+addressObj.address+" "+"("+addressObj.zipcode+")";
+            var mobileAndName=addressObj.consignee+" "+addressObj.mobile;
+            var defaultAddress={"address":address,"mobileAndName":mobileAndName};
+            hlp.bindtpl(defaultAddress, "#div_submitOrder_address", "tpl_submitOrder_address");
+            if(succeedHandler){
+                succeedHandler(addressObj);
+            }
+        }else{
+            if(failedHandler){
+                failedHandler(r.message);
+            }
+        }
+    });
+};
+
+//可用积分
+var getIntegral=function (sum_price,sum_price_isSpecial){
+    //request1_tokenId;
+    var respose_integral={
+        "integral": "437"
+    };
+    var integral=respose_integral.integral;
+    var priceCanUseIntegral=sum_price-sum_price_isSpecial;//可用积分抵扣的钱
+    var useIntegralCutPrice;//用积分抵扣的钱
+    if(sum_price>=24){
+        var freight=0;
+    }else{
+        var freight=8;
+        $("#freight").attr("style", "display: block");
+    }
+
+    var integralObj={"all":integral,"canUse":priceCanUseIntegral};
+    if(integral<priceCanUseIntegral){
+        integralObj.canUse=integral;
+    }
+
+    hlp.bindtpl(integralObj, "#div_submitOrder_integral", "tpl_submitOrder_integral");
+
+    $('#integral').off("change").change(function(){
+        var integral_now=$('#integral').val();
+        if(parseInt(integral_now)>parseInt(integral)){
+            hlp.myalert("输入积分大于账户可用积分<br>请重新输入！");
+        }else if(parseInt(integral_now)>parseInt(priceCanUseIntegral)){
+            hlp.myalert("输入积分大于本订单最多可用积分<br>请重新输入！");
+        }else{
+            useIntegralCutPrice=integral_now/10;
+            $('#integralToCash').text(useIntegralCutPrice);
+            var sumTotalPrice=sum_price-useIntegralCutPrice+freight;
+            var summation={"price":sum_price,"integralPrice":useIntegralCutPrice,"freight":freight,"sumTotalPrice":sumTotalPrice};//最后的结算
+            hlp.bindtpl(summation, "#div_submitOrder_totalPrice", "tpl_submitOrder_totalPrice");
+        }
+    });
+    useIntegralCutPrice=$('#integralToCash').text();//用积分抵扣的钱
+    var sumTotalPrice=sum_price-useIntegralCutPrice+freight;
+    var summation={"price":sum_price,"integralPrice":useIntegralCutPrice,"freight":freight,"sumTotalPrice":sumTotalPrice};//最后的结算
+    hlp.bindtpl(summation, "#div_submitOrder_totalPrice", "tpl_submitOrder_totalPrice");
+};
+
+//提交表单，商品清单
+var getGoodsSimpleInfo=function(goods,succeedHandler, failedHandler){
+    hlp.log("before call shopping-car.js getGoodsSimpleInfo");
+    //产品种类数
+    var typeSum=goods.length;
+    var sn=[];
+    var snString="";
+    for(var i=0;i<typeSum;i++){
+        if(snString==""){
+            snString= goods[i].sn;
+        }else{
+            snString=snString+","+goods[i].sn;
+        }
+    };
+    svc.getGoodsSimpleInfo(snString,function(r){
+        hlp.log("inside call shopping-car.js getGoodsSimpleInfo");
+        if (r.status == "SUCCESS") {
+            var goodsSimpleInfoList= r.data;
+            var sum_price_isSpecial=0;
+            var sum_price=0;
+            var num=0;
+            for(var i=0;i<goodsSimpleInfoList.length;i++){
+                for(var j=0;i<typeSum;i++){
+                    if(goodsSimpleInfoList[i].goods_sn==goods[i].sn){
+                        var sum=parseInt(goods[i].num);
+                        var price=parseInt(goodsSimpleInfoList[i].shop_price);
+                        var totalPrice=price * sum;
+                        num=num+sum;
+                        goodsSimpleInfoList[i]["sum"]=sum;
+                        goodsSimpleInfoList[i]["totalPrice"]=totalPrice;
+                        sum_price=sum_price+totalPrice;
+                        if(goodsSimpleInfoList[i].is_special==1){
+                            sum_price_isSpecial=sum_price_isSpecial+totalPrice;
+                        }
+                    }
+                };
+            };
+            var submitOrder_goods_data={"num":num,"goodsSimpleInfoList":goodsSimpleInfoList};
+            hlp.bindtpl(submitOrder_goods_data, "#div_submitOrder_goods", "tpl_submitOrder_goods");
+            if(succeedHandler){
+                succeedHandler(sum_price,sum_price_isSpecial);
+            }
+        }else{
+            if(failedHandler){
+                failedHandler(r.message);
+            }
+        }
+    });
+};
+
+//可用积分
+var getIntegral=function (userId,succeedHandler, failedHandler){
+    userId="8a2b4d084d98983d014d9902b5560005"
+    hlp.log("before call shopping-car.js getIntegral");
+    svc.getintegraln(userId,function(r){
+        hlp.log("inside call shopping-car.js getIntegral");
+        if (r.status == "SUCCESS") {
+            if(r.userIntegral=="empty"){
+                var integral="0";
+            }else{
+                var integral=parseInt(r.userIntegral);
+                if(succeedHandler){
+                    succeedHandler(integral);
+                }
+            }
+        }else{
+            hlp.log("shopping-car.js getIntegral:::"+ r.message);
+            if(failedHandler){
+                failedHandler();
+            }
+        }
+    });
+};
+
+//验证码登录
+var codeLogin=function(mPoneNumber,buyWithoutVericode,succeedHandler, failedHandler){
+    svc.identifyCodeCheck(mPoneNumber, buyWithoutVericode, function(codeCheck_result) {
+        if (codeCheck_result.status == "SUCCESS") {
+            svc.codeLogin(mPoneNumber, function(codeLogin_result) {
+                if (codeLogin_result.status == "SUCCESS") {
+                    loj.setOnline(codeLogin_result,"flyco");
+                    hlp.log(hlp.format("Credential:{0}",[loj.Credential]));
+                    hlp.log(hlp.format("UserId:{0}",[loj.UserId]));
+                    hlp.log(hlp.format("LoginType:{0}",[loj.LoginType]));
+                    hlp.myalert("已自动登录了您的飞科账户！");
+                    refundApplyGetNumber();
+                    if(succeedHandler){
+                        succeedHandler();
+                    };
+                }else{
+                    if(failedHandler){
+                        failedHandler();
+                    };
+                    hlp.myalert("codeLogin result:"+codeLogin_result.message);
+                }
+            });
+        }else{
+            if(failedHandler){
+                failedHandler();
+            };
+            hlp.myalert("identifyCodeCheck result:"+codeCheck_result.message);
+        }
+    });
+};
+
+//密码登陆
+var passwordLogin=function(mPoneNumber, buyWithoutVericode,succeedHandler, failedHandler){
+    svc.userAuthentication(mPoneNumber, buyWithoutVericode, function(userAuthentication_res){
+        if (userAuthentication_res.status == "SUCCESS") {
+            hlp.log("shopping-car.js svc.userAuthentication success message:" + userAuthentication_res.message);
+            loj.setOnline(userAuthentication_res,"flyco");
+            hlp.log(hlp.format("Credential:{0}",[loj.Credential]));
+            hlp.log(hlp.format("UserId:{0}",[loj.UserId]));
+            hlp.log(hlp.format("LoginType:{0}",[loj.LoginType]));
+            hlp.myalert("已自动登录了您的飞科账户！");
+            if(succeedHandler){
+                succeedHandler();
+            }
+        }else{
+            if(failedHandler){
+                failedHandler();
+            }
+            hlp.log("shopping-car.js svc.userAuthentication failed message:" + userAuthentication_res.message);
+        };
+    });
+};
+
+//新增地址为默认
+var addAddress=function(newAddress_data){
+    newAddress_data.user_id="13621804326";
+    svc.addAddress(newAddress_data, function (addAddress_res) {
+        hlp.log("svc.addAddress success message:" + addAddress_res.message);
+        if (addAddress_res.status == "SUCCESS") {
+            $.afui.loadContent("#submitOrder");
+        } else {
+            hlp.log("svc.addAddress failed message:" + addAddress_res.message);
+            hlp.myalert("添加地址失败");
+        }
+    });
+}

@@ -1,0 +1,48 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {
+            "framework": {
+                "parents": {
+                    "CoreGraphics.framework": [
+                        {
+                            "xml": false,
+                            "count": 1
+                        }
+                    ]
+                }
+            },
+            "config.xml": {
+                "parents": {
+                    "/*": [
+                        {
+                            "xml": "<feature name=\"InAppBrowser\"><param name=\"ios-package\" value=\"CDVInAppBrowser\" /></feature>",
+                            "count": 1
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "installed_plugins": {
+        "com.phonegap.plugins.isFirst": {
+            "PACKAGE_NAME": "com.flyco.fsas"
+        },
+        "com.phonegap.plugins.fileOperate": {
+            "PACKAGE_NAME": "com.flyco.fsas"
+        },
+        "com.phonegap.plugins.picOperate": {
+            "PACKAGE_NAME": "com.flyco.fsas"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "com.flyco.fsas"
+        },
+        "com.phonegap.plugins.codeScan": {
+            "PACKAGE_NAME": "com.flyco.fsas"
+        }
+    },
+    "dependent_plugins": {}
+}

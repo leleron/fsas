@@ -1,0 +1,12 @@
+
+<div id="PublicFooter" data-role="footer" data-position="fixed" data-tap-toggle="false" >
+  <div data-role="navbar">
+    <ul>
+      <li><a href="#" class="ui-btn ui-btn-icon-top ui-icon-shop" style="color:2364ae;">商城</a></li>
+      <li><a href="#myDevice" class="ui-btn ui-btn-icon-top ui-icon-device" style="border-left:none; color:#2364ae;">设备</a></li>
+      <li><a href="#find" class="ui-btn ui-btn-icon-top ui-icon-find" style="border-left:none; color:2364ae;">发现</a></li>
+      <li><a href="#my" class="ui-btn ui-btn-icon-top ui-icon-user" style="border-left:none; color:2364ae;">我的</a></li>
+      <!--<li><a href="#" class="ui-btn ui-btn-icon-top ui-icon-heart" style="border-left:none; color:2364ae;">健康</a></li>-->
+    </ul>
+  </div>
+</div>

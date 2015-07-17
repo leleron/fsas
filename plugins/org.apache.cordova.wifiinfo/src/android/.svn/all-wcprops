@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/FSAS_MOBILE/!svn/ver/168/trunk/fsas/plugins/org.apache.cordova.wifiinfo/src/android
+END
+.classpath
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/FSAS_MOBILE/!svn/ver/168/trunk/fsas/plugins/org.apache.cordova.wifiinfo/src/android/.classpath
+END
+.gitignore
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/FSAS_MOBILE/!svn/ver/168/trunk/fsas/plugins/org.apache.cordova.wifiinfo/src/android/.gitignore
+END
+cordovaWifiInfo.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/FSAS_MOBILE/!svn/ver/168/trunk/fsas/plugins/org.apache.cordova.wifiinfo/src/android/cordovaWifiInfo.java
+END

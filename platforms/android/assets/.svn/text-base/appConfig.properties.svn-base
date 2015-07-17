@@ -1,0 +1,4 @@
+qrcode-pixel=1024*768
+qrcode-size=500kb
+qrcode-bitmap-count=512000
+qrcode-bitmap-size=307200

@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/FSAS_MOBILE/!svn/ver/1262/trunk/fsas/plugins
+END
+fetch.json
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/FSAS_MOBILE/!svn/ver/1031/trunk/fsas/plugins/fetch.json
+END
+ios.json
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/FSAS_MOBILE/!svn/ver/1031/trunk/fsas/plugins/ios.json
+END
+android.json
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/FSAS_MOBILE/!svn/ver/1262/trunk/fsas/plugins/android.json
+END

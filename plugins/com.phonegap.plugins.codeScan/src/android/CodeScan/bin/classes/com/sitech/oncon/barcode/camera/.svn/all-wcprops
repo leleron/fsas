@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/svn/FSAS_MOBILE/!svn/ver/1031/trunk/fsas/plugins/com.phonegap.plugins.codeScan/src/android/CodeScan/bin/classes/com/sitech/oncon/barcode/camera
+END
+CameraConfigurationManager.class
+K 25
+svn:wc:ra_dav:version-url
+V 177
+/svn/FSAS_MOBILE/!svn/ver/1031/trunk/fsas/plugins/com.phonegap.plugins.codeScan/src/android/CodeScan/bin/classes/com/sitech/oncon/barcode/camera/CameraConfigurationManager.class
+END
+OpenCameraInterface.class
+K 25
+svn:wc:ra_dav:version-url
+V 170
+/svn/FSAS_MOBILE/!svn/ver/1031/trunk/fsas/plugins/com.phonegap.plugins.codeScan/src/android/CodeScan/bin/classes/com/sitech/oncon/barcode/camera/OpenCameraInterface.class
+END
+PreviewCallback.class
+K 25
+svn:wc:ra_dav:version-url
+V 166
+/svn/FSAS_MOBILE/!svn/ver/1031/trunk/fsas/plugins/com.phonegap.plugins.codeScan/src/android/CodeScan/bin/classes/com/sitech/oncon/barcode/camera/PreviewCallback.class
+END
+CameraConfigurationManager$1.class
+K 25
+svn:wc:ra_dav:version-url
+V 179
+/svn/FSAS_MOBILE/!svn/ver/1031/trunk/fsas/plugins/com.phonegap.plugins.codeScan/src/android/CodeScan/bin/classes/com/sitech/oncon/barcode/camera/CameraConfigurationManager$1.class
+END
+DefaultOpenCameraInterface.class
+K 25
+svn:wc:ra_dav:version-url
+V 177
+/svn/FSAS_MOBILE/!svn/ver/1031/trunk/fsas/plugins/com.phonegap.plugins.codeScan/src/android/CodeScan/bin/classes/com/sitech/oncon/barcode/camera/DefaultOpenCameraInterface.class
+END
+AutoFocusManager$AutoFocusTask.class
+K 25
+svn:wc:ra_dav:version-url
+V 181
+/svn/FSAS_MOBILE/!svn/ver/1031/trunk/fsas/plugins/com.phonegap.plugins.codeScan/src/android/CodeScan/bin/classes/com/sitech/oncon/barcode/camera/AutoFocusManager$AutoFocusTask.class
+END
+AutoFocusManager.class
+K 25
+svn:wc:ra_dav:version-url
+V 167
+/svn/FSAS_MOBILE/!svn/ver/1031/trunk/fsas/plugins/com.phonegap.plugins.codeScan/src/android/CodeScan/bin/classes/com/sitech/oncon/barcode/camera/AutoFocusManager.class
+END
+CameraManager.class
+K 25
+svn:wc:ra_dav:version-url
+V 164
+/svn/FSAS_MOBILE/!svn/ver/1031/trunk/fsas/plugins/com.phonegap.plugins.codeScan/src/android/CodeScan/bin/classes/com/sitech/oncon/barcode/camera/CameraManager.class
+END
+GingerbreadOpenCameraInterface.class
+K 25
+svn:wc:ra_dav:version-url
+V 181
+/svn/FSAS_MOBILE/!svn/ver/1031/trunk/fsas/plugins/com.phonegap.plugins.codeScan/src/android/CodeScan/bin/classes/com/sitech/oncon/barcode/camera/GingerbreadOpenCameraInterface.class
+END
+OpenCameraManager.class
+K 25
+svn:wc:ra_dav:version-url
+V 168
+/svn/FSAS_MOBILE/!svn/ver/1031/trunk/fsas/plugins/com.phonegap.plugins.codeScan/src/android/CodeScan/bin/classes/com/sitech/oncon/barcode/camera/OpenCameraManager.class
+END

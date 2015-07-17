@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/FSAS_MOBILE/!svn/ver/1127/trunk/fsas/platforms/ios
+END
+Podfile
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/FSAS_MOBILE/!svn/ver/745/trunk/fsas/platforms/ios/Podfile
+END
+.gitignore
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/FSAS_MOBILE/!svn/ver/348/trunk/fsas/platforms/ios/.gitignore
+END
+Podfile.lock
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/FSAS_MOBILE/!svn/ver/745/trunk/fsas/platforms/ios/Podfile.lock
+END

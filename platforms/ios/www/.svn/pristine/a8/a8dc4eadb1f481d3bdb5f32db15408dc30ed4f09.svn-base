@@ -1,0 +1,84 @@
+<!--<div style="height:30%;position: relative;" class="div">-->
+    <!--<div style="padding-top: 1rem;padding-left: 28px;">-->
+        <!--<div class="city">上海</div>-->
+        <!--<div class="quality">重度污染</div>-->
+    <!--</div>-->
+    <!--<div style="position: absolute;left:50%;top:50%;margin-left: -120px;margin-top:1rem;">-->
+        <!--<div style="display: inline-block;">-->
+            <!--空气质量<span style="font-size: 22px;color: #c86b5c;">差</span>-->
+            <!--温度<span style="font-size: 20px;">5</span>℃-->
+            <!--湿度<span style="font-size: 20px;">20</span>%-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+<!--<div style="height: 70%;">-->
+    <!--<div style="padding: 6% 20px">-->
+        <!--<span>室内</span>-->
+        <!--<span style="float: right;"><a>信封</a></span>-->
+    <!--</div>-->
+    <!--<div style="text-align: center;padding-bottom: 1rem;">-->
+        <!--空气质量<span style="font-size: 20px;color: #14a205;">优</span>-->
+        <!--温度<span style="font-size: 20px;">5</span>℃-->
+        <!--湿度<span style="font-size: 20px;">20</span>%-->
+    <!--</div>-->
+    <!--<div>-->
+        <!--<div class="button">-->
+            <!--<a><img src="images/myRoom/pattern.png"></a>-->
+            <!--<a><img src="images/myRoom/on.png" class="on"></a>-->
+            <!--<a><img src="images/myRoom/item.png"></a>-->
+        <!--</div>-->
+        <!--<div class="button mgt">-->
+            <!--<a><img src="images/myRoom/singer.png" style="margin-left: 1.5rem;"></a>-->
+            <!--<a><img src="images/myRoom/timer.png" style="margin-top: 2rem;"></a>-->
+            <!--<a><img src="images/myRoom/childLock.png" style="margin-right: 1.5rem;"></a>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+<div id="Stage" class="deviceControl">
+
+    <div id="Stage_indoor" class="edgeLoad-deviceControl">室内</div>
+    <div id="Stage_suggetstion" class="edgeLoad-deviceControl">现在室外空气质量很糟糕，您还未开空气净化器，现在室内空气质量不好，对您的身体会造成伤害，建议立即开启空气净化器。</div>
+    <div id="Stage_power" class="edgeLoad-deviceControl">
+        <div id="Stage_power_powerup"></div>
+        <div id="Stage_power_powerdown"></div>
+    </div>
+    <div id="Stage_smart" class="edgeLoad-deviceControl">
+        <div id="Stage_smart_smartup"></div>
+        <div id="Stage_smart_smartdown"></div>
+    </div>
+    <div id="Stage_weatherbox" class="edgeLoad-deviceControl">
+        <div id="Stage_weather_bg" class="edgeLoad-deviceControl">
+            <div id="Stage_weather_cloudy" class="edgeLoad-deviceControl"></div>
+            <div id="Stage_weather_overcast" class="edgeLoad-deviceControl"></div>
+            <div id="Stage_weather_snow" class="edgeLoad-deviceControl"></div>
+            <div id="Stage_weather_sunny2" class="edgeLoad-deviceControl"></div>
+            <div id="Stage_weather_verysunny" class="edgeLoad-deviceControl"></div>
+        </div>
+        <div id="Stage_city" class="edgeLoad-deviceControl">上海</div>
+        <div id="Stage_arrow" class="edgeLoad-deviceControl">∧</div>
+        <div id="Stage_humidifier_value" class="edgeLoad-deviceControl">20%</div>
+        <div id="Stage_humidifier" class="edgeLoad-deviceControl">湿度</div>
+        <div id="Stage_temprature_value" class="edgeLoad-deviceControl">-2℃</div>
+        <div id="Stage_tempratue" class="edgeLoad-deviceControl">温度</div>
+        <div id="Stage_air_quality_value" class="edgeLoad-deviceControl">
+            <div id="Stage_liang" class="edgeLoad-deviceControl">良</div>
+            <div id="Stage_you" class="edgeLoad-deviceControl">优</div>
+            <div id="Stage_cha" class="edgeLoad-deviceControl">差</div>
+        </div>
+        <div id="Stage_air_quality" class="edgeLoad-deviceControl">空气质量</div>
+    </div>
+</div>
+
+
+
+
+<div id="authorityMenu"  style="display: none;">
+    <ul class="list"  data-icon="false">
+        <li><a href="#" id="deviceAuthority">设备权限</a></li>
+        <li><a href="#deviceFans">设备粉丝</a></li>
+        <li><a href="#" id="deviceLog">设备日志</a></li>
+        <li><a href="#deviceErrorList">设备消息</a></li>
+        <li><a href="#deviceSetting">设备设置</a></li>
+        <li><a href="#aboutDevice">关于设备</a></li>
+    </ul>
+</div>

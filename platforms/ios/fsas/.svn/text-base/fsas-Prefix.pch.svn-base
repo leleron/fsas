@@ -1,0 +1,54 @@
+/*
+ Licensed to the Apache Software Foundation (ASF) under one
+ or more contributor license agreements.  See the NOTICE file
+ distributed with this work for additional information
+ regarding copyright ownership.  The ASF licenses this file
+ to you under the Apache License, Version 2.0 (the
+ "License"); you may not use this file except in compliance
+ with the License.  You may obtain a copy of the License at
+
+ http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing,
+ software distributed under the License is distributed on an
+ "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ KIND, either express or implied.  See the License for the
+ specific language governing permissions and limitations
+ under the License.
+ */
+//
+// Prefix header for all source files of the 'fsas' target in the 'fsas' project
+//
+
+#import <Availability.h>
+#import "const.h"
+#ifndef __IPHONE_3_0
+#warning "This project uses features only available in iOS SDK 3.0 and later."
+#endif
+
+#ifdef __OBJC__
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#endif
+#define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
+#define SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
+#define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+
+#define BLUECOLOR ([UIColor colorWithRed:100/255.0 green:184/255.0 blue:236/255.0 alpha:1])
+#define TOPBARCOLOR ([UIColor colorWithRed:27/255.0 green:128/255.0 blue:202/255.0 alpha:1.0])
+
+#define UNAVAILABLECOLOR ([UIColor colorWithRed:200/255.0 green:200/255.0 blue:200/255.0 alpha:1.0])
+#define PATH(name) ([[NSBundle mainBundle]pathForResource:(name) ofType:@"png"])
+#define VERSION @"App Ver. 1.0 Copyright©2014 by Advante."
+#define iOSVERSION [UIDevice currentDevice].systemVersion.floatValue
+#define LOCAL(key) (NSLocalizedString(key, nil))
+#define IMAGE(string) ([UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:(string) ofType:@"png"]])
+#define ADJSTHEIGHT 64
+typedef enum {
+    STATUS_TYPE_CHARGE = 100,
+    STATUS_TYPE_STANDBY,
+    STATUS_TYPE_WORK,
+    STATUS_TYPE_SLEEP,
+    STATUS_TYPE_BACK_CHARGE,
+    STATUS_TYPE_ERROR,
+}STATUS_TYPE;

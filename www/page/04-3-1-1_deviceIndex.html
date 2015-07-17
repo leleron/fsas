@@ -1,0 +1,48 @@
+<div class='popupMyDevice button-grouped vertical'>
+    <a href='#deviceAuthority' class="button">设备权限</a>
+    <a href='#deviceFans' class="button">设备粉丝</a>
+    <a href='#deviceLog' class="button">设备日志</a>
+    <a href='#deviceErrorList' class="button">设备消息</a>
+    <a href='#deviceSetting' class="button">设备设置</a>
+    <a href='#aboutDevice' class="button">关于设备</a>
+</div>
+<div class='popupMyFollowedDevice button-grouped vertical'>
+    <a href='#aboutDevice' class="button">关于设备</a>
+</div>
+
+<div id="bars">
+    <div class="control" id="windKnob">
+        <div class="colorBar active">智</div>
+        <div class="colorBar">强</div>
+        <div class="colorBar">睡</div>
+        <div class="colorBar">1</div>
+        <div class="colorBar">2</div>
+        <div class="colorBar">3</div>
+    </div>
+    <div class="control" id="sleepKnob">
+
+        <div class="colorBar">关</div>
+        <div class="colorBar">1</div>
+        <div class="colorBar">2</div>
+        <div class="colorBar">3</div>
+        <div class="colorBar">4</div>
+        <div class="colorBar">5</div>
+        <div class="colorBar">6</div>
+        <div class="colorBar">7</div>
+        <div class="colorBar">8</div>
+
+    </div>
+    <div class="control" id="lightKnob">
+        <div class="colorBar active">正</div>
+        <div class="colorBar">半</div>
+        <div class="colorBar">关</div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        creatKnob('#windKnob');
+        creatKnob('#sleepKnob');
+        creatKnob('#lightKnob');
+    });
+</script>

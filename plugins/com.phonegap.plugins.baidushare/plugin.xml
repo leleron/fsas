@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="com.phonegap.plugins.baidushare"
+    version="0.0.1">
+
+    <name>Baidushare</name>
+    <description>Baidushare Description</description>
+    
+    <engines>
+        <engine name="cordova" version=">=3.0.0" />
+    </engines>    
+
+    <js-module src="www/Baidushare.js" name="Baidushare">
+        <clobbers target="cordova.plugins.Baidushare" />
+    </js-module>
+
+    <!-- android -->
+    <platform name="android">
+
+        <source-file src="src/android/Baidushare.java" target-dir="src/com/phonegap/plugins/baidushare" />
+		<source-file src="src/android/wxapi/WXEntryActivity.java" target-dir="src/com/phonegap/plugins/baidushare/wxapi" />
+
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="Baidushare">
+                <param name="android-package" value="com.phonegap.plugins.baidushare.Baidushare" />
+            </feature>
+        </config-file>
+
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+            <activity android:name="com.baidu.cloudsdk.social.oauth.SocialOAuthActivity"
+				android:exported="true"
+				android:screenOrientation="portrait"
+				android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen">
+			</activity>
+			<activity
+				android:name="com.baidu.cloudsdk.social.share.handler.LocalShareActivity"
+				android:launchMode="singleTask">
+			</activity>
+
+			<activity android:name="com.baidu.cloudsdk.social.share.handler.QQFriendShareReceiverActivity"
+				android:launchMode="singleTask">
+				<intent-filter>
+					<action android:name="android.intent.action.VIEW" />
+					<category android:name="android.intent.category.DEFAULT" />
+					<category android:name="android.intent.category.BROWSABLE" />
+					<data android:scheme="tencent222222" />
+				</intent-filter>
+			</activity>
+
+			
+			<activity android:name="com.phonegap.plugins.baidushare.wxapi.WXEntryActivity"
+                  android:label="@string/app_name"
+                  android:exported="true"
+                  android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen">
+			</activity>
+        </config-file>
+
+        <config-file target="AndroidManifest.xml" parent="/manifest">
+            <uses-permission android:name="android.permission.INTERNET" />
+			<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+			<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+			<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+			<uses-permission android:name="android.permission.WRITE_SETTINGS" />
+			<uses-permission android:name="android.permission.READ_PHONE_STATE" />
+			<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />      
+        </config-file>
+
+        <source-file src="src/android/Baidu-SocialShare-SDK-Android-2.0.2.jar" target-dir="libs"/>
+		<source-file src="src/android/config.json" target-dir="assets"/>
+    </platform>
+
+</plugin>

@@ -1,0 +1,14 @@
+
+<div class="deviceSearch">
+    <div class="button-grouped searchbox">
+        <input type="text" id="searchInput" placeholder="搜索设备">
+        <a href="#deviceSearchResult" class="button blue" id="search">
+
+        </a>
+    </div>
+
+    <ul class="list inset" >
+        <li><a href="#deviceNearby">附近设备</a></li>
+        <li><a href="#attentionRank">关注度排行</a></li>
+    </ul>
+</div>

@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/FSAS_MOBILE/!svn/ver/1031/trunk/fsas/platforms/ios/fsas/Plugins
+END
+GetPicture.h
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/FSAS_MOBILE/!svn/ver/772/trunk/fsas/platforms/ios/fsas/Plugins/GetPicture.h
+END
+iOSPlugins.h
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/FSAS_MOBILE/!svn/ver/1025/trunk/fsas/platforms/ios/fsas/Plugins/iOSPlugins.h
+END
+ZXingPlugin.h
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/FSAS_MOBILE/!svn/ver/745/trunk/fsas/platforms/ios/fsas/Plugins/ZXingPlugin.h
+END
+GetPicture.m
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/FSAS_MOBILE/!svn/ver/855/trunk/fsas/platforms/ios/fsas/Plugins/GetPicture.m
+END
+iOSPlugins.m
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/FSAS_MOBILE/!svn/ver/1025/trunk/fsas/platforms/ios/fsas/Plugins/iOSPlugins.m
+END
+ZXingPlugin.m
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/FSAS_MOBILE/!svn/ver/757/trunk/fsas/platforms/ios/fsas/Plugins/ZXingPlugin.m
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/FSAS_MOBILE/!svn/ver/348/trunk/fsas/platforms/ios/fsas/Plugins/README
+END

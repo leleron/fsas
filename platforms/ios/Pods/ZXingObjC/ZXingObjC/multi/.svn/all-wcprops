@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/FSAS_MOBILE/!svn/ver/745/trunk/fsas/platforms/ios/Pods/ZXingObjC/ZXingObjC/multi
+END
+ZXGenericMultipleBarcodeReader.h
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/FSAS_MOBILE/!svn/ver/745/trunk/fsas/platforms/ios/Pods/ZXingObjC/ZXingObjC/multi/ZXGenericMultipleBarcodeReader.h
+END
+ZXByQuadrantReader.h
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/FSAS_MOBILE/!svn/ver/745/trunk/fsas/platforms/ios/Pods/ZXingObjC/ZXingObjC/multi/ZXByQuadrantReader.h
+END
+ZXMultipleBarcodeReader.h
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/FSAS_MOBILE/!svn/ver/745/trunk/fsas/platforms/ios/Pods/ZXingObjC/ZXingObjC/multi/ZXMultipleBarcodeReader.h
+END
+ZXGenericMultipleBarcodeReader.m
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/FSAS_MOBILE/!svn/ver/745/trunk/fsas/platforms/ios/Pods/ZXingObjC/ZXingObjC/multi/ZXGenericMultipleBarcodeReader.m
+END
+ZXByQuadrantReader.m
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/FSAS_MOBILE/!svn/ver/745/trunk/fsas/platforms/ios/Pods/ZXingObjC/ZXingObjC/multi/ZXByQuadrantReader.m
+END

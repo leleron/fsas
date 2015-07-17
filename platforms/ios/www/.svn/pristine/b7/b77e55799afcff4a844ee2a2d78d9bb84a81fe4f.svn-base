@@ -1,0 +1,28 @@
+
+<form id="qrlxrxx" check_status="false">
+    <div class="applyTH">
+        <ul>
+            <li>收货人姓名：<span><input name="address_consignee" class="acConsignee" type="text" value="" style="text-indent:0;width:75%;" placeholder="请填写真实姓名" /></span></li>
+            <li>
+                配送区域：
+                <select id="qrxxProvince" name="address_province" class="acProvince"><option value="-1"> --请选择--  </option></select>
+                <select id="qrxxCity" name="address_city" class="acCity"><option value="-1"> --请选择--  </option></select>
+                <select id="qrxxDistrict" name="address_district" class="acDistrict"><option value="-1"> --请选择--  </option></select>
+            </li>
+            <li>详细地址：<span><input name="address_address" class="acAddress" type="text" value="" style="text-indent:0;width:75%;" placeholder="不少于5个字" /></span></li>
+            <li>邮政编码：<span><input name="address_zipcode" class="acZipCode" type="text" value="" style="text-indent:0;width:75%;"  maxlength="6" placeholder="6位数字" /></span></li>
+            <li>固定电话：<span><input name="address_tel" class="acTel" type="text" value="" style="text-indent:0;width:75%;"  maxlength="8" placeholder="8位数字" /></span></li>
+            <li>手机号码：<span><input name="address_mobile" class="acMobile" type="text" value="" style="text-indent:0;width:75%;" maxlength="11" placeholder="11位数字" /></span></li>
+        </ul>
+        <a href="#" class="blueBtn qrshSubmit">确认收货地址</a>
+        <a href="#" class="blueBtn grey qrshCancel">取消修改地址</a>
+    </div>
+</form>
+<p style="display: none">
+    <textarea id="qrxxAddressInsert">
+        <option value="-1"> --请选择--  </option>
+        {#foreach $T as Item}
+            <option value="{$T.Item.region_id}">{$T.Item.region_name}</option>
+        {#/for}
+    </textarea>
+</p>

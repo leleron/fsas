@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/FSAS_MOBILE/!svn/ver/745/trunk/fsas/platforms/ios/Pods/ZXingObjC/ZXingObjC/datamatrix/decoder
+END
+ZXDataMatrixDataBlock.m
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/FSAS_MOBILE/!svn/ver/745/trunk/fsas/platforms/ios/Pods/ZXingObjC/ZXingObjC/datamatrix/decoder/ZXDataMatrixDataBlock.m
+END
+ZXDataMatrixDecoder.m
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/FSAS_MOBILE/!svn/ver/745/trunk/fsas/platforms/ios/Pods/ZXingObjC/ZXingObjC/datamatrix/decoder/ZXDataMatrixDecoder.m
+END
+ZXDataMatrixVersion.m
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/FSAS_MOBILE/!svn/ver/745/trunk/fsas/platforms/ios/Pods/ZXingObjC/ZXingObjC/datamatrix/decoder/ZXDataMatrixVersion.m
+END
+ZXDataMatrixDecodedBitStreamParser.h
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/svn/FSAS_MOBILE/!svn/ver/745/trunk/fsas/platforms/ios/Pods/ZXingObjC/ZXingObjC/datamatrix/decoder/ZXDataMatrixDecodedBitStreamParser.h
+END
+ZXDataMatrixBitMatrixParser.h
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svn/FSAS_MOBILE/!svn/ver/745/trunk/fsas/platforms/ios/Pods/ZXingObjC/ZXingObjC/datamatrix/decoder/ZXDataMatrixBitMatrixParser.h
+END
+ZXDataMatrixDataBlock.h
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/FSAS_MOBILE/!svn/ver/745/trunk/fsas/platforms/ios/Pods/ZXingObjC/ZXingObjC/datamatrix/decoder/ZXDataMatrixDataBlock.h
+END
+ZXDataMatrixDecodedBitStreamParser.m
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/svn/FSAS_MOBILE/!svn/ver/745/trunk/fsas/platforms/ios/Pods/ZXingObjC/ZXingObjC/datamatrix/decoder/ZXDataMatrixDecodedBitStreamParser.m
+END
+ZXDataMatrixBitMatrixParser.m
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svn/FSAS_MOBILE/!svn/ver/745/trunk/fsas/platforms/ios/Pods/ZXingObjC/ZXingObjC/datamatrix/decoder/ZXDataMatrixBitMatrixParser.m
+END
+ZXDataMatrixDecoder.h
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/FSAS_MOBILE/!svn/ver/745/trunk/fsas/platforms/ios/Pods/ZXingObjC/ZXingObjC/datamatrix/decoder/ZXDataMatrixDecoder.h
+END
+ZXDataMatrixVersion.h
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/FSAS_MOBILE/!svn/ver/745/trunk/fsas/platforms/ios/Pods/ZXingObjC/ZXingObjC/datamatrix/decoder/ZXDataMatrixVersion.h
+END

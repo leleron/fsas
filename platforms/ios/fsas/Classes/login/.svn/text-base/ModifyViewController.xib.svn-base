@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8121.17" systemVersion="15A216g" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8101.14"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ModifyUserInfoViewController">
+            <connections>
+                <outlet property="view" destination="iN0-l3-epB" id="49f-BY-91A"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nO3-TF-d63">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="649"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="昵      称：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b88-Cg-Pre">
+                            <rect key="frame" x="30" y="80" width="80" height="20"/>
+                            <animations/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="Jyi-ba-tuG"/>
+                                <constraint firstAttribute="width" constant="80" id="b9m-HY-kMM"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="45G-XF-pha">
+                            <rect key="frame" x="118" y="82" width="200" height="17"/>
+                            <animations/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="200" id="1ZL-Pl-h0L"/>
+                                <constraint firstAttribute="width" constant="439" id="yfw-Od-GJB"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="yfw-Od-GJB"/>
+                                </mask>
+                            </variation>
+                        </textField>
+                    </subviews>
+                    <animations/>
+                    <constraints>
+                        <constraint firstItem="45G-XF-pha" firstAttribute="centerY" secondItem="b88-Cg-Pre" secondAttribute="centerY" id="3Hu-Qz-XHF"/>
+                        <constraint firstAttribute="bottom" secondItem="b88-Cg-Pre" secondAttribute="bottom" constant="100" id="FP0-OV-5Wx"/>
+                        <constraint firstAttribute="bottom" secondItem="45G-XF-pha" secondAttribute="bottom" constant="550" id="JwM-Ri-bk3"/>
+                        <constraint firstItem="45G-XF-pha" firstAttribute="leading" secondItem="b88-Cg-Pre" secondAttribute="trailing" constant="8" id="Mhk-KW-kqV"/>
+                        <constraint firstItem="b88-Cg-Pre" firstAttribute="top" secondItem="nO3-TF-d63" secondAttribute="top" constant="80" id="OD6-de-eu9"/>
+                        <constraint firstItem="b88-Cg-Pre" firstAttribute="leading" secondItem="nO3-TF-d63" secondAttribute="leading" constant="30" id="q4J-Ta-Rib"/>
+                        <constraint firstAttribute="bottom" secondItem="b88-Cg-Pre" secondAttribute="bottom" constant="549" id="uLD-kD-Ub7"/>
+                        <constraint firstAttribute="bottom" secondItem="b88-Cg-Pre" secondAttribute="bottom" constant="549" id="xsU-04-s5t"/>
+                        <constraint firstAttribute="trailing" secondItem="45G-XF-pha" secondAttribute="trailing" id="z5H-XN-3Vt"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="uLD-kD-Ub7"/>
+                            <exclude reference="xsU-04-s5t"/>
+                        </mask>
+                    </variation>
+                </scrollView>
+            </subviews>
+            <animations/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="nO3-TF-d63" secondAttribute="trailing" id="CkY-wa-iz2"/>
+                <constraint firstItem="nO3-TF-d63" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="HMH-W9-cQ9"/>
+                <constraint firstAttribute="bottom" secondItem="nO3-TF-d63" secondAttribute="bottom" constant="-49" id="kqc-qI-1rp"/>
+                <constraint firstAttribute="trailing" secondItem="nO3-TF-d63" secondAttribute="trailing" id="lCl-d9-uYF"/>
+                <constraint firstItem="nO3-TF-d63" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="yLi-tS-ire"/>
+            </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="CkY-wa-iz2"/>
+                    <exclude reference="kqc-qI-1rp"/>
+                </mask>
+            </variation>
+        </view>
+    </objects>
+</document>

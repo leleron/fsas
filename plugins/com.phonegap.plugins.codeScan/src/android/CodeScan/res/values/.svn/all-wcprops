@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/FSAS_MOBILE/!svn/ver/1031/trunk/fsas/plugins/com.phonegap.plugins.codeScan/src/android/CodeScan/res/values
+END
+colors.xml
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/FSAS_MOBILE/!svn/ver/1031/trunk/fsas/plugins/com.phonegap.plugins.codeScan/src/android/CodeScan/res/values/colors.xml
+END
+styles.xml
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/FSAS_MOBILE/!svn/ver/1031/trunk/fsas/plugins/com.phonegap.plugins.codeScan/src/android/CodeScan/res/values/styles.xml
+END
+strings.xml
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/FSAS_MOBILE/!svn/ver/1031/trunk/fsas/plugins/com.phonegap.plugins.codeScan/src/android/CodeScan/res/values/strings.xml
+END
+attrs.xml
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svn/FSAS_MOBILE/!svn/ver/1031/trunk/fsas/plugins/com.phonegap.plugins.codeScan/src/android/CodeScan/res/values/attrs.xml
+END
+dimens.xml
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/FSAS_MOBILE/!svn/ver/1031/trunk/fsas/plugins/com.phonegap.plugins.codeScan/src/android/CodeScan/res/values/dimens.xml
+END

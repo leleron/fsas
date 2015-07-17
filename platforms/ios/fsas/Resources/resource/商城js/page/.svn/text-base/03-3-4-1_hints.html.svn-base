@@ -1,0 +1,7 @@
+<div  class="hints">
+    <ul class="list" >
+        <li><a id="AppPdf" href="#hintsDetail">APP安装</a></li>
+        <li><a id="devicePdf" href="#hintsDetail">设备绑定</a></li>
+        <li><a id="integralPdf" href="#hintsDetail">积分规则</a></li>
+    </ul>
+</div>

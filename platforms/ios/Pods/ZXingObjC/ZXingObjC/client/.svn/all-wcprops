@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/FSAS_MOBILE/!svn/ver/745/trunk/fsas/platforms/ios/Pods/ZXingObjC/ZXingObjC/client
+END
+ZXImage.m
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/FSAS_MOBILE/!svn/ver/745/trunk/fsas/platforms/ios/Pods/ZXingObjC/ZXingObjC/client/ZXImage.m
+END
+ZXCapture.m
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/FSAS_MOBILE/!svn/ver/745/trunk/fsas/platforms/ios/Pods/ZXingObjC/ZXingObjC/client/ZXCapture.m
+END
+ZXCGImageLuminanceSource.h
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/FSAS_MOBILE/!svn/ver/745/trunk/fsas/platforms/ios/Pods/ZXingObjC/ZXingObjC/client/ZXCGImageLuminanceSource.h
+END
+ZXCGImageLuminanceSource.m
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/FSAS_MOBILE/!svn/ver/745/trunk/fsas/platforms/ios/Pods/ZXingObjC/ZXingObjC/client/ZXCGImageLuminanceSource.m
+END
+ZXCaptureDelegate.h
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/FSAS_MOBILE/!svn/ver/745/trunk/fsas/platforms/ios/Pods/ZXingObjC/ZXingObjC/client/ZXCaptureDelegate.h
+END
+ZXImage.h
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/FSAS_MOBILE/!svn/ver/745/trunk/fsas/platforms/ios/Pods/ZXingObjC/ZXingObjC/client/ZXImage.h
+END
+ZXCapture.h
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/FSAS_MOBILE/!svn/ver/745/trunk/fsas/platforms/ios/Pods/ZXingObjC/ZXingObjC/client/ZXCapture.h
+END

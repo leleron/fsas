@@ -1,0 +1,89 @@
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/svn/FSAS_MOBILE/!svn/ver/1031/trunk/fsas/plugins/com.phonegap.plugins.codeScan/src/android/CodeScan/src/com/sitech/oncon/barcode/core
+END
+QRCodeReader.java
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/svn/FSAS_MOBILE/!svn/ver/1031/trunk/fsas/plugins/com.phonegap.plugins.codeScan/src/android/CodeScan/src/com/sitech/oncon/barcode/core/QRCodeReader.java
+END
+DecodeHandler.java
+K 25
+svn:wc:ra_dav:version-url
+V 153
+/svn/FSAS_MOBILE/!svn/ver/1031/trunk/fsas/plugins/com.phonegap.plugins.codeScan/src/android/CodeScan/src/com/sitech/oncon/barcode/core/DecodeHandler.java
+END
+InactivityTimer.java
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/svn/FSAS_MOBILE/!svn/ver/1031/trunk/fsas/plugins/com.phonegap.plugins.codeScan/src/android/CodeScan/src/com/sitech/oncon/barcode/core/InactivityTimer.java
+END
+Intents.java
+K 25
+svn:wc:ra_dav:version-url
+V 147
+/svn/FSAS_MOBILE/!svn/ver/1031/trunk/fsas/plugins/com.phonegap.plugins.codeScan/src/android/CodeScan/src/com/sitech/oncon/barcode/core/Intents.java
+END
+Const.java
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/svn/FSAS_MOBILE/!svn/ver/1031/trunk/fsas/plugins/com.phonegap.plugins.codeScan/src/android/CodeScan/src/com/sitech/oncon/barcode/core/Const.java
+END
+FinishListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 154
+/svn/FSAS_MOBILE/!svn/ver/1031/trunk/fsas/plugins/com.phonegap.plugins.codeScan/src/android/CodeScan/src/com/sitech/oncon/barcode/core/FinishListener.java
+END
+DecodeFormatManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 159
+/svn/FSAS_MOBILE/!svn/ver/1031/trunk/fsas/plugins/com.phonegap.plugins.codeScan/src/android/CodeScan/src/com/sitech/oncon/barcode/core/DecodeFormatManager.java
+END
+RGBLuminanceSource.java
+K 25
+svn:wc:ra_dav:version-url
+V 158
+/svn/FSAS_MOBILE/!svn/ver/1031/trunk/fsas/plugins/com.phonegap.plugins.codeScan/src/android/CodeScan/src/com/sitech/oncon/barcode/core/RGBLuminanceSource.java
+END
+StringUtils.java
+K 25
+svn:wc:ra_dav:version-url
+V 151
+/svn/FSAS_MOBILE/!svn/ver/1031/trunk/fsas/plugins/com.phonegap.plugins.codeScan/src/android/CodeScan/src/com/sitech/oncon/barcode/core/StringUtils.java
+END
+ViewfinderResultPointCallback.java
+K 25
+svn:wc:ra_dav:version-url
+V 169
+/svn/FSAS_MOBILE/!svn/ver/1031/trunk/fsas/plugins/com.phonegap.plugins.codeScan/src/android/CodeScan/src/com/sitech/oncon/barcode/core/ViewfinderResultPointCallback.java
+END
+DecodeThread.java
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/svn/FSAS_MOBILE/!svn/ver/1031/trunk/fsas/plugins/com.phonegap.plugins.codeScan/src/android/CodeScan/src/com/sitech/oncon/barcode/core/DecodeThread.java
+END
+CodeScanActivity.java
+K 25
+svn:wc:ra_dav:version-url
+V 156
+/svn/FSAS_MOBILE/!svn/ver/1031/trunk/fsas/plugins/com.phonegap.plugins.codeScan/src/android/CodeScan/src/com/sitech/oncon/barcode/core/CodeScanActivity.java
+END
+ViewfinderView.java
+K 25
+svn:wc:ra_dav:version-url
+V 154
+/svn/FSAS_MOBILE/!svn/ver/1031/trunk/fsas/plugins/com.phonegap.plugins.codeScan/src/android/CodeScan/src/com/sitech/oncon/barcode/core/ViewfinderView.java
+END
+CaptureActivityHandler.java
+K 25
+svn:wc:ra_dav:version-url
+V 162
+/svn/FSAS_MOBILE/!svn/ver/1031/trunk/fsas/plugins/com.phonegap.plugins.codeScan/src/android/CodeScan/src/com/sitech/oncon/barcode/core/CaptureActivityHandler.java
+END

@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/FSAS_MOBILE/!svn/ver/745/trunk/fsas/platforms/ios/Pods/ZXingObjC/ZXingObjC/aztec
+END
+ZXAztecWriter.m
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/FSAS_MOBILE/!svn/ver/745/trunk/fsas/platforms/ios/Pods/ZXingObjC/ZXingObjC/aztec/ZXAztecWriter.m
+END
+ZXAztecReader.h
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/FSAS_MOBILE/!svn/ver/745/trunk/fsas/platforms/ios/Pods/ZXingObjC/ZXingObjC/aztec/ZXAztecReader.h
+END
+ZXAztecReader.m
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/FSAS_MOBILE/!svn/ver/745/trunk/fsas/platforms/ios/Pods/ZXingObjC/ZXingObjC/aztec/ZXAztecReader.m
+END
+ZXAztecDetectorResult.h
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/FSAS_MOBILE/!svn/ver/745/trunk/fsas/platforms/ios/Pods/ZXingObjC/ZXingObjC/aztec/ZXAztecDetectorResult.h
+END
+ZXingObjCAztec.h
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/FSAS_MOBILE/!svn/ver/745/trunk/fsas/platforms/ios/Pods/ZXingObjC/ZXingObjC/aztec/ZXingObjCAztec.h
+END
+ZXAztecWriter.h
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/FSAS_MOBILE/!svn/ver/745/trunk/fsas/platforms/ios/Pods/ZXingObjC/ZXingObjC/aztec/ZXAztecWriter.h
+END
+ZXAztecDetectorResult.m
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/FSAS_MOBILE/!svn/ver/745/trunk/fsas/platforms/ios/Pods/ZXingObjC/ZXingObjC/aztec/ZXAztecDetectorResult.m
+END

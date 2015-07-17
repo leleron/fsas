@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- From: file:/C:/FLYCO/something/androidKu-open-sdk/res/values/strings.xml -->
+    <eat-comment/>
+    <string name="alert_error">Application requires permission to access the Internet</string>
+    <string name="jd_oauth_login">jingdong login</string>
+    <string name="loading">loading...</string>
+</resources>

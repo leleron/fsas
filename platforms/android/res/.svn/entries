@@ -1,0 +1,79 @@
+10
+
+dir
+1413
+https://jiangy@112.124.59.203:1001/svn/FSAS_MOBILE/trunk/fsas/platforms/android/res
+https://jiangy@112.124.59.203:1001/svn/FSAS_MOBILE
+
+
+
+2015-07-09T03:39:54.784930Z
+1262
+zhangkk
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+f7fcebb1-050e-4941-bb85-6741a0f117e2
+
+drawable-land-hdpi
+dir
+
+drawable
+dir
+
+drawable-xxhdpi
+dir
+
+drawable-land-ldpi
+dir
+
+drawable-land-mdpi
+dir
+
+drawable-port-hdpi
+dir
+
+drawable-port-ldpi
+dir
+
+drawable-port-mdpi
+dir
+
+drawable-xhdpi
+dir
+
+values
+dir
+
+xml
+dir
+
+drawable-hdpi
+dir
+
+drawable-ldpi
+dir
+
+drawable-land-xhdpi
+dir
+
+drawable-mdpi
+dir
+
+layout
+dir
+
+drawable-port-xhdpi
+dir
+

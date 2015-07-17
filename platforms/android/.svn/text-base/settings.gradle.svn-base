@@ -1,0 +1,5 @@
+// GENERATED FILE - DO NOT EDIT
+include ":"
+include ":..:..:plugins:com.phonegap.plugins.codeScan:src:android:CodeScan"
+include ":CordovaLib"
+include ":..:..:plugins:com.phonegap.plugins.thirdLogin:src:android:androidKu-open-project"

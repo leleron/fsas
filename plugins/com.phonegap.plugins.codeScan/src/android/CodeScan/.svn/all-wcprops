@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/FSAS_MOBILE/!svn/ver/1262/trunk/fsas/plugins/com.phonegap.plugins.codeScan/src/android/CodeScan
+END
+.classpath
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/FSAS_MOBILE/!svn/ver/1031/trunk/fsas/plugins/com.phonegap.plugins.codeScan/src/android/CodeScan/.classpath
+END
+project.properties
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/FSAS_MOBILE/!svn/ver/1031/trunk/fsas/plugins/com.phonegap.plugins.codeScan/src/android/CodeScan/project.properties
+END
+.project
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/FSAS_MOBILE/!svn/ver/1031/trunk/fsas/plugins/com.phonegap.plugins.codeScan/src/android/CodeScan/.project
+END
+AndroidManifest.xml
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/FSAS_MOBILE/!svn/ver/1031/trunk/fsas/plugins/com.phonegap.plugins.codeScan/src/android/CodeScan/AndroidManifest.xml
+END
+ant.properties
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/FSAS_MOBILE/!svn/ver/1031/trunk/fsas/plugins/com.phonegap.plugins.codeScan/src/android/CodeScan/ant.properties
+END
+proguard-android-optimize.txt
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svn/FSAS_MOBILE/!svn/ver/1031/trunk/fsas/plugins/com.phonegap.plugins.codeScan/src/android/CodeScan/proguard-android-optimize.txt
+END
+build.xml
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/FSAS_MOBILE/!svn/ver/1031/trunk/fsas/plugins/com.phonegap.plugins.codeScan/src/android/CodeScan/build.xml
+END

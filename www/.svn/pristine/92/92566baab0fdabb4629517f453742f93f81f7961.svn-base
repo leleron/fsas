@@ -1,0 +1,194 @@
+<!--<html>-->
+
+<!--<head>-->
+
+    <!--<meta charset="utf-8" />-->
+
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />-->
+
+    <!--<title>飞科商城</title>-->
+
+    <!--<link href="css/base.css" rel="stylesheet" type="text/css">-->
+
+    <!--<link href="css/global.css" rel="stylesheet" type="text/css">-->
+
+    <!--<script src="js/jquery-1.7.2.min.js"></script>-->
+
+<!--</head>-->
+
+
+
+<!--<body>-->
+
+<!--<header class="all">-->
+
+    <!--<a href="javascript:;" class="home">-->
+
+        <!--<div class="home">-->
+
+        <!--</div>-->
+
+    <!--</a>-->
+
+    <!--购物车-->
+
+    <!--<a href="javascript:;" class="shortCar">-->
+
+        <!--<div class="shortCar">-->
+
+            <!--<span>1</span>-->
+
+        <!--</div>-->
+
+    <!--</a>-->
+
+<!--</header>-->
+
+
+
+
+
+<div class="carList">
+
+    <h4>
+
+        <div class="checkAll">
+
+            <div class="check"></div>全选
+
+        </div>
+
+        <div class="delAll">
+
+
+
+        </div>
+
+    </h4>
+
+    <ul>
+
+        <li>
+
+            <div class="check"></div>
+
+            <img src="images/mall/goods/FS359/FS359_000_01.jpg" />
+
+            <strong>飞科电吹风FH6618</strong>
+
+                <span>
+
+                    商城价：79元
+
+                </span>
+
+            <div class="putNum">
+
+                <i>-</i>
+
+                <input type="text" value="1">
+
+                <i>+</i>
+
+            </div>
+
+            <a href="#" class="del">删除</a>
+
+        </li>
+
+        <li>
+
+            <div class="check checked"></div>
+
+            <img src="images/mall/goods/FS359/FS359_000_01.jpg" />
+
+            <strong>飞科电吹风FH6618</strong>
+
+                <span>
+
+                    商城价：79元
+
+                </span>
+
+            <div class="putNum">
+
+                <i>-</i>
+
+                <input type="text" value="1">
+
+                <i>+</i>
+
+            </div>
+
+            <a href="#" class="del">删除</a>
+
+        </li>
+
+    </ul>
+
+</div>
+
+
+
+<div class="fixedBuy">
+
+    应付总额：228.00元
+
+    <a href="#submitOrder">立即购买</a>
+
+</div>
+
+
+
+<!--</body>-->
+
+
+
+<!--</html>-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

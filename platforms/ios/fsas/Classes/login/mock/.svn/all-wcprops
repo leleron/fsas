@@ -1,0 +1,149 @@
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/FLYCO/!svn/ver/85/MOBILE/IOS/%E9%A3%9E%E7%A7%91%E5%95%86%E5%9F%8EAPP/Empty/class/login/mock
+END
+getCodeMock.m
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/FLYCO/!svn/ver/85/MOBILE/IOS/%E9%A3%9E%E7%A7%91%E5%95%86%E5%9F%8EAPP/Empty/class/login/mock/getCodeMock.m
+END
+WXAccessTokenMock.h
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/FLYCO/!svn/ver/85/MOBILE/IOS/%E9%A3%9E%E7%A7%91%E5%95%86%E5%9F%8EAPP/Empty/class/login/mock/WXAccessTokenMock.h
+END
+forgetCodeMock.h
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/FLYCO/!svn/ver/85/MOBILE/IOS/%E9%A3%9E%E7%A7%91%E5%95%86%E5%9F%8EAPP/Empty/class/login/mock/forgetCodeMock.h
+END
+registerMock.h
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/FLYCO/!svn/ver/85/MOBILE/IOS/%E9%A3%9E%E7%A7%91%E5%95%86%E5%9F%8EAPP/Empty/class/login/mock/registerMock.h
+END
+WXAccessTokenMock.m
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/FLYCO/!svn/ver/85/MOBILE/IOS/%E9%A3%9E%E7%A7%91%E5%95%86%E5%9F%8EAPP/Empty/class/login/mock/WXAccessTokenMock.m
+END
+forgetCodeMock.m
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/FLYCO/!svn/ver/85/MOBILE/IOS/%E9%A3%9E%E7%A7%91%E5%95%86%E5%9F%8EAPP/Empty/class/login/mock/forgetCodeMock.m
+END
+registerMock.m
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/FLYCO/!svn/ver/85/MOBILE/IOS/%E9%A3%9E%E7%A7%91%E5%95%86%E5%9F%8EAPP/Empty/class/login/mock/registerMock.m
+END
+updateUserInfoMock.h
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/FLYCO/!svn/ver/85/MOBILE/IOS/%E9%A3%9E%E7%A7%91%E5%95%86%E5%9F%8EAPP/Empty/class/login/mock/updateUserInfoMock.h
+END
+fogetPswMock.h
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/FLYCO/!svn/ver/85/MOBILE/IOS/%E9%A3%9E%E7%A7%91%E5%95%86%E5%9F%8EAPP/Empty/class/login/mock/fogetPswMock.h
+END
+updateUserInfoMock.m
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/FLYCO/!svn/ver/85/MOBILE/IOS/%E9%A3%9E%E7%A7%91%E5%95%86%E5%9F%8EAPP/Empty/class/login/mock/updateUserInfoMock.m
+END
+WXUpdateTokenMock.h
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/FLYCO/!svn/ver/85/MOBILE/IOS/%E9%A3%9E%E7%A7%91%E5%95%86%E5%9F%8EAPP/Empty/class/login/mock/WXUpdateTokenMock.h
+END
+thirdLoginMock.h
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/FLYCO/!svn/ver/85/MOBILE/IOS/%E9%A3%9E%E7%A7%91%E5%95%86%E5%9F%8EAPP/Empty/class/login/mock/thirdLoginMock.h
+END
+fogetPswMock.m
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/FLYCO/!svn/ver/85/MOBILE/IOS/%E9%A3%9E%E7%A7%91%E5%95%86%E5%9F%8EAPP/Empty/class/login/mock/fogetPswMock.m
+END
+identifyCodeMock.h
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/FLYCO/!svn/ver/85/MOBILE/IOS/%E9%A3%9E%E7%A7%91%E5%95%86%E5%9F%8EAPP/Empty/class/login/mock/identifyCodeMock.h
+END
+WXUpdateTokenMock.m
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/FLYCO/!svn/ver/85/MOBILE/IOS/%E9%A3%9E%E7%A7%91%E5%95%86%E5%9F%8EAPP/Empty/class/login/mock/WXUpdateTokenMock.m
+END
+UserExitMock.h
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/FLYCO/!svn/ver/85/MOBILE/IOS/%E9%A3%9E%E7%A7%91%E5%95%86%E5%9F%8EAPP/Empty/class/login/mock/UserExitMock.h
+END
+loginMock.h
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/FLYCO/!svn/ver/85/MOBILE/IOS/%E9%A3%9E%E7%A7%91%E5%95%86%E5%9F%8EAPP/Empty/class/login/mock/loginMock.h
+END
+thirdLoginMock.m
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/FLYCO/!svn/ver/85/MOBILE/IOS/%E9%A3%9E%E7%A7%91%E5%95%86%E5%9F%8EAPP/Empty/class/login/mock/thirdLoginMock.m
+END
+WXUserInfoMock.h
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/FLYCO/!svn/ver/85/MOBILE/IOS/%E9%A3%9E%E7%A7%91%E5%95%86%E5%9F%8EAPP/Empty/class/login/mock/WXUserInfoMock.h
+END
+getCodeMock.h
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/FLYCO/!svn/ver/85/MOBILE/IOS/%E9%A3%9E%E7%A7%91%E5%95%86%E5%9F%8EAPP/Empty/class/login/mock/getCodeMock.h
+END
+identifyCodeMock.m
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/FLYCO/!svn/ver/85/MOBILE/IOS/%E9%A3%9E%E7%A7%91%E5%95%86%E5%9F%8EAPP/Empty/class/login/mock/identifyCodeMock.m
+END
+UserExitMock.m
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/FLYCO/!svn/ver/85/MOBILE/IOS/%E9%A3%9E%E7%A7%91%E5%95%86%E5%9F%8EAPP/Empty/class/login/mock/UserExitMock.m
+END
+loginMock.m
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/FLYCO/!svn/ver/85/MOBILE/IOS/%E9%A3%9E%E7%A7%91%E5%95%86%E5%9F%8EAPP/Empty/class/login/mock/loginMock.m
+END
+WXUserInfoMock.m
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/FLYCO/!svn/ver/85/MOBILE/IOS/%E9%A3%9E%E7%A7%91%E5%95%86%E5%9F%8EAPP/Empty/class/login/mock/WXUserInfoMock.m
+END

@@ -1,0 +1,83 @@
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/FSAS_MOBILE/!svn/ver/154/trunk/fsas/platforms/android/cordova
+END
+build
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/FSAS_MOBILE/!svn/ver/154/trunk/fsas/platforms/android/cordova/build
+END
+log
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/FSAS_MOBILE/!svn/ver/154/trunk/fsas/platforms/android/cordova/log
+END
+clean
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/FSAS_MOBILE/!svn/ver/154/trunk/fsas/platforms/android/cordova/clean
+END
+build.bat
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/FSAS_MOBILE/!svn/ver/154/trunk/fsas/platforms/android/cordova/build.bat
+END
+run
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/FSAS_MOBILE/!svn/ver/154/trunk/fsas/platforms/android/cordova/run
+END
+version
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/FSAS_MOBILE/!svn/ver/154/trunk/fsas/platforms/android/cordova/version
+END
+android_sdk_version
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/FSAS_MOBILE/!svn/ver/154/trunk/fsas/platforms/android/cordova/android_sdk_version
+END
+defaults.xml
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/FSAS_MOBILE/!svn/ver/154/trunk/fsas/platforms/android/cordova/defaults.xml
+END
+log.bat
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/FSAS_MOBILE/!svn/ver/154/trunk/fsas/platforms/android/cordova/log.bat
+END
+check_reqs
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/FSAS_MOBILE/!svn/ver/154/trunk/fsas/platforms/android/cordova/check_reqs
+END
+clean.bat
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/FSAS_MOBILE/!svn/ver/154/trunk/fsas/platforms/android/cordova/clean.bat
+END
+run.bat
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/FSAS_MOBILE/!svn/ver/154/trunk/fsas/platforms/android/cordova/run.bat
+END
+version.bat
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/FSAS_MOBILE/!svn/ver/154/trunk/fsas/platforms/android/cordova/version.bat
+END

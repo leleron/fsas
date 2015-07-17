@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="com.phonegap.plugins.isFirst"
+    version="0.0.1">
+
+    <name>IsFirst</name>
+    <description>IsFirst Description</description>
+    
+    <engines>
+        <engine name="cordova" version=">=3.0.0" />
+    </engines>    
+
+    <js-module src="www/IsFirst.js" name="IsFirst">
+        <clobbers target="cordova.plugins.IsFirst" />
+    </js-module>
+
+    <!-- android -->
+    <platform name="android">
+
+        <source-file src="src/android/IsFirst.java" target-dir="src/com/phonegap/plugins/isFirst" />
+		<source-file src="src/android/IsFirstActivity.java" target-dir="src/com/phonegap/plugins/isFirst" />
+
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="IsFirst">
+                <param name="android-package" value="com.phonegap.plugins.isFirst.IsFirst" />
+            </feature>
+        </config-file>
+
+		<config-file target="AndroidManifest.xml" parent="/manifest/application">
+			<activity
+				android:name="com.phonegap.plugins.isFirst.IsFirstActivity"
+				android:label="@string/app_name"
+				android:screenOrientation="portrait"
+				android:theme="@android:style/Theme.Light.NoTitleBar" >
+				<intent-filter>
+					<action android:name="com.phonegap.plugins.isFirst.ISFIRST" />
+					<category android:name="android.intent.category.DEFAULT" />
+				</intent-filter>
+			</activity>
+        </config-file>
+
+        <config-file target="AndroidManifest.xml" parent="/manifest">
+  			
+        </config-file>
+
+    </platform>
+
+</plugin>

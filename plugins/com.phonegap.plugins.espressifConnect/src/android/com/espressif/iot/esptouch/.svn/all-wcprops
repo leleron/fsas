@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/FSAS_MOBILE/!svn/ver/156/trunk/fsas/plugins/com.phonegap.plugins.espressifConnect/src/android/com/espressif/iot/esptouch
+END
+IEsptouchResult.java
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/svn/FSAS_MOBILE/!svn/ver/156/trunk/fsas/plugins/com.phonegap.plugins.espressifConnect/src/android/com/espressif/iot/esptouch/IEsptouchResult.java
+END
+IEsptouchTask.java
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/svn/FSAS_MOBILE/!svn/ver/156/trunk/fsas/plugins/com.phonegap.plugins.espressifConnect/src/android/com/espressif/iot/esptouch/IEsptouchTask.java
+END
+EsptouchResult.java
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/svn/FSAS_MOBILE/!svn/ver/156/trunk/fsas/plugins/com.phonegap.plugins.espressifConnect/src/android/com/espressif/iot/esptouch/EsptouchResult.java
+END
+EsptouchTask.java
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/svn/FSAS_MOBILE/!svn/ver/156/trunk/fsas/plugins/com.phonegap.plugins.espressifConnect/src/android/com/espressif/iot/esptouch/EsptouchTask.java
+END

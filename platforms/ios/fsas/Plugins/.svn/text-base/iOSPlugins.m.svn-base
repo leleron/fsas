@@ -1,0 +1,919 @@
+//
+//  iOSPlugins.m
+//  飞科智能家电
+//
+//  Created by duye on 15/5/26.
+//
+//
+
+#import "iOSPlugins.h"
+#import "Reachability.h"
+#import <SystemConfiguration/CaptiveNetwork.h>
+#import "cooee.h"
+#include <ifaddrs.h>
+#include <arpa/inet.h>
+#import "RJONE_LibCallBack.h"
+#import "CamObj.h"
+#import "FMDatabaseAdditions.h"
+#import "GSetting.h"
+#import "VideoController.h"
+#import "GSetting.h"
+#import "SQLSingle.h"
+#import "SearchController.h"
+#import "EASYLINK.h"
+
+@interface iOSPlugins()<EasyLinkFTCDelegate>
+{
+    BOOL Send;
+    NSString* _wifiName;
+    unsigned int ip;
+    const char *SSID;
+    const char *PWD;
+    const char *KEY;
+    NSTimer *Send_cooee;
+    NSMutableArray *_searchResultArray;
+    NSInteger timecount;
+    NSTimer*  _timer;
+    EASYLINK *easylink_config;
+}
+
+@end
+
+@implementation iOSPlugins
+
+- (MainViewController *)getMainViewController{
+    if (!mainViewController) {
+        UIWindow *window = [[UIApplication sharedApplication].windows objectAtIndex:0];
+        mainViewController = (MainViewController*)window.rootViewController;
+    }
+    return mainViewController;
+}
+
+//【获取当前连接WiFi的SSID】 插件名：getssid 入参：无 出参：当前连接WiFi的SSID ---------------------
+- (void)getssid:(CDVInvokedUrlCommand*)command
+{
+    
+    CDVPluginResult* pluginResult = nil;
+    NSDictionary *dic2 = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[self fetchSsid], nil] forKeys:[NSArray arrayWithObjects:@"SSID", nil]];
+    NSDictionary *dic = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:dic2, nil] forKeys:[NSArray arrayWithObjects:@"lan", nil]];
+    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:dic];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
+
+- (NSString *)fetchSsid
+{
+    NSDictionary *ssidInfo = [self fetchSSIDInfo];
+    return [ssidInfo objectForKey:@"SSID"];
+}
+
+- (NSDictionary *)fetchSSIDInfo
+{
+    NSArray *interfaceNames = CFBridgingRelease(CNCopySupportedInterfaces());
+    NSDictionary *SSIDInfo;
+    for (NSString *interfaceName in interfaceNames) {
+        SSIDInfo = CFBridgingRelease(CNCopyCurrentNetworkInfo((__bridge CFStringRef)interfaceName));
+        BOOL isNotEmpty = (SSIDInfo.count > 0);
+        if (isNotEmpty) {
+            break;
+        }
+    }
+    return SSIDInfo;
+}
+//【获取当前连接WiFi的SSID】------------------------------------------------------------------
+
+//【乐鑫WiFi配网】 插件名：espconfirmMethod 入参：ssid,password 出参：乐鑫mac地址 ----------------
+#pragma mark - esp
+- (void)espconfirmMethod:(CDVInvokedUrlCommand*)command
+{
+    ESPssid = [command.arguments objectAtIndex:0];
+    ESPpassword = [command.arguments objectAtIndex:1]; //获取路由密码
+    NSLog(@"ssid:%@------psw:%@",ESPssid,ESPpassword);
+    dispatch_queue_t  queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(queue, ^{
+        NSLog(@"do the execute work...");
+        ESPTouchResult *esptouchResult = [self executeForResult];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            // when canceled by user, don't show the alert view again
+            if (!self._isCanceled)
+            {
+                [[[UIAlertView alloc] initWithTitle:@"Execute Result" message:[esptouchResult description] delegate:nil cancelButtonTitle:@"I know" otherButtonTitles: nil] show];
+            }
+        });
+        NSDictionary *dic = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:esptouchResult.bssid, nil] forKeys:[NSArray arrayWithObjects:@"mac", nil]];
+        CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:dic];
+        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+    });
+}
+
+#pragma mark - the example of how to cancel the executing task
+- (void)cancel:(CDVInvokedUrlCommand*)command
+{
+    self._isCanceled = YES;
+    if (self._esptouchTask != nil)
+    {
+        [self._esptouchTask interrupt];
+    }
+}
+
+#pragma mark - the example of how to use execute
+- (BOOL) execute
+{
+    self._esptouchTask = [[ESPTouchTask alloc]initWithApSsid:ESPssid andApPwd:ESPpassword];
+    BOOL result = [self._esptouchTask execute];
+    NSLog(@"execute() result is: %@",result?@"YES":@"NO");
+    return result;
+}
+
+#pragma mark - the example of how to use executeForResult
+- (ESPTouchResult *) executeForResult
+{
+    self._esptouchTask = [[ESPTouchTask alloc]initWithApSsid:ESPssid andApPwd:ESPpassword];
+    ESPTouchResult * esptouchResult = [self._esptouchTask executeForResult];
+    NSLog(@"executeForResult() result is: %@",esptouchResult);
+    return esptouchResult;
+}
+//【乐鑫WiFi配网】---------------------------------------------------------------------------
+
+//【汉枫WiFi配网】 插件名：hangFeng 入参：ssid,password 出参：汉枫mac地址 ------------------------
+#pragma mark - HanFeng
+//- (void)hanFeng:(CDVInvokedUrlCommand*)command
+//{
+//    times = 0;
+//    findTimes = 0;
+//    HFcommand = command;
+//    count = 0;
+//    //从页面获取password
+//    HanFengpassword = [command.arguments objectAtIndex:0];
+//    smtlk=[[HFSmtlkV30 alloc] initWithDelegate:self];
+//    // start to do smtlk
+//    [self startSmartLink];
+//}
+//
+//- (void)SmtlkTimeOut
+//{
+//    if (!isfinding)
+//    {
+//        [self stopSmartLink];
+//        [self showTimeout];
+//        return;
+//    }
+//    
+//    [smtlk SendSmtlkFind];
+//    [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(SmtlkTimeOut) userInfo:nil repeats:NO];
+//}
+//
+//- (void)showTimeout
+//{
+//    NSLog(@"showTimeouting");
+//    CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"{\"message\":\"ERROR\",\"status\":\"FAILURE\"}"];
+//    [self.commandDelegate sendPluginResult:pluginResult callbackId:HFcommand.callbackId];
+//}
+//
+//// do smartLink
+//- (void)startSmartLink
+//{
+//    [smtlk SmtlkV30StartWithKey:HanFengpassword];
+//}
+//
+//- (void)stopSmartLink
+//{
+//    [smtlk SmtlkV30Stop];
+//}
+//
+////代理方法
+//- (void)SmtlkV30Finished
+//{
+//    if (times < 2)
+//    {
+//        NSLog(@"smtlk second start");
+//        times++;
+//        [self startSmartLink];
+//        findTimes= 0;
+//        isfinding = YES;
+//        [NSTimer scheduledTimerWithTimeInterval:3.0f target:self selector:@selector(SmtlkTimeOut) userInfo:nil repeats:NO];
+//    }else{
+//        isfinding = NO;
+//        [self stopSmartLink];
+//    }
+//}
+//
+//- (void)SmtlkV30ReceivedRspMAC:(NSString *)mac fromHost:(NSString *)host
+//{
+//    NSLog(@"Receive MAC:%@",mac);
+//    NSLog(@"Receive IP:%@",host);
+//    macAddress = mac;
+//    if (count == 0) {
+//        CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:macAddress];
+//        [self.commandDelegate sendPluginResult:pluginResult callbackId:HFcommand.callbackId];
+//    }
+//    count++;
+//}
+//【汉枫WiFi配网】---------------------------------------------------------------------------
+
+//【识别相册二维码】 插件名：scanqRcodePicture 入参：无 出参：二维码值 ----------------------------
+//- (void)scanqRcodePicture:(CDVInvokedUrlCommand*)command
+//{
+//    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+//    picker.allowsEditing = YES;
+//    picker.delegate = self;
+//    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+//    [[self getMainViewController] presentViewController:picker animated:YES completion:^{}];
+//}
+//
+//-(void)getURLWithImage:(UIImage *)img{
+//    
+//    UIImage *loadImage= img;
+//    CGImageRef imageToDecode = loadImage.CGImage;
+//    
+//    ZXLuminanceSource *source = [[ZXCGImageLuminanceSource alloc] initWithCGImage:imageToDecode];
+//    ZXBinaryBitmap *bitmap = [ZXBinaryBitmap binaryBitmapWithBinarizer:[ZXHybridBinarizer binarizerWithSource:source]];
+//    
+//    NSError *error = nil;
+//    
+//    ZXDecodeHints *hints = [ZXDecodeHints hints];
+//    
+//    ZXMultiFormatReader *reader = [ZXMultiFormatReader reader];
+//    ZXResult *result = [reader decode:bitmap
+//                                hints:hints
+//                                error:&error];
+//    if (result) {
+//        // The coded result as a string. The raw data can be accessed with
+//        // result.rawBytes and result.length.
+//        NSString *contents = result.text;
+//        NSLog(@"contents =%@",contents);
+//        UIAlertView *alter = [[UIAlertView alloc] initWithTitle:@"解析成功" message:contents delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+//        [alter show];
+//        
+//    } else {
+//        UIAlertView *alter1 = [[UIAlertView alloc] initWithTitle:@"解析失败" message:nil delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+//        [alter1 show];
+//    }
+//}
+//
+//#pragma mark - UIImagePickerControllerDelegate
+//- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+//{
+//    UIImage *image = [info objectForKey:@"UIImagePickerControllerEditedImage"];
+//    [[self getMainViewController] dismissViewControllerAnimated:YES completion:^{
+//        [self getURLWithImage:image];
+//    }
+//     ];
+//    
+//}
+//【识别相册二维码】--------------------------------------------------------------------------
+
+//【扫一扫二维码】 插件名：qRcodeScanner 入参：无 出参：二维码值 ----------------------------------
+- (void)qRcodeScanner:(CDVInvokedUrlCommand*)command
+{
+    //扫描二维码
+    qrcodevc = [[SYQRCodeViewController alloc] init];
+    qrcodevc.delegate = self;
+    getQRCodeCommand = command;
+    
+    
+    qrcodevc.SYQRCodeSuncessBlock = ^(SYQRCodeViewController *aqrvc,NSString *qrString){
+        NSLog(@"%@",qrString);
+        [aqrvc dismissViewControllerAnimated:NO completion:nil];
+        NSDictionary *dic = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:qrString, nil] forKeys:[NSArray arrayWithObjects:@"text", nil]];
+        CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:dic];
+        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+    };
+    qrcodevc.SYQRCodeFailBlock = ^(SYQRCodeViewController *aqrvc){
+        NSLog(@"fail~");
+        [aqrvc dismissViewControllerAnimated:NO completion:nil];
+    };
+    qrcodevc.SYQRCodeCancleBlock = ^(SYQRCodeViewController *aqrvc){
+        [aqrvc dismissViewControllerAnimated:NO completion:nil];
+        NSLog(@"cancle~");
+    };
+    [[self getMainViewController] presentViewController:qrcodevc animated:YES completion:nil];
+}
+
+- (void)getQRCodeFromAlbum{
+//    [[self getMainViewController] dismissViewControllerAnimated:YES completion:^{
+//
+//    }];
+    
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.allowsEditing = YES;
+    picker.delegate = self;
+    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    
+    [qrcodevc presentViewController:picker animated:YES completion:^{}];
+    
+}
+
+-(void)getURLWithImage:(UIImage *)img{
+    
+    UIImage *loadImage= img;
+    CGImageRef imageToDecode = loadImage.CGImage;
+    
+    ZXLuminanceSource *source = [[ZXCGImageLuminanceSource alloc] initWithCGImage:imageToDecode];
+    ZXBinaryBitmap *bitmap = [ZXBinaryBitmap binaryBitmapWithBinarizer:[ZXHybridBinarizer binarizerWithSource:source]];
+    
+    NSError *error = nil;
+    
+    ZXDecodeHints *hints = [ZXDecodeHints hints];
+    
+    ZXMultiFormatReader *reader = [ZXMultiFormatReader reader];
+    ZXResult *result = [reader decode:bitmap
+                                hints:hints
+                                error:&error];
+    if (result) {
+        // The coded result as a string. The raw data can be accessed with
+        // result.rawBytes and result.length.
+        NSString *contents = result.text;
+        NSLog(@"contents =%@",contents);
+        NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:contents,@"text", nil];
+        CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:dic];
+        [self.commandDelegate sendPluginResult:pluginResult callbackId:getQRCodeCommand.callbackId];
+        
+    } else {
+        CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"读取失败"];
+        [self.commandDelegate sendPluginResult:pluginResult callbackId:getQRCodeCommand.callbackId];
+    }
+}
+
+#pragma mark - UIImagePickerControllerDelegate
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    UIImage *image = [info objectForKey:@"UIImagePickerControllerEditedImage"];
+    [[self getMainViewController] dismissViewControllerAnimated:YES completion:^{
+        [self getURLWithImage:image];
+    }
+     ];
+    
+}
+
+//【扫一扫二维码】-----------------------------------------------------------------------------
+
+//【微信登录】 插件名：wxLogin 入参：无 出参：username,usid,accessToken,iconURL ----------------------------
+- (void)wxLogin:(CDVInvokedUrlCommand*)command
+{
+    UMSocialSnsPlatform *WechatsnsPlatform = [UMSocialSnsPlatformManager getSocialPlatformWithName:UMShareToWechatSession];
+    WechatsnsPlatform.loginClickHandler([self getMainViewController],[UMSocialControllerService defaultControllerService],YES,^(UMSocialResponseEntity *response){
+        
+        if (response.responseCode == UMSResponseCodeSuccess) {
+            
+            UMSocialAccountEntity *snsAccount = [[UMSocialAccountManager socialAccountDictionary]valueForKey:UMShareToWechatSession];
+            
+            NSLog(@"username is %@, uid is %@, token is %@ url is %@",snsAccount.userName,snsAccount.usid,snsAccount.accessToken,snsAccount.iconURL);
+            NSDictionary *dic = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:snsAccount.userName,snsAccount.usid,snsAccount.accessToken,snsAccount.iconURL, nil] forKeys:[NSArray arrayWithObjects:@"userName",@"uid",@"accesstoken",@"iconURL", nil]];
+            CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:dic];
+            [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+        }
+    });
+    [[UMSocialDataService defaultDataService] requestSnsInformation:UMShareToWechatSession  completion:^(UMSocialResponseEntity *response){
+        NSLog(@"SnsInformation is %@",response.data);
+    }];
+}
+//【微信登录】--------------------------------------------------------------------------------
+
+//【QQ登录】 插件名：qqLogin 入参：无 出参：username,usid,accessToken,iconURL ---------------------------
+- (void)qqLogin:(CDVInvokedUrlCommand*)command
+{
+    UMSocialSnsPlatform *snsPlatform = [UMSocialSnsPlatformManager getSocialPlatformWithName:UMShareToQQ];
+    snsPlatform.loginClickHandler([self getMainViewController],[UMSocialControllerService defaultControllerService],YES,^(UMSocialResponseEntity *response){
+        //QQ用户信息获取接口
+        if (response.responseCode == UMSResponseCodeSuccess) {
+            UMSocialAccountEntity *snsAccount = [[UMSocialAccountManager socialAccountDictionary] valueForKey:UMShareToQQ];
+            NSLog(@"username is %@, uid is %@, token is %@ url is %@",snsAccount.userName,snsAccount.usid,snsAccount.accessToken,snsAccount.iconURL);
+            NSDictionary *dic = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:snsAccount.userName,snsAccount.usid,snsAccount.accessToken,snsAccount.iconURL, nil] forKeys:[NSArray arrayWithObjects:@"userName",@"uid",@"accesstoken",@"iconURL", nil]];
+            CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:dic];
+            [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+        }});
+    [[UMSocialDataService defaultDataService] requestSnsInformation:UMShareToQQ  completion:^(UMSocialResponseEntity *response){
+        NSLog(@"SnsInformation is %@",response.data);
+    }];
+}
+//【QQ登录】------------------------------------------------------------------------------------------
+
+//【京东登录】 插件名：jdLogin 入参：无 出参：username,usid,accessToken ---------------------------------
+- (void)jdLogin:(CDVInvokedUrlCommand*)command
+{
+    id<JD_JOS_SDK> jos = [JD_JOS_SDK manager];
+    NSDictionary *dict = @{JDOptionAppKey:@"E0CCA2FDFC3408B9AB9BE2F1D52BC7C0",
+                           JDOptionAppSecret:@"e39a2478713647f09c29ed585214eafa",
+                           JDOptionNavbarColor:[UIColor redColor],
+                           JDOptionAppRedirectUri:@"http://www.baidu.com"};
+    [jos SetOption:dict];
+    [jos Login:[self getMainViewController] Block:^(JDUserInfo *userInfo) {
+        //京东用户信息获取接口
+        NSLog(@"%@" ,[NSString stringWithFormat:@"user:%@,uid:%@",userInfo.user_nick,userInfo.uid]);
+        NSDictionary *dic = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:userInfo.user_nick,userInfo.uid,userInfo.access_token, nil] forKeys:[NSArray arrayWithObjects:@"user_nick",@"uid",@"accesstoken", nil]];
+        CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:dic];
+        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+
+    }];
+}
+//【京东登录】----------------------------------------------------------------------------------------
+
+//【社会化分享】 插件名：share 入参：无 出参：无 ---------------------------------
+- (void)share:(CDVInvokedUrlCommand*)command
+{
+    NSString *title = [command.arguments objectAtIndex:0];
+    NSString *content = [command.arguments objectAtIndex:1];
+//    NSString *shareimageurl = [command.arguments objectAtIndex:2];
+    //微信qq用的跳转目标地址
+    NSString *targeturl = [command.arguments objectAtIndex:3];
+    //二维码的base64的值
+    NSString *barcodeImageurl= [command.arguments objectAtIndex:4];
+    UIImage *barcodeimage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:barcodeImageurl]]];
+    
+//    NSURL *url = [NSURL URLWithString:shareimageurl];
+//    UIImage *shareimage = [UIImage imageWithData:[NSData dataWithContentsOfURL:url]];
+    
+    //------------微信好友分享设置-------------------
+    //设置title
+    [UMSocialData defaultData].extConfig.wechatSessionData.title = title;
+    //设置点击后跳转地址
+    [UMSocialData defaultData].extConfig.wechatSessionData.url = targeturl;
+    //------------微信好友分享设置-------------------
+    
+    
+    //------------微信朋友圈分享设置-------------------
+    //设置title
+    [UMSocialData defaultData].extConfig.wechatTimelineData.title = title;
+    //设置点击后跳转地址
+    [UMSocialData defaultData].extConfig.wechatTimelineData.url = targeturl;
+    //------------微信朋友圈分享设置-------------------
+    
+    //------------QQ好友及群分享设置-------------------
+    //设置title
+    [UMSocialData defaultData].extConfig.qqData.title = title;
+    //设置点击后跳转地址
+    [UMSocialData defaultData].extConfig.qqData.url = targeturl;
+    //------------QQ好友及群分享设置-------------------
+    
+    //------------QQ空间分享设置-------------------
+    //设置title
+    [UMSocialData defaultData].extConfig.qzoneData.title = title;
+    //设置点击后跳转地址
+    [UMSocialData defaultData].extConfig.qzoneData.url = targeturl;
+    //------------QQ空间分享设置-------------------
+    
+    //------------新浪微博分享设置-------------------
+    //设置图片
+//    [[UMSocialControllerService defaultControllerService] setShareText:@"分享内嵌文字" shareImage:targetimage socialUIDelegate:[self getMainViewController]];        //设置分享内容和回调对象
+//    [UMSocialSnsPlatformManager getSocialPlatformWithName:UMShareToSina].snsClickHandler([self getMainViewController],[UMSocialControllerService defaultControllerService],YES);
+    //------------新浪微博分享设置-------------------
+    
+    
+
+//    [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeApp;
+    [UMSocialSnsService presentSnsIconSheetView:[self getMainViewController]
+                                         appKey:@"5534c91e67e58e33d8000c54"
+                                      shareText:content
+                                     shareImage:barcodeimage
+                                shareToSnsNames:@[UMShareToWechatSession,UMShareToWechatTimeline,UMShareToWechatFavorite,UMShareToQQ,UMShareToQzone,UMShareToSina]
+                                       delegate:[self getMainViewController]];
+}
+//【社会化分享】----------------------------------------------------------------------------------------
+
+//【支付宝支付】 插件名：alipay 入参：subject,body,price,tradeNo 出参：success.result ------------------
+- (void)alipay:(CDVInvokedUrlCommand*)command
+{
+    [self.commandDelegate runInBackground:^{
+        iOSPlugins *product = [[iOSPlugins alloc] init];
+        product.subject = [command.arguments objectAtIndex:0];
+        product.body = [command.arguments objectAtIndex:1];
+        product.price = [[command.arguments objectAtIndex:2] floatValue];
+        product.tNo = [command.arguments objectAtIndex:3];
+        
+        /*============================================================================*/
+        /*=======================需要填写商户app申请的===================================*/
+        /*============================================================================*/
+        NSString *partner = @"2088701048088053";
+        NSString *seller = @"ec@flyco.com";
+        NSString *privateKey = @"MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAJjjw9HL4TMhnhExvPZPMSmhK1TM+4lk4CeINeUNs7o1tLCNcBRntls6shxFDeM9dh7ZmtWJhT4j7PANORqDVkdFhz/Wo8OyzaZX6OJeU7imFTSWZZZyON5MD+3cEXlLdKNOoafuH70f67Ewh+HTUDn2WPtzx/FUiw9DEVJLY52jAgMBAAECgYAaC+uHaWFzUY3ZRgz4NWOdwPxd1RIhRRM/COCNpjjxR0cCMQZgI48YmbZQRJ9qEEV4WgAb0vLlND+gYdBRqQBgnpURfXuu5sT+TjVWikIBq345lkmgn//BJ6qdSSozRBkZTDT9rom9k3ue26zTXR5WGTs4esSmaj8c+fSyZnPvWQJBAMqkHobIE68H7uKE/YrQSG8i0izck6atbLh/s4h+vy/f2fdlFxnxGPKlfMBklgw0bzNIHOEyJ8F1GcHF5qDRSVUCQQDBJfFmqxe2F4w7r8VgjxCc777rDhd2ZsEJuIPLnf+BoP+bMN/l612YzkeH7BsCbqbXq+uqSl7SCUBX0uvtMesXAkAsK1vQCxpnQ3Zpf414TXAMcW2Yg7fXU+Pnz0YF0YLA3602BJ3ldKz4buPjV8lw/Zjjd6t71p/dxjWIDCf6E8RFAkEAoBZByhW+9mb4DTR3hLuvSlQPyqUIX1N1Zggv/KE8+AUoNknBGcEF97PpZ8gS7uYllRZiouc3RiDy2pfwgc1hCwJAHWF3Jvmt5qUH8RFd0/QWohmvCIT1+V8ip0EP91JCCYCRZ2VnHR+lw+gyj02PQ7QYy9rGwT7m1UXaWoYe3Q6gug==";
+        /*============================================================================*/
+        /*============================================================================*/
+        /*============================================================================*/
+        
+        //partner和seller获取失败,提示
+        if ([partner length] == 0 ||
+            [seller length] == 0 ||
+            [privateKey length] == 0) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                            message:@"缺少partner或者seller或者私钥。"
+                                                           delegate:self
+                                                  cancelButtonTitle:@"确定"
+                                                  otherButtonTitles:nil];
+            [alert show];
+            return;
+        }
+        
+        /*
+         *生成订单信息及签名
+         */
+        //将商品信息赋予AlixPayOrder的成员变量
+        Order *order = [[Order alloc] init];
+        order.partner = partner;
+        order.seller = seller;
+        order.tradeNO = product.tNo; //订单ID（由商家自行制定）
+        order.productName = product.subject; //商品标题
+        order.productDescription = product.body; //商品描述
+        order.amount = [NSString stringWithFormat:@"%.2f",product.price]; //商品价格
+        order.notifyURL =  @"http://www.xxx.com"; //回调URL
+        
+        order.service = @"mobile.securitypay.pay";
+        order.paymentType = @"1";
+        order.inputCharset = @"utf-8";
+        order.itBPay = @"30m";
+        order.showUrl = @"m.alipay.com";
+        
+        //应用注册scheme,在AlixPayDemo-Info.plist定义URL types
+        NSString *appScheme = @"alisdkdemo";
+        
+        //将商品信息拼接成字符串
+        NSString *orderSpec = [order description];
+        NSLog(@"orderSpec = %@",orderSpec);
+        
+        //获取私钥并将商户信息签名,外部商户可以根据情况存放私钥和签名,只需要遵循RSA签名规范,并将签名字符串base64编码和UrlEncode
+        id<DataSigner> signer = CreateRSADataSigner(privateKey);
+        NSString *signedString = [signer signString:orderSpec];
+        
+        //将签名成功字符串格式化为订单字符串,请严格按照该格式
+        NSString *orderString = nil;
+        if (signedString != nil) {
+            orderString = [NSString stringWithFormat:@"%@&sign=\"%@\"&sign_type=\"%@\"",
+                           orderSpec, signedString, @"RSA"];
+            
+            [[AlipaySDK defaultService] payOrder:orderString fromScheme:appScheme callback:^(NSDictionary *resultDic) {
+                NSLog(@"reslut = %@",resultDic);
+                NSString* resultStatus = [resultDic objectForKey:@"resultStatus"];
+                NSString* result;
+                if ([resultStatus isEqualToString:@"9000"]) {
+                    result = @"OK";
+                }
+                if ([resultStatus isEqualToString:@"8000"]) {
+                    result = @"WAITING";
+                }
+                if ([resultStatus isEqualToString:@"4000"]) {
+                    result = @"NG";
+                }
+                CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:result, nil] forKeys:[NSArray arrayWithObjects:@"result", nil]]];
+                [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+            }];
+        }
+    }];
+}
+//【支付宝支付】----------------------------------------------------------------------------------------
+
+//-(void)configNetWork:(CDVInvokedUrlCommand *)command{
+//    NSLog(@"fuck");
+//}
+
+//换头像
+//- (void)getPicture:(CDVInvokedUrlCommand*)command{
+//    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+//    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+//    picker.delegate = self;
+//    [[self getMainViewController] presentViewController:picker animated:YES completion:^{
+//        getPicCommand = command;
+//    }];
+//}
+
+//- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+////    [self.commandDelegate runInBackground:^{
+//        UIImage* image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+//        NSData *data = UIImageJPEGRepresentation(image, 1.0f);
+//        NSString *encodedImageStr = [data base64Encoding];
+////        NSLog(@"===Encoded image:\n%@", encodedImageStr);
+//        [picker dismissViewControllerAnimated:YES completion:^{
+//            CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:encodedImageStr];
+//            [self.commandDelegate sendPluginResult:pluginResult callbackId:getPicCommand.callbackId];
+//        }];
+//}
+
+//图片保存至本地
+- (void)savePicture:(CDVInvokedUrlCommand*)command{
+    [self.commandDelegate runInBackground:^{
+        savPicCommand = command;
+        NSString *encodedImageStr = [command.arguments objectAtIndex:0];
+        NSURL *url = [NSURL URLWithString: encodedImageStr];
+        NSData *data = [NSData dataWithContentsOfURL: url];
+        UIImage* image = [UIImage imageWithData:data];
+        UIImageWriteToSavedPhotosAlbum(image, self, @selector(imageSavedToPhotosAlbum:didFinishSavingWithError:contextInfo:), nil);
+    }];
+}
+
+- (void)imageSavedToPhotosAlbum:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
+{
+    CDVPluginResult* pluginResult;
+    if (!error) {
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"成功保存到相册"];
+    }else
+    {
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:[error description]];
+    }
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:savPicCommand.callbackId];
+}
+
+
+//传入参数为用户输入的密码
+-(void)configNetWork:(CDVInvokedUrlCommand *)command{
+    CDVPluginResult* pluginResult = nil;
+    NSString* ssid = [command.arguments objectAtIndex:1];
+    NSString* psw = [command.arguments objectAtIndex:0];
+        NSLog(@"-----------------------%@",ssid);
+    if (ssid != nil) {
+        //myarg为从js取得的数据，在这里作为字符串再传回给js的回调函数,参数有很多种类
+        //        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:myarg];
+        Send = !Send;
+        //      [pwdField resignFirstResponder];
+        
+        //        HUD = [[MBProgressHUD alloc]initWithView:self.navigationController.view];
+        //        [self.navigationController.view addSubview:HUD];
+        //        HUD.delegate = self;
+        //        HUD.labelText = LOCAL(@"setting");
+        
+        
+        if (Send)
+        {
+            //     [sender setTitle:@"Stop" forState:UIControlStateNormal];
+            
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                while (Send)
+                {
+                    PWD = [ssid UTF8String];
+                    SSID = [psw UTF8String];
+                    
+                    KEY = [@"" UTF8String];
+                    struct in_addr addr;
+                    inet_aton([ssid UTF8String], &addr);
+                    ip = CFSwapInt32BigToHost(ntohl(addr.s_addr));
+                    
+                    NSLog(@"SSID = %s" , SSID);
+                    NSLog(@"strlen(SSID) = %lu" , strlen(SSID));
+                    NSLog(@"PWD = %s" , PWD);
+                    NSLog(@"strlen(PWD) = %lu" , strlen(PWD));
+                    NSLog(@"[self getIPAddress] = %@" , ssid);
+                    NSLog(@"ip = %08x", ip);
+                    
+                    send_cooee(SSID, (int)strlen(SSID), PWD, (int)strlen(PWD), KEY, 0, ip);
+                }
+                
+                
+            });
+            Send_cooee = [NSTimer scheduledTimerWithTimeInterval:0.3 target:self selector:@selector(timerNum) userInfo:nil repeats:YES];
+            
+        }
+        else
+        {
+            //            [sender setTitle:@"Start" forState:UIControlStateNormal];
+            
+            dispatch_async(dispatch_get_main_queue(), ^(void)
+                           {
+                               //                               [sender setTitle:@"Start" forState:UIControlStateNormal];
+                           });
+            //            [HUD hide:YES afterDelay:0];
+        }
+    }
+}
+-(void)timerNum
+{
+    timecount++;
+    NSLog(@"%d",(int)timecount);
+    if (timecount > 99)
+    {
+        SearchController *search = [[SearchController alloc] init];
+        timecount = 0;
+        [Send_cooee invalidate];
+        Send = NO;
+        [self searchDevices];
+        [self myAllSave];
+    }
+}
+
+
+-(void)searchDevices{
+    SEARCH_CALL_RESP * pSearch;
+    INT32 nNum=0, i=0;
+    pSearch = RJONE_LibSearch(30, 5, &nNum);
+    NSString *nsDID;
+    CHAR prefix[64], number[64], checkCode[64], Result[64];
+    
+    for(i=0; i<nNum; i++)
+    {
+        nsDID=[NSString stringWithFormat:@"%s", pSearch[i].dev_id];
+        
+        memset(prefix, 0, sizeof(prefix));
+        memset(number, 0, sizeof(number));
+        memset(checkCode, 0, sizeof(checkCode));
+        memset(Result, 0, sizeof(Result));
+        //       formatDID((CHAR *)pSearch[i].dev_id, prefix, number, checkCode, Result);
+        
+        CamObj *camObj=[[CamObj alloc] init];
+        camObj.nsDID    = nsDID;
+        camObj.nsViewPwd  = @"88888888";
+        camObj.nsCamName=nsDID;
+        camObj.addedName = nsDID;
+        
+        
+        GSetting *gSetting = [GSetting instance];
+        for(CamObj *cam in gSetting.arrCam)
+        {
+            if([cam.nsDID caseInsensitiveCompare:nsDID]==NSOrderedSame)
+            {
+                camObj.isExist = YES;
+                break;
+            }
+        }
+        if (camObj.isExist)
+        {
+            camObj.addedName=[NSString stringWithFormat:@"%@%@", nsDID,LOCAL(@"added")];
+        }
+        [_searchResultArray addObject:camObj];
+        
+    }
+    //    [NSThread sleepForTimeInterval:0.1];
+    for (int i = 0; i<_searchResultArray.count; i++)
+    {
+        CamObj *cam = [_searchResultArray objectAtIndex:i];
+        if (cam.isExist)
+        {
+            [_searchResultArray addObject:cam];
+            [_searchResultArray removeObjectAtIndex:i];
+        }
+    }
+    CDVPluginResult* pluginResult = nil;
+    
+    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsArray:_searchResultArray];
+    //    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+    
+}
+
+- (void)myAllSave
+{
+    NSInteger addNum = 0;
+    GSetting *gSetting = [GSetting instance];
+    for (CamObj *cam in _searchResultArray)
+    {
+        if (!cam.isExist)
+        {
+            addNum++;
+            [gSetting.arrCam addObject:cam];
+            cam.isExist = YES;
+            cam.addedName=[NSString stringWithFormat:@"%@%@", cam.nsDID,LOCAL(@"added")];
+            
+            SQLSingle *sql = [SQLSingle shareSQLSingle];
+            [sql.dataBase executeUpdate:@"insert into camre_info(CAMERA_NAME,DEV_ID,DEV_PWD) values(?,?,?)",cam.nsCamName,cam.nsDID,cam.nsViewPwd];
+            
+            dispatch_async(dispatch_get_global_queue(0, 0), ^{
+                long connectResult = [cam startConnect:10];
+                NSLog(@"%@->connect result ==%ld",cam.nsDID,connectResult);
+            });
+        }
+    }
+    
+}
+
+
+
+#pragma mark 扫地机器人主界面
+-(void)pushVideoController:(CDVInvokedUrlCommand *)command{
+    CDVPluginResult* pluginResult = nil;
+    NSString* myarg = [command.arguments objectAtIndex:0];
+    NSLog(@"-----------------------%@",myarg);
+    if (myarg != nil) {
+        //myarg为从js取得的数据，在这里作为字符串再传回给js的回调函数,参数有很多种类
+        //        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:myarg];
+        [self connectDataBase];
+        [self loadCam];
+        
+        if (!_timer)
+        {
+            _timer = [NSTimer scheduledTimerWithTimeInterval:15 target:self selector:@selector(getConnected) userInfo:nil repeats:YES];
+            [[NSRunLoop currentRunLoop]addTimer:_timer forMode:NSDefaultRunLoopMode];
+        }
+        
+        
+        VideoController* controller = [[VideoController alloc]init];
+        [self.viewController.navigationController pushViewController:controller animated:YES];
+    } else {
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Arg was null"];
+    }
+}
+
+
+- (void)connectDataBase
+{
+    SQLSingle *sql = [SQLSingle shareSQLSingle];
+    [sql.dataBase executeUpdate:@"CREATE TABLE if not exists camre_info (RID INTEGER PRIMARY KEY,CAMERA_NAME VARCHAR(30),DEV_ID VARCHAR(30),DEV_PWD VARCHAR(30),DEV_AP_SSID VARCHAR(30),DEV_AP_PWD VARCHAR(30),WIFI_SSID VARCHAR(30),WIFI_PWD VARCHAR(30),DEV_TYPE INTEGER DEFAULT 0,PRODUCT_TYPE INTEGER DEFAULT -1,IS_ENCRYPT boolean DEFAULT false,ENCRYPT_PWD VARCHAR(10),SNAPSHOT1 BLOB,SNAPSHOT2 BLOB,RESERV1 VARCHAR(30),RESERV2 VARCHAR(50),RESERV3 NUMERIC DEFAULT 0,RESERV4 NUMERIC DEFAULT 0)"];
+    [sql.dataBase executeUpdate:@"CREATE TABLE if not exists favorite (RID INTEGER PRIMARY KEY,DEV_ID VARCHAR(30))"];
+    NSInteger count=[sql.dataBase intForQuery:@"select count(*) from favorite"];
+    if (!count)
+    {
+        [sql.dataBase executeUpdate:@"insert into favorite(DEV_ID) values(?)",@""];
+    }
+    
+}
+- (void)loadCam
+{
+    //从数据库中读取设备
+    SQLSingle *sql = [SQLSingle shareSQLSingle];
+    GSetting *gSetting=[GSetting instance];
+    FMResultSet *rs = [sql.dataBase executeQuery:@"select DEV_ID,CAMERA_NAME,DEV_PWD from camre_info order by CAMERA_NAME"];
+    while ([rs next])
+    {
+        CamObj *cam = [[CamObj alloc]init];
+        cam.nsDID = [rs stringForColumn:@"DEV_ID"];
+        cam.nsCamName = [rs stringForColumn:@"CAMERA_NAME"];
+        cam.nsViewPwd = [rs stringForColumn:@"DEV_PWD"];
+        [gSetting.arrCam addObject:cam];
+        
+        NSLog(@"%@  %@  %@",cam.nsDID,cam.nsCamName,cam.nsViewPwd);
+    }
+    [rs close];
+}
+
+- (void)getConnected
+{
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        GSetting *gSetting=[GSetting instance];
+        NSArray *array = [NSArray arrayWithArray:gSetting.arrCam];
+        for (CamObj   *cam in array)
+        {
+            if ([cam getLastError] <0)
+            {
+                dispatch_async(dispatch_get_global_queue(0, 0), ^{
+                    [cam startConnect:10];
+                });
+            }
+        }
+    });
+}
+
+
+
+-(void)easyLinkConfigNetWork:(CDVInvokedUrlCommand *)command{
+    NSMutableDictionary *wlanConfig = [NSMutableDictionary dictionaryWithCapacity:20];
+    easylink_config = [[EASYLINK alloc]initWithDelegate:self];
+    NSString* ssid = [command.arguments objectAtIndex:0];
+    NSString* psw = [command.arguments objectAtIndex:1];
+    NSData *ssidData = [ssid dataUsingEncoding:NSUTF8StringEncoding];
+    NSString *passwordString = psw;
+    NSMutableDictionary* deviceIPConfig = [[NSMutableDictionary alloc]initWithCapacity:5];
+    [deviceIPConfig setObject:@YES forKey:@"DHCP"];
+    [deviceIPConfig setObject:[EASYLINK getIPAddress] forKey:@"IP"];
+    [deviceIPConfig setObject:[EASYLINK getNetMask] forKey:@"NetMask"];
+    [deviceIPConfig setObject:[EASYLINK getGatewayAddress] forKey:@"GateWay"];
+    [deviceIPConfig setObject:[EASYLINK getGatewayAddress] forKey:@"DnsServer"];
+
+    
+    [wlanConfig setObject:ssidData forKey:KEY_SSID];
+    [wlanConfig setObject:passwordString forKey:KEY_PASSWORD];
+    [wlanConfig setObject:[NSNumber numberWithBool:[[deviceIPConfig objectForKey:@"DHCP"] boolValue]] forKey:KEY_DHCP];
+    
+    if([[deviceIPConfig objectForKey:@"IP"] length] > 0)  [wlanConfig setObject:[deviceIPConfig objectForKey:@"IP"] forKey:KEY_IP];
+    if([[deviceIPConfig objectForKey:@"NetMask"] length] > 0)  [wlanConfig setObject:[deviceIPConfig objectForKey:@"NetMask"] forKey:KEY_NETMASK];
+    if([[deviceIPConfig objectForKey:@"GateWay"] length] > 0)  [wlanConfig setObject:[deviceIPConfig objectForKey:@"GateWay"] forKey:KEY_GATEWAY];
+    if([[deviceIPConfig objectForKey:@"DnsServer"] length] > 0)  [wlanConfig setObject:[deviceIPConfig objectForKey:@"DnsServer"] forKey:KEY_DNS1];
+
+    const char* temp = "";
+    [easylink_config prepareEasyLink_withFTC:wlanConfig info:[NSData dataWithBytes:temp length:strlen(temp)] mode:EASYLINK_V2_PLUS];
+    
+    [easylink_config transmitSettings];
+
+}
+
+
+#pragma mark easyLinkDelegate
+- (void)onFoundByFTC:(NSNumber *)ftcClientTag withConfiguration: (NSDictionary *)configDict
+{
+    NSLog(@"New device found!");
+    [easylink_config configFTCClient:ftcClientTag
+                   withConfiguration: [NSDictionary dictionary] ];
+    
+    NSMutableDictionary *foundModule = [NSMutableDictionary dictionaryWithDictionary:configDict];
+    NSMutableDictionary *updateSettings;
+    
+    [foundModule setValue:ftcClientTag forKey:@"client"];
+    updateSettings = [NSMutableDictionary dictionaryWithCapacity:10];
+    [foundModule setValue:updateSettings forKey:@"update"];
+    [easylink_config configFTCClient:[foundModule objectForKey:@"client"]
+                   withConfiguration:[foundModule objectForKey:@"update"] ];
+
+    
+}
+
+- (void)onDisconnectFromFTC:(NSNumber *)ftcClientTag
+{
+    NSLog(@"Device disconnected!");
+}
+
+
+@end
+
+
+
+
+
+
+
+
+
+
+

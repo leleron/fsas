@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>694216B5-225E-40EC-8CD1-4E3B7AB859A5</string>
+	<key>IDESourceControlProjectName</key>
+	<string>fsas</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>f7fcebb1-050e-4941-bb85-6741a0f117e2</key>
+		<string>https://112.124.59.203:1001/svn/FSAS_MOBILE</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>trunk/fsas/platforms/ios/fsas.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>f7fcebb1-050e-4941-bb85-6741a0f117e2</key>
+		<string>../../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>f7fcebb1-050e-4941-bb85-6741a0f117e2</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.subversion</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>f7fcebb1-050e-4941-bb85-6741a0f117e2</string>
+			<key>IDESourceControlWCCName</key>
+			<string>FSAS_MOBILE</string>
+		</dict>
+	</array>
+</dict>
+</plist>

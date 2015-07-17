@@ -1,0 +1,275 @@
+<header class="all">
+
+        <span id="headerParameter" class="cur">
+
+            参数
+
+        </span>
+
+    <a><span id="headerDetail">
+
+            详情
+
+        </span></a>
+
+    <a><span id="headerComment">
+
+            评价
+
+        </span></a>
+
+</header>
+
+<!--banner-->
+
+<div id="goodsDetail" class="swiper-container">
+
+    <div class="swiper-wrapper">
+
+        <div id="slideOne" class="swiper-slide">
+
+            <div id="CommodityBanner" class="swiper-container">
+
+                <div id="CommodityBannerSwiper" class="swiper-wrapper">
+
+                </div>
+
+                <div class="swiper-pagination">
+
+                </div>
+
+            </div>
+
+            <div id="prodetails_dataPro">
+
+            </div>
+
+            <div class="btnPro">
+                <!--秒杀和团购的class-->
+                <!--<div class="btnSecPro">-->
+
+                <a id="commodityDetails1_buyNow" class="cur" href="#">立即购买</a>
+
+                <a href="#mallMyCart">加入购物车</a>
+
+                <div class="clear"></div>
+
+            </div>
+
+            <div id="specificationParameter" class="canshu">
+
+            </div>
+
+            <div id="showCommodityDetailDiv" class="canshu">
+
+                <a onclick="showCommodityDetail()">商品详情<i></i></a>
+
+                <div class="productdetails" id="goodsIntroduction" style="display:none">
+
+                </div>
+
+            </div>
+
+            <div id="showCommodityCommentDiv" class="canshu">
+
+                <a onclick="showCommodityComment()">商品评价<i></i></a>
+
+                <div id="goodsComment" class="productPJ" style="display:none">
+
+                </div>
+
+            </div>
+
+
+            <div class="tuijianT">推荐商品</div>
+
+            <div id="recommendCommodity" class="tuijianCon">
+
+            </div>
+
+        </div>
+
+        <div id="slideTwo" class="swiper-slide">
+
+            <div id="slideTwoDetail" class="productdetails">
+
+            </div>
+
+        </div>
+
+        <div id="slideThree" class="swiper-slide">
+
+            <div id="slideThreeComment" class="productPJ">
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="swiper-pagination"></div>
+
+</div>
+
+<p style="display: none">
+    <textarea id="tpl_CommodityBannerSwiper">
+        {#foreach $T as Item}
+        <div class="swiper-slide">
+
+            <a ><img src="{$T.Item.thumb_url}"></a>
+
+        </div>
+        {#/for}
+    </textarea>
+    <textarea id="tpl_prodetails_dataPro">
+        <div id="{$T.goods_sn}" class="prodetails">
+
+            <div class="fav">
+
+                <span></span><br/><br/>
+
+                <div id="favoriteFlag">收藏</div>
+
+            </div>
+
+            <h4>{$T.goods_name}<br/>{$T.recommend}</h4>
+
+            <div class="price"><strong>{$T.shop_price}</strong>元 <span id="mobileExclusive" style="display: none">手机专享</span></div>
+
+            <div class="num">
+
+                购买数量：
+
+                <a onclick="minusCount()">-</a>
+
+                <input id="purchaseQuantity" type="text" value="1"/>
+
+                <a onclick="plusCount()">+</a>
+
+                库存<span>{$T.inventory}</span>件
+
+            </div>
+
+            <p>
+                {#foreach $T.promos as Item}
+                {$T.Item.pr_name}<br/>
+                {#/for}
+
+            </p>
+
+        </div>
+
+            <div class="dataPro">
+
+                <div>
+
+                    运费
+
+                    <p>{$T.shipping_fee}元</p>
+
+                </div>
+
+                <div>
+
+                    客户评价
+
+                    <p>{$T.comment_num}</p>
+
+                </div>
+
+                <div>
+
+                    总销量
+
+                    <p>{$T.sales_number}</p>
+
+                </div>
+
+            </div>
+    </textarea>
+    <textarea id="tpl_goodsComment">
+        <h4>购买评论（<span>{$T.comment_num}</span>）<a><img src="images/pjIcon.png"/>我要评价</a></h4>
+
+            <ul>
+                {#foreach $T.comment as Item}
+                <li>
+
+                    <div class="name">
+
+                        {$T.Item.user_name}
+
+                        <span>追加评论＞</span>
+
+                    </div>
+
+                    <div class="score">
+
+                        <div class="starBg">
+
+                            <span class="star" style="width:80%;"></span>
+
+                        </div>
+
+                        <span style="color:#ff7c44;">{$T.Item.comment_rank}分</span>
+
+                        <span>{$T.Item.content}</span>
+
+                        <span class="time">{$T.Item.add_time}</span>
+
+                    </div>
+
+                    <p>评论：{$T.Item.content}</p>
+
+                    <div class="imgI">
+
+                        <img src="images/star.png" />
+
+                        <img src="images/star.png" />
+
+                        <img src="images/star.png" />
+
+                        <img src="images/star.png" />
+
+                        <img src="images/star.png" />
+
+                    </div>
+
+                    <div class="gf">
+
+                        <span>官方回复：</span>{$T.Item.answer}
+
+                    </div>
+
+                    <div class="zj">
+
+                        <span>追加评论：</span>感谢您对飞科的支持！
+
+                    </div>
+
+                    <div class="imgI">
+
+                        <img src="images/star.png" />
+
+                        <img src="images/star.png" />
+
+                        <img src="images/star.png" />
+
+                    </div>
+                </li>
+                {#/for}
+
+            </ul>
+    </textarea>
+    <textarea id="tpl_recommendCommodity">
+        {#foreach $T as Item}
+        <a href="#">
+
+            <img src="{$T.Item.thumb}" />
+
+            <span>{$T.Item.goods_price}元</span>
+
+        </a>
+        {#/for}
+        <div class="clear"></div>
+    </textarea>
+</p>

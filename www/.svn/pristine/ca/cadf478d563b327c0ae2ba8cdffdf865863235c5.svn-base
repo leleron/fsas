@@ -1,0 +1,469 @@
+$(function () {
+
+    $.afui.launch();
+
+    // 商品首页
+    $("#mallIndex").on("panelload", function (e) {
+        hlp.log("before call get mall index");
+        svc.getMallIndex(function(r) {
+            if (r.status == "SUCCESS") {
+                // 轮播图
+                getIndexLoop(r.data.index_loop);
+                // 热卖商品
+                getHotProduct(r.data.index_hot_product);
+                // 特价产品
+                getBargainPriceProduct(r.data.index_dis_product);
+                //明星产品
+                getStarProduct(r.data.index_star_product);
+                //新品上市
+                getNewList(r.data.index_new_product);
+                $(".ta").off("tap").on("tap", function () {
+                    var goods_sn = $(this).attr("goods_sn");
+                    hlp.panelObj["goods_sn"] = { "goods_sn": goods_sn };
+                    $.afui.loadContent("#commodityDetails1");
+                });
+            } else {
+                hlp.myalert(r.message);
+            }
+        });
+
+        //搜索商品
+        $(".headSearchIcon").off("tap").on("tap",function(){
+            hlp.log("before getGoodsSearch request...");
+            var searchKey = $("#headSearch").val();
+            svc.getGoodsSearch(searchKey,function(r){
+                if(r.status == "SUCCESS"){
+                    hlp.bindtpl(r.data,"#searchResultList","tpl_searchResultList");
+                    var catId = r.data[0].cat_id;
+                }else{
+                    $("#searchResultList").text(r.message);
+                    var catId = "";
+                }
+                //获取底部的推荐商品
+                svc.getPersonHots(catId,function(r){
+                    hlp.log("inside getPersonHots request...");
+                    if(r.status == "SUCCESS"){
+                        hlp.bindtpl(r.data,"#searchResultRecommend","tpl_searchResultRecommend");
+                    }else{
+                        hlp.myalert(r.message);
+                    }
+                });
+
+                $.afui.loadContent("#mallSearchResult");
+            });
+        });
+    });
+
+    // 团购
+    $("#groupon").on("panelload", function (e) {
+        hlp.log("before call get group shopping");
+        svc.groupShopping(function(r) {
+            if (r.status == "SUCCESS") {
+                $.each(r.data, function(index) {
+                    r.data[index].goods_thumb = imgDomain + r.data[index].goods_thumb;
+                });
+                hlp.bindtpl(r.data, "#tuanInfo", "tpl_groupshopping");
+                $(".groupImg img").off("tap").on("tap", function () {
+                    var id = $(this).attr("id");
+                    hlp.panelObj["goods"] = { "sn": id, "num": 1 };
+                    $.afui.loadContent("#commodityDetails1");
+                });
+                $(".tuanBtn").off("tap").on("tap", function () {
+                    var goodSn = $(this).attr("sn");
+                    hlp.panelObj["goods"] = [{ "sn": goodSn, "num": 1 }];
+                    if (loj.Credential) {
+                        $.afui.loadContent("#submitOrder ");
+                    } else {
+                        $.afui.loadContent("#buyWithoutRegist");
+                    }
+                });
+            } else {
+                hlp.myalert(r.message);
+            }
+        });
+    });
+
+    //商品分类
+    $("#mallCategory").on("panelload",function(e){
+        hlp.log("before get goodsCategory request...");
+        svc.getGoodsCategory(function(r){
+            if (r.status == "SUCCESS") {
+                hlp.bindtpl(r.data,"#goodsCategory","tpl_goodsCategory");
+
+                $("li[id^='cat']").off("tap").on("tap",function(){
+                    var thisId = $(this).attr("id");
+                    var catId = thisId.substring(3,thisId.length);
+                    hlp.panelObj["catId"] = {"catId":catId};
+                    var listBy = "1";
+                    var orderFrom = "0";
+
+                    hlp.log("before get goodsList request...");
+                    //获取商品列表
+                    svc.getGoodsList(catId,listBy,orderFrom,function(r){
+                        if (r.status == "SUCCESS") {
+                            hlp.bindtpl(r.data,"#goodsList","tpl_goodsList");
+                        } else {
+                            hlp.myalert(r.message);
+                        }
+                    });
+
+                    hlp.log("before getPersonHots request...");
+                    //获取推荐商品
+                    svc.getPersonHots(catId,function(r){
+                        hlp.log("inside getPersonHots request...");
+                        if(r.status == "SUCCESS"){
+                            hlp.bindtpl(r.data,"#recommendGoods","tpl_recommendGoods");
+                            hlp.bindtpl(r.data,"#recommendCommodity","tpl_recommendCommodity");
+                        }else{
+                            hlp.myalert(r.message);
+                        }
+                    });
+                    $.afui.loadContent("#mallList");
+                });
+
+            } else {
+                hlp.myalert(r.message);
+            }
+        });
+
+
+    });
+
+    //新品
+    $("#newProduct").on("panelload",function(){
+        hlp.log("before get new Product request...");
+        //获取新品列表
+        svc.getNewProduct(function(r){
+            hlp.log("inside getNewProduct request...");
+            if (r.status == "SUCCESS") {
+                hlp.bindtpl(r.data,"#newProductInfo","tpl_newProductInfo");
+                $("#newProductBannerList")[0].innerHTML = $(r.data.ad_img)[0].innerHTML;
+                $(".NewProductImg img").off("tap").on("tap", function () {
+                    var id = $(this).attr("id");
+                    hlp.panelObj["goods"] = { "sn": id, "num": 1 };
+                    $.afui.loadContent("#commodityDetails1");
+                });
+                $("#newProduct_buyNow").off("tap").on("tap", function () {
+                    var goodSn = $(this).attr("sn");
+                    hlp.panelObj["goods"] = [{ "sn": goodSn, "num": 1 }];
+                    if (null != loj.Credential) {
+                        $.afui.loadContent("#submitOrder ");
+                    } else {
+                        $.afui.loadContent("#buyWithoutRegist");
+                    }
+                });
+            } else {
+                hlp.myalert(r.message);
+            }
+        });
+
+    });
+
+    //秒杀
+   $("#secKill").on("panelload",function(){
+       hlp.log("before get secKill Product request...");
+       //获取秒杀商品列表
+       svc.getSecKill(function(r){
+           hlp.log("inside getSecKill request...");
+           if (r.status == "SUCCESS") {
+               $.each(r.data.product_goods, function(index) {
+                   var promoBegin = r.data.product_goods[index].promo_begin;
+                   var promoEnd = r.data.product_goods[index].promo_end;
+                   var beginTime = promoBegin.replace("-","/").replace("-","/").replace(" ","/").replace(":","/").replace(":","/");
+                   var endTime = promoEnd.replace("-","/").replace("-","/").replace(" ","/").replace(":","/").replace(":","/");
+                   setInterval(function(){
+                       $("#currentTime").html(currentTime());
+                       /*if(beginTime<currentTime<endTime){
+                           $("#secKilling").css("display","block");
+                           $("#secKillNoBegin").css("display","none");
+                           $("#secKillEnd").css("display","none");
+                       }else if(currentTime<beginTime){
+                           $("#secKilling").css("display","none");
+                           $("#secKillNoBegin").css("display","block");
+                           $("#secKillEnd").css("display","none");
+                       }else{
+                           $("#secKilling").css("display","none");
+                           $("#secKillNoBegin").css("display","none");
+                           $("#secKillEnd").css("display","block");
+                       }*/
+                   },1000);
+                   alert(currentTime()<endTime);
+                   if(beginTime<currentTime<endTime){
+                       $("#secKilling").css("display","block");
+                       $("#secKillNoBegin").css("display","none");
+                       $("#secKillEnd").css("display","none");
+                   }else if(currentTime<beginTime){
+                       $("#secKilling").css("display","none");
+                       $("#secKillNoBegin").css("display","block");
+                       $("#secKillEnd").css("display","none");
+                   }else{
+                       $("#secKilling").css("display","none");
+                       $("#secKillNoBegin").css("display","none");
+                       $("#secKillEnd").css("display","block");
+                   }
+               });
+               hlp.bindtpl(r.data,"#secKillProInfo","tpl_secKillProInfo");
+               $("#secKillBannerList")[0].innerHTML = $(r.data.ad_img)[0].innerHTML;
+               $(".SecKillImg img").off("tap").on("tap", function () {
+                   var id = $(this).attr("id");
+                   hlp.panelObj["goods"] = { "sn": id, "num": 1 };
+                   $.afui.loadContent("#commodityDetails1");
+               });
+               $("#newProduct_buyNow").off("tap").on("tap", function () {
+                   var goodSn = $(this).attr("sn");
+                   hlp.panelObj["goods"] = [{ "sn": goodSn, "num": 1 }];
+                   if (null != loj.Credential) {
+                       $.afui.loadContent("#submitOrder ");
+                   } else {
+                       $.afui.loadContent("#buyWithoutRegist");
+                   }
+               });
+           } else {
+               hlp.myalert(r.message);
+           }
+       });
+
+   });
+
+    //商品详情
+    $("#commodityDetails1").on("panelload",function(){
+        $(".cartButton").show();
+
+        var goodsDetailSwiper = new  Swiper('#goodsDetail',{
+            onSlideChangeEnd: function(swiper){
+                var paraIsActive = $("#slideOne").is(".swiper-slide-active");
+                var detailIsActive = $("#slideTwo").is(".swiper-slide-active");
+                var commentIsActive = $("#slideThree").is(".swiper-slide-active");
+                if(paraIsActive){
+                    $("#headerParameter").addClass("cur");
+                }else{
+                    $("#headerParameter").removeClass("cur");
+                }
+                if(detailIsActive){
+                    $("#headerDetail").addClass("cur");
+                }else{
+                    $("#headerDetail").removeClass("cur");
+                }
+                if(commentIsActive){
+                    $("#headerComment").addClass("cur");
+                }else{
+                    $("#headerComment").removeClass("cur");
+                }
+            }
+        });
+        var myCommoditySwiper = new Swiper('#CommodityBanner',{
+            pagination : '.swiper-pagination'
+        });
+
+        hlp.log("before getGoodsDetail request ...");
+        var goods_sn = hlp.panelObj["goods_sn"].goods_sn;
+        //获取商品详情
+        svc.getGoodsDetail(goods_sn,function(r){
+            if(r.status == "SUCCESS"){
+                hlp.log("inside getGoodsDetail request...");
+                hlp.bindtpl(r.data.galleries,"#CommodityBannerSwiper","tpl_CommodityBannerSwiper");
+                hlp.bindtpl(r.data,"#prodetails_dataPro","tpl_prodetails_dataPro");
+                hlp.panelObj["cat_id"] = { "cat_id": r.data.cat_id };
+                $("#specificationParameter")[0].innerHTML = $(r.data.goods_desc).eq(2)[0].innerHTML;
+                $("#goodsIntroduction")[0].innerHTML = $(r.data.goods_desc).eq(0)[0].innerHTML;
+                $("#slideTwoDetail")[0].innerHTML = $(r.data.goods_desc).eq(0)[0].innerHTML;
+
+                var collectFlag = r.data.collect_flag;
+                if(collectFlag == "0"){
+                    $("#favoriteFlag").text("收藏");
+                }else{
+                    $("#favoriteFlag").text("已收藏");
+                }
+
+                $(".title_top").off("tap").on("tap",function(){
+                    if($(".para_main").is(":hidden")){
+                        $(".para_main").css("display","block");
+                        $(".title_top").addClass("showcanshu");
+                    }else{
+                        $(".para_main").css("display","none");
+                        $(".title_top").removeClass("showcanshu");
+                    }
+                });
+
+                //判断是否是手机专享
+                if(r.data.app_price == null){
+                    $("#mobileExclusive").css("display","none");
+                }else{
+                    $("#mobileExclusive").css("display","block");
+                }
+
+                var catId = hlp.panelObj["cat_id"].cat_id;
+                //商品详情页面获取推荐商品
+                svc.getPersonHots(catId,function(r){
+                    hlp.log("inside getPersonHots request...");
+                    if(r.status == "SUCCESS"){
+                        hlp.bindtpl(r.data,"#recommendCommodity","tpl_recommendCommodity");
+                    }else{
+                        hlp.myalert(r.message);
+                    }
+                });
+
+            }else{
+                hlp.myalert(r.message);
+            }
+        });
+
+        //获取商品评论
+        svc.getCommodityComment(goods_sn,function(r){
+            hlp.log("inside getCommodityComment request...");
+            if(r.status == "SUCCESS"){
+                hlp.bindtpl(r.data,"#goodsComment","tpl_goodsComment");
+                hlp.bindtpl(r.data,"#slideThreeComment","tpl_goodsComment")
+            }else{
+                hlp.myalert(r.message);
+            }
+        });
+
+        /*var catId = hlp.panelObj["cat_id"].cat_id;
+        svc.getPersonHots(catId,function(r){
+            hlp.log("inside getPersonHots request...");
+            if(r.status == "SUCCESS"){
+                hlp.bindtpl(r.data,"#recommendCommodity","tpl_recommendCommodity");
+            }else{
+                hlp.myalert(r.message);
+            }
+        });*/
+
+        //立即购买按钮事件
+        $("#commodityDetails1_buyNow").off("tap").on("tap",function(){
+            var tokenId = loj.Credential;
+            hlp.panelObj["goods"] = {"good":[{ "sku_sn":"6949123303602","sn":goods_sn, "num": 1 }],"isCart":"0"};
+            if(tokenId){
+                $.afui.loadContent("#submitOrder");
+            }else{
+                $.afui.loadContent("#buyWithoutRegist");
+            }
+        });
+    });
+});
+
+// 热卖商品
+var getHotProduct = function(r) {
+    $("#remai_product")[0].innerHTML = r;
+};
+
+// 特价产品
+var getBargainPriceProduct = function (r) {
+    $("#tejiaProduct")[0].innerHTML = r;
+};
+
+//明星产品
+var getStarProduct = function(r){
+    $("#starProduct")[0].innerHTML = r;
+};
+
+//新品上市
+var getNewList = function(r){
+    $("#newList")[0].innerHTML = r;
+};
+
+// 轮播图
+var getIndexLoop = function(r) {
+    $("#banner")[0].innerHTML = r;
+};
+
+//商品详情&&商品评价的点击事件
+var showCommodityDetail = function(){
+    if($("#goodsIntroduction").is(":hidden")){
+        $("#goodsIntroduction").css("display","block");
+        $("#showCommodityDetailDiv").addClass("showcanshu");
+    }else{
+        $("#goodsIntroduction").css("display","none");
+        $("#showCommodityDetailDiv").removeClass("showcanshu");
+    }
+};
+var showCommodityComment = function(){
+    if($("#goodsComment").is(":hidden")){
+        $("#goodsComment").css("display","block");
+        $("#showCommodityCommentDiv").addClass("showcanshu");
+    }else{
+        $("#goodsComment").css("display","none");
+        $("#showCommodityCommentDiv").removeClass("showcanshu");
+    }
+};
+
+//增&&减购买数量
+var minusCount = function(){
+    var quantity = $("#purchaseQuantity").val();
+    if(quantity>1){
+        quantity--;
+        $("#purchaseQuantity").val(quantity);
+    }
+};
+var plusCount = function(){
+    var quantity = $("#purchaseQuantity").val();
+    if(quantity>=1){
+        quantity++;
+        $("#purchaseQuantity").val(quantity);
+    }
+};
+
+//切换商品列表
+var changeDisplay = function(){
+    if($("#goodsListDiv").attr("class") == "list1"){
+        $("#goodsListDiv").removeClass("list1");
+        $("#goodsListDiv").addClass("list2");
+    }else{
+        $("#goodsListDiv").removeClass("list2");
+        $("#goodsListDiv").addClass("list1");
+    }
+};
+
+//商品列表筛选
+var listBy = function(thisId){
+    var listBy = thisId;
+    var catId = hlp.panelObj["catId"].catId;
+    var orderFrom = "0";
+
+    switch (listBy){
+        case "listBySales":
+            listBy = "1";
+            break;
+
+        case "listByNew":
+            listBy = "2";
+            break;
+
+        case "listByPrice":
+            listBy = "3";
+            break;
+
+        case "listByPopular":
+            listBy = "4";
+            break;
+
+        default :
+            break;
+    }
+
+    //筛选后获取商品列表
+    svc.getGoodsList(catId,listBy,orderFrom,function(r){
+        if(r.status == "SUCCESS"){
+            hlp.bindtpl(r.data,"#goodsList","tpl_goodsList");
+        }else{
+            hlp.myalert(r.message);
+        }
+    });
+};
+
+//获取当前时间
+var AppendZero = function(obj){
+    if (obj < 10) return "0" + obj; else return obj;
+};
+var currentTime = function(){
+    var d = new Date();
+
+    var year = d.getFullYear(); //获取当前年份
+    var month = d.getMonth()+1; //获取当前月份（0——11）
+    var date = d.getDate();
+    var hour = d.getHours();
+    var minute = d.getMinutes();
+    var second = d.getSeconds();
+    var str = year + "/" + AppendZero (month) + "/" + AppendZero (date) + "/" + AppendZero (hour) + "/" + AppendZero (minute) + "/" + AppendZero (second);
+    return str;
+};

@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/FSAS_MOBILE/!svn/ver/916/trunk/fsas/platforms/android/src/org/apache/cordova/camera
+END
+FileHelper.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/FSAS_MOBILE/!svn/ver/168/trunk/fsas/platforms/android/src/org/apache/cordova/camera/FileHelper.java
+END
+CameraLauncher.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/FSAS_MOBILE/!svn/ver/916/trunk/fsas/platforms/android/src/org/apache/cordova/camera/CameraLauncher.java
+END
+ExifHelper.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/FSAS_MOBILE/!svn/ver/168/trunk/fsas/platforms/android/src/org/apache/cordova/camera/ExifHelper.java
+END

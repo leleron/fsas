@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="com.phonegap.plugins.smartLinkConnect"
+    version="0.0.1">
+
+    <name>SmartLinkConnect</name>
+    <description>SmartLinkConnect Description</description>
+    
+    <engines>
+        <engine name="cordova" version=">=3.0.0" />
+    </engines>    
+
+    <js-module src="www/SmartLinkConnect.js" name="SmartLinkConnect">
+        <clobbers target="cordova.plugins.SmartLinkConnect" />
+    </js-module>
+
+    <!-- android -->
+    <platform name="android">
+
+        <source-file src="src/android/SmartLinkConnect.java" target-dir="src/com/phonegap/plugins/smartLinkConnect" />
+
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="SmartLinkConnect">
+                <param name="android-package" value="com.phonegap.plugins.smartLinkConnect.SmartLinkConnect" />
+            </feature>
+        </config-file>
+
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+			
+        </config-file>
+
+        <config-file target="AndroidManifest.xml" parent="/manifest">
+  			<uses-permission android:name="android.permission.BROADCAST_STICKY" />
+			<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+		    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+			<uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
+        </config-file>
+
+		<source-file src="src/android/smartlinklib3.6.4_product.jar" target-dir="libs"/>
+
+    </platform>
+
+</plugin>

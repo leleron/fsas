@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/svn/FSAS_MOBILE/!svn/ver/1031/trunk/fsas/plugins/com.phonegap.plugins.codeScan/src/android/CodeScan/src/com/sitech/oncon/barcode/camera
+END
+DefaultOpenCameraInterface.java
+K 25
+svn:wc:ra_dav:version-url
+V 168
+/svn/FSAS_MOBILE/!svn/ver/1031/trunk/fsas/plugins/com.phonegap.plugins.codeScan/src/android/CodeScan/src/com/sitech/oncon/barcode/camera/DefaultOpenCameraInterface.java
+END
+AutoFocusManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 158
+/svn/FSAS_MOBILE/!svn/ver/1031/trunk/fsas/plugins/com.phonegap.plugins.codeScan/src/android/CodeScan/src/com/sitech/oncon/barcode/camera/AutoFocusManager.java
+END
+CameraManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/svn/FSAS_MOBILE/!svn/ver/1031/trunk/fsas/plugins/com.phonegap.plugins.codeScan/src/android/CodeScan/src/com/sitech/oncon/barcode/camera/CameraManager.java
+END
+GingerbreadOpenCameraInterface.java
+K 25
+svn:wc:ra_dav:version-url
+V 172
+/svn/FSAS_MOBILE/!svn/ver/1031/trunk/fsas/plugins/com.phonegap.plugins.codeScan/src/android/CodeScan/src/com/sitech/oncon/barcode/camera/GingerbreadOpenCameraInterface.java
+END
+OpenCameraManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 159
+/svn/FSAS_MOBILE/!svn/ver/1031/trunk/fsas/plugins/com.phonegap.plugins.codeScan/src/android/CodeScan/src/com/sitech/oncon/barcode/camera/OpenCameraManager.java
+END
+CameraConfigurationManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 168
+/svn/FSAS_MOBILE/!svn/ver/1031/trunk/fsas/plugins/com.phonegap.plugins.codeScan/src/android/CodeScan/src/com/sitech/oncon/barcode/camera/CameraConfigurationManager.java
+END
+OpenCameraInterface.java
+K 25
+svn:wc:ra_dav:version-url
+V 161
+/svn/FSAS_MOBILE/!svn/ver/1031/trunk/fsas/plugins/com.phonegap.plugins.codeScan/src/android/CodeScan/src/com/sitech/oncon/barcode/camera/OpenCameraInterface.java
+END
+PreviewCallback.java
+K 25
+svn:wc:ra_dav:version-url
+V 157
+/svn/FSAS_MOBILE/!svn/ver/1031/trunk/fsas/plugins/com.phonegap.plugins.codeScan/src/android/CodeScan/src/com/sitech/oncon/barcode/camera/PreviewCallback.java
+END

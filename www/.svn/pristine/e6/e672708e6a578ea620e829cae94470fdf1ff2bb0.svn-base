@@ -1,0 +1,1305 @@
+/*清除链接样式*/
+a
+{
+    text-decoration: none;
+    color: #000;
+}
+
+
+/*1/3+2/3布局*/
+.col1-3
+{
+    text-align: center;
+    color: #808080;
+    margin-bottom: 0;
+    padding-top: 8px;
+}
+
+.col2-3
+{
+    border: none;
+    padding: 5px;
+    font-size: 20px;
+    /*color:#808080;*/
+}
+
+    .col2-3:focus
+    {
+        border: none;
+    }
+
+/*用户消息、设备故障中已读消息，未读消息颜色*/
+.message
+{
+    color: #000;
+}
+
+.unreadMessage
+{
+    color: #969696;
+}
+
+
+/*弹出手动添加、扫一扫、搜索菜单*/
+.popupDevice
+{
+    /*border:1px solid #cccccc;*/
+    /*border-radius: 20px;*/
+    width: 10rem;
+    position: fixed;
+    top: 39px;
+    right: 0;
+    z-index: 100;
+    display: none;
+}
+/*设备控制页中，弹出设备权限、设备粉丝、设备日志、设备消息、设备设置、关于设备*/
+.popupMyDevice
+{
+    /*border:1px solid #cccccc;*/
+    /*border-radius: 20px;*/
+    width: 10rem;
+    position: fixed;
+    top: 39px;
+    right: 0;
+    z-index: 100;
+    display: none;
+}
+
+/*设备离线状态*/
+.offline
+{
+    -webkit-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
+    -ms-filter: grayscale(100%);
+    -o-filter: grayscale(100%);
+}
+
+.popupMyFollowedDevice
+{
+    /*border:1px solid #cccccc;*/
+    /*border-radius: 20px;*/
+    width: 10rem;
+    position: fixed;
+    top: 39px;
+    right: 0;
+    z-index: 100;
+    display: none;
+}
+
+/*顶部提示消息*/
+.topMessage
+{
+    background-color: #ccc;
+    margin: 0;
+    font-size: 12px;
+}
+
+/*页面顶部大图*/
+.bigli
+{
+    line-height: 4;
+}
+
+/*宽度80%*/
+.width80
+{
+    width: 80%;
+}
+
+/*00_404.html*/
+.ui-blue-radius
+{
+    background-image: -webkit-radial-gradient(center, ellipse closest-side, #3376c1 0%, #2364ae 100%);
+    background-image: -moz-radial-gradient(center, ellipse closest-side, #3376c1 0%, #2364ae 100%);
+    background-image: -o-radial-gradient(center, ellipse closest-side, #3376c1 0%, #2364ae 100%);
+    background-image: radial-gradient(center, ellipse closest-side, #3376c1 0%, #2364ae 100%);
+}
+
+.logo
+{
+    position: fixed;
+    top: 39%;
+    left: 10%;
+    right: 10%;
+    text-align: center;
+}
+
+.copyright
+{
+    position: fixed;
+    bottom: 1%;
+    left: 20%;
+    right: 20%;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+/*02-05-00_myMall.html*/
+#myMall{
+    background: #f2f2f2;
+}
+/*03-1-1_findIndex.html*/
+#find
+{
+    background: #f2f2f2;
+}
+
+.findIndex
+{
+    display: block;
+    background: #eee;
+}
+
+    .findIndex .list
+    {
+        background: #f2f2f2;
+    }
+
+        .findIndex .list li
+        {
+            margin-top: .5rem;
+            background: #fff;
+            border: 0;
+        }
+
+/*03-1-2_scanQRcode.html*/
+.scanQRcode #qrcanvas
+{
+    height: 10rem;
+    width: 10rem;
+    margin: 5rem;
+    border: solid 1px #000000;
+}
+
+.login .grid > div
+{
+    text-align: center;
+}
+
+.scanQRcode .button
+{
+    width: 10rem;
+}
+
+/*03-1-3_wifiConfiguration.html*/
+.wifiCon
+{
+    color: #808080;
+}
+
+    .wifiCon div
+    {
+        padding-top: 5%;
+        padding-bottom: 2%;
+    }
+
+    .wifiCon #wifiSSIDDiv
+    {
+        padding: 0;
+        color: #2364ae;
+    }
+
+    .wifiCon img
+    {
+        width: 40%;
+    }
+
+    .wifiCon .button
+    {
+        display: block;
+        width: 80%;
+    }
+
+/*03-1-3-1_deviceNearby.html*/
+.deviceNearby *
+{
+    font-size: 12px;
+}
+
+.deviceNearby span
+{
+    float: right;
+    text-align: right;
+    margin-left: 5px;
+}
+
+.deviceNearby .info span
+{
+    margin-top: 33px;
+}
+
+    .deviceNearby .info span:last-child
+    {
+        left: 20px;
+        font-size: 14px;
+        margin-top: 31px;
+    }
+
+.deviceNearby .list > li > a:after
+{
+    display: none;
+}
+
+.deviceNearby .info
+{
+    display: inline;
+}
+
+.deviceNearby .distance
+{
+    width: 40px;
+    float: right;
+    margin-top: 33px;
+    margin-left: 20px;
+}
+
+
+.deviceNearby .online:before
+{
+    content: url("../images/icons-png/round-online.png");
+    vertical-align: -10%;
+}
+
+.deviceNearby .offline:before
+{
+    content: url("../images/icons-png/round-offline.png");
+    vertical-align: -10%;
+}
+
+/*03-1-4_nameGroupSetting.html*/
+#NameGroupDiv img
+{
+    width: 20%;
+    display: block;
+    margin: 5rem;
+}
+
+#NameGroupDiv label
+{
+    width: 30%;
+    padding: 15px 0;
+}
+
+#NameGroupDiv input
+{
+    width: 50%;
+}
+
+#NameGroupDiv .button
+{
+    width: 80%;
+}
+
+/*03-1-4-1_attentionRank.html*/
+.attentionRank *
+{
+    font-size: 12px;
+}
+
+.attentionRank span
+{
+    float: right;
+    margin-left: 5px;
+}
+
+.attentionRank .info span
+{
+    margin-top: 33px;
+}
+
+    .attentionRank .info span:last-child
+    {
+        font-size: 14px;
+        margin-top: 31px;
+    }
+
+    .attentionRank .info span:first-child
+    {
+        width: 60px;
+        text-align: right;
+    }
+
+.attentionRank .list > li > a:after
+{
+    display: none;
+}
+
+.attentionRank .info
+{
+    display: inline;
+}
+
+.attentionRank .online:before
+{
+    content: url("../images/icons-png/round-online.png");
+    vertical-align: -10%;
+}
+
+.attentionRank .offline:before
+{
+    content: url("../images/icons-png/round-offline.png");
+    vertical-align: -10%;
+}
+
+/*03-1-5_nameCard.html*/
+.nameCard .ct
+{
+    padding-top: 20%;
+}
+
+.nameCard img
+{
+    width: 30%;
+}
+
+.nameCard p[align="center"]
+{
+    padding: 3% 0;
+}
+
+.nameCard .a
+{
+    font-size: 25px;
+    color: #ff9000;
+    padding-left: .5rem;
+    padding-right: 1rem;
+}
+
+.nameCard .b
+{
+    font-size: 25px;
+    color: #14a205;
+    padding-left: .5rem;
+}
+
+.nameCard h2
+{
+    padding-left: 0;
+    padding-top: 1.5rem;
+    padding-bottom: 2.5rem;
+}
+
+.nameCard .button
+{
+    width: 30%;
+    /*padding: .5rem 3rem;*/
+    /*border: 0;*/
+    /*background: #ff9000;*/
+    /*color: white;*/
+    /*-webkit-border-radius: 3px;*/
+}
+
+/*03-2-0_deviceSearch.html*/
+.deviceSearch .searchbox
+{
+    margin: 10px;
+    width: 100%;
+}
+
+.deviceSearch #searchInput
+{
+    margin: 0;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+    border-left: 1px solid #666;
+}
+
+.deviceSearch
+{
+    margin: 10% 5%;
+}
+
+    .deviceSearch #search.button.blue:after
+    {
+        content: url("../images/icons-svg/search-white15x15.svg");
+    }
+
+/*03-2-1_deviceSearchResult.html*/
+.deviceSearchResult .item_name h2
+{
+    display: inline-block;
+    font-size: 14px;
+    color: #646464;
+}
+
+.deviceSearchResult .online
+{
+    float: right;
+    margin-top: 30px;
+}
+
+.deviceSearchResult .offline
+{
+    float: right;
+    margin-top: 30px;
+}
+
+.deviceSearchResult .list > li > a:after
+{
+    display: none;
+}
+
+.deviceSearchResult .online:before
+{
+    content: url("../images/icons-png/round-online.png");
+    vertical-align: -10%;
+}
+
+.deviceSearchResult .offline:before
+{
+    content: url("../images/icons-png/round-offline.png");
+    vertical-align: -10%;
+}
+
+/*03-3-4-1_hints.html*/
+#hints
+{
+    background: #f4f4f4;
+}
+
+.hints
+{
+    padding-top: 1rem;
+}
+
+    .hints .list li
+    {
+        /*padding: 15px 25px 15px 25px;*/
+        /*border: 0;*/
+        /*border-top:1px solid #ccc ;*/
+    }
+
+        .hints .list li:nth-last-child(1)
+        {
+            border-bottom: 1px solid #ccc;
+            box-shadow: 0 1px 1px #ccc;
+        }
+
+/*03-4-1_followRank.html*/
+.followRank h5
+{
+    display: inline-block;
+    font-size: 12px;
+}
+
+    .followRank h5 + p
+    {
+        float: right;
+        margin-top: 1.8rem;
+        font-size: 12px;
+    }
+
+.followRank .list > li > a:after
+{
+    display: none;
+}
+
+.followRank .online:before
+{
+    content: url("../images/icons-png/round-online.png");
+    vertical-align: -10%;
+}
+
+.followRank .offline:before
+{
+    content: url("../images/icons-png/round-offline.png");
+    vertical-align: -10%;
+}
+
+/*03-5-1_activity.html*/
+.active h2
+{
+    color: #000;
+}
+
+/*03-6-2-1_spotsNearby.html*/
+.spotsNearby ul li
+{
+    padding-left: 1rem;
+}
+
+.spotsNearby h1
+{
+    font-size: 1rem;
+}
+
+.spotsNearby .ui-li-aside
+{
+    float: right;
+    font-weight: normal;
+}
+
+.spotsNearby .list > li > a:after
+{
+    display: none;
+}
+
+.spotsNearby .list li > p
+{
+    color: #808080;
+    font-size: 12px;
+    margin: 0!important;
+}
+
+/*03-6-1_miscellaneous.html*/
+.miscellaneous .grid .col2 img
+{
+    width: 50%;
+    margin-top: 15%;
+}
+
+.miscellaneous .service-tel
+{
+    margin-top: 10%;
+    margin-left: 15%;
+}
+
+    .miscellaneous .service-tel .tel img
+    {
+        width: 24px;
+    }
+
+    .miscellaneous .service-tel .kf
+    {
+        padding: 1rem 0;
+        color: #707070;
+    }
+
+    .miscellaneous .service-tel .telNumber
+    {
+        color: #2364ae;
+        font-style: italic;
+        font-size: 26px;
+    }
+
+/*03-4-1_followRank.html*/
+.followRank h5
+{
+    display: inline-block;
+    font-size: 12px;
+}
+
+    .followRank h5 + p
+    {
+        float: right;
+        margin-top: 1.8rem;
+        font-size: 12px;
+    }
+
+.followRank .list > li > a:after
+{
+    display: none;
+}
+
+/*03-5-1_activity.html*/
+.active h2
+{
+    color: #000;
+}
+
+/*03-6-2-1_spotsNearby.html*/
+.spotsNearby ul li
+{
+    padding-left: 1rem;
+}
+
+.spotsNearby h1
+{
+    font-size: 1rem;
+}
+
+.spotsNearby .ui-li-aside
+{
+    float: right;
+    font-weight: normal;
+}
+
+.spotsNearby .list > li > a:after
+{
+    display: none;
+}
+
+.spotsNearby .list li > p
+{
+    color: #808080;
+    font-size: 12px;
+    margin: 0!important;
+}
+
+/*04-1-1-1_myDeviceList.html*/
+/*.deviceList ul{*/
+/*width: 100%;*/
+/*}*/
+/*.deviceList ul li{*/
+/*float: left;*/
+/*width:33.3%;*/
+/*text-align: center;*/
+/*list-style: none;*/
+/*padding: 5% 0;*/
+/*}*/
+.deviceList img
+{
+    width: 80%;
+}
+
+/*04-4-3-1_deviceLog.html*/
+/*.deviceLog{*/
+/*padding-top: 1rem;*/
+/*}*/
+.deviceLog form
+{
+    text-align: center;
+}
+
+    .deviceLog form fieldset
+    {
+        margin: 0 auto;
+        padding: 1rem;
+        border: none;
+    }
+
+.deviceLog .button
+{
+    display: inline-block;
+    width: 210px;
+    background: #2364ae;
+    color: white;
+    border: none;
+}
+
+#filterForm
+{
+    position: fixed;
+    top: 6rem;
+    border: 1px solid #ccc;
+    margin: 0 1rem;
+    padding: 2rem;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: #ccc 1px 1px 5px;
+}
+
+    #filterForm input,
+    #filterForm select
+    {
+        width: 100%;
+    }
+
+
+
+
+/*04-4-1-2_deviceAuthority.html*/
+#deviceAuthority
+{
+    background: #ebebeb;
+}
+
+.deviceAuthority h2
+{
+    color: #323232;
+    font-size: 16px;
+}
+
+
+/*04-4-2-1_deviceFans.html*/
+.deviceFans .list img
+{
+    margin: 0!important;
+}
+
+.deviceFans h2
+{
+    color: #323232;
+}
+
+/*04-4-4-1_deviceErrorList.html*/
+.deviceErrorList .swipe-content
+{
+    padding: 1.5rem;
+}
+
+.deviceErrorList h3
+{
+    font-size: 1rem;
+    display: inline-block;
+    /*float:left;*/
+}
+
+.deviceErrorList time
+{
+    font-weight: normal;
+    font-size: 14px;
+    color: #d4d4d4;
+    float: right;
+}
+
+/*04-4-4-2_deviceErrorDetail.html*/
+.deviceErrorDetail
+{
+    padding: 1rem 1rem 0 1rem;
+}
+
+    .deviceErrorDetail .errorPanel
+    {
+        width: 100%;
+        height: 15rem;
+        border: 1px solid #c6c6c6;
+        border-radius: 5px;
+        padding: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .deviceErrorDetail .errorTitle
+    {
+        margin-bottom: 2rem;
+    }
+
+        .deviceErrorDetail .errorTitle span
+        {
+            color: #9f9f9f;
+        }
+
+    .deviceErrorDetail .errorDetail span
+    {
+        display: block;
+        color: #9f9f9f;
+    }
+
+    .deviceErrorDetail .errorMessage
+    {
+        display: inline-block;
+        margin: -1rem 0 0 3.75rem;
+    }
+
+        .deviceErrorDetail .errorMessage p
+        {
+            padding: 1rem 0;
+        }
+
+    .deviceErrorDetail time
+    {
+        color: #9f9f9f;
+    }
+
+    .deviceErrorDetail .grid
+    {
+        text-align: center;
+    }
+
+        .deviceErrorDetail .grid > div
+        {
+            padding: 1rem;
+        }
+
+        .deviceErrorDetail .grid a
+        {
+            text-decoration: none;
+            color: #000;
+        }
+
+        .deviceErrorDetail .grid img
+        {
+            height: 2rem;
+        }
+
+/*04-4-5-1_deviceSetting.html*/
+.deviceSetting input.toggle + label
+{
+    left: 100%;
+    margin-left: -65px;
+}
+
+.deviceSetting .div-label label
+{
+    text-align: left;
+}
+
+/*04-4-5-2_timing.html*/
+.timing input
+{
+    width: 33%;
+    margin-left: 20px;
+}
+
+/*04-4-6-1_aboutDevice.html*/
+.aboutDevice #devicePic img
+{
+    width: 40%;
+}
+
+.timingSave .button
+{
+    display: inline-block;
+    width: 60%;
+}
+
+
+
+/*05-1-1_myPage.html*/
+
+.myPage .topbox
+{
+    padding-top: 30px;
+    padding-bottom: 10px;
+    color: #fff;
+    background-image: url("../images/mypage/background.jpg");
+    background-size: cover;
+}
+
+    .myPage .topbox h2
+    {
+        color: #fff;
+        font-weight: normal;
+    }
+
+    .myPage .topbox img
+    {
+        width: 30%;
+    }
+
+.myPage .list li
+{
+    padding: 10px 20px 10px 10px;
+}
+
+.myPage .list > li img
+{
+    width: 15%;
+}
+
+/*05-1-2_loginPage.html*/
+.login
+{
+    margin-top: 30%;
+}
+
+    .login .button
+    {
+        border: 0;
+        color: white;
+        background: #2364ae;
+        padding: .7rem 5rem;
+    }
+
+    .login .cl
+    {
+        background: #fff;
+        border: 1px solid #2364ae;
+    }
+
+    .login .grid img
+    {
+        width: 45%;
+    }
+
+    .login .forgetPassword
+    {
+        margin-right: 10%;
+    }
+
+    .login .others
+    {
+        color: #cccccc;
+        margin-top: 4%;
+        margin-bottom: 2%;
+    }
+
+    .login .doLogin
+    {
+        margin-top: 30px;
+    }
+
+/*05-1-2-2_GesturePW.html*/
+#gesturePW
+{
+    background: #ebebeb;
+}
+
+.gesturePW
+{
+    text-align: center;
+    padding-top: 10%;
+}
+
+    .gesturePW p
+    {
+        color: red;
+        text-align: center;
+        padding-top: 5%;
+        padding-bottom: 5%;
+    }
+
+    .gesturePW a
+    {
+        display: inline-block;
+        border-radius: 100%;
+        overflow: hidden;
+    }
+
+    .gesturePW img
+    {
+        width: 60%;
+    }
+
+
+
+/*05-1-3_registVeri.html&05-1-4_forgotPassword.html*/
+.registVeri,
+.forgetPassword
+{
+    margin: 30% 5%;
+}
+
+    .registVeri .confirm,
+    .forgetPassword .confirm
+    {
+        display: block;
+        width: 80%;
+        margin-top: 5rem;
+    }
+
+    .registVeri .veriGroup,
+    .forgetPassword .veriGroup
+    {
+        width: 80%;
+    }
+
+    .registVeri #vericode,
+    .forgetPassword #forgetVericode
+    {
+        width: 52.1%;
+    }
+
+    .registVeri #sendCode,
+    .forgetPassword #forgetSendCode
+    {
+        width: 46%;
+        margin: 0;
+    }
+
+    .registVeri .button,
+    .forgetPassword .button
+    {
+        padding: 10px 11px;
+    }
+
+/*05-1-3-1_registPassword.html*/
+.registPassword,
+.resetPassword
+{
+    margin: 30% 5%;
+}
+
+    .registPassword .userRegist,
+    .resetPassword .passwordReset
+    {
+        display: block;
+        width: 80%;
+        margin-top: 5rem;
+    }
+
+/*05-2-1_myInfo.html*/
+.myInfo p
+{
+    font-size: 20px;
+}
+/*.myInfo .grid .col1-3{*/
+/*padding-top: 1rem;*/
+/*}*/
+.myInfo > .list > li > a:after
+{
+    content: none;
+}
+
+.myInfo img
+{
+    width: 45%;
+}
+
+.myInfo .logout
+{
+    margin-top: 40%;
+}
+
+.myInfo input
+{
+    border: none;
+}
+
+/*05-3-1_userMessage.html*/
+.usermessage h3
+{
+    font-size: 1rem;
+    display: inline-block;
+}
+
+.usermessage time
+{
+    font-weight: normal;
+    font-size: 14px;
+    color: #d4d4d4;
+    float: right;
+}
+
+.usermessage .swipe-reveal
+{
+    position: relative;
+}
+
+.usermessage .tag
+{
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    padding: 5px 10px;
+    background: #000;
+    color: #fff;
+    display: none;
+    border-radius: 5px;
+    margin-left: -21px;
+}
+/*.usermessage .list li {*/
+/*padding: 0;*/
+/*}*/
+/*.usermessage .swipe-reveal .swipe-content{*/
+/*margin: 0;*/
+/*padding: 10px 20px;*/
+/*}*/
+/*.usermessage .swipe-content p{*/
+/*display: inline-block;*/
+/*}*/
+/*.usermessage .swipe-hidden{*/
+/*border: 1px solid #ccc;*/
+/*bottom: -1px;*/
+/*}*/
+
+/*05-3-2_userMessageDetail.html*/
+.userMessageDetail .odd
+{
+    padding: 0 1rem 0 1rem;
+}
+
+.userMessageDetail time
+{
+    display: block;
+    text-align: center;
+    padding: 1rem 0;
+    color: #b3b3b6;
+}
+
+.userMessageDetail .message
+{
+    width: 80%;
+    padding: 7px 10px;
+    background: #e5e5ea;
+    border-radius: 10px;
+    line-height: 20px;
+}
+
+/*05-8-1_mySettings.html*/
+.mySettings .title
+{
+    text-align: left;
+}
+
+.mySettings input.toggle + label
+{
+    /*left: 100%;*/
+    /*margin-left: -65px;*/
+}
+/*.mySettings .list{*/
+/*padding-top: 1rem;*/
+/*}*/
+.mySettings .list li
+{
+    padding: 5px 20px 5px 10px;
+}
+
+
+/*05-8-2_accountBind.html*/
+.accountBind h2
+{
+    display: inline-block;
+    font-weight: normal;
+    color: #818181;
+}
+
+    .accountBind h2 + p
+    {
+        display: inline-block;
+        font-size: 16px;
+        font-weight: bold;
+        color: #000;
+    }
+
+.accountBind .list > li
+{
+    position: relative;
+}
+
+    .accountBind .list > li img
+    {
+        width: 25%;
+    }
+
+    .accountBind .list > li > a:after
+    {
+        content: "";
+    }
+/*.accountBind .divider{*/
+/*padding-left: 1.5rem;*/
+/*color: #818181;*/
+/*}*/
+.accountBind .bindButton
+{
+    position: absolute;
+    /*top: -14px;*/
+    margin-top: -11%;
+    right: 1.5rem;
+    display: table;
+    line-height: 24px;
+}
+
+    .accountBind .bindButton span:nth-last-child(1)
+    {
+        margin-left: .3rem;
+        height: 24px;
+        line-height: 24px;
+        display: inline-block;
+    }
+
+.accountBind .message
+{
+    color: #818181;
+    padding: 0 1rem 0 1rem;
+}
+
+.accountBind .addStatus
+{
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background: url('../images/icons-png/round-add.png') center no-repeat;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.accountBind .minStatus
+{
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background: url('../images/icons-png/round-delete.png') center no-repeat;
+    display: table-cell;
+    vertical-align: middle;
+}
+/*05-9-1_feedback.html*/
+.feedback #textarea
+{
+    margin-top: 2rem;
+    min-height: 10rem;
+    /*border: 1px solid #ccc;*/
+}
+
+.feedback #textinput
+{
+    margin-top: 2rem;
+}
+
+.feedback .button-content
+{
+    text-align: center;
+}
+
+.feedback .button
+{
+    display: inline-block;
+    width: 80%;
+    margin: 10% auto;
+    color: white;
+    background: #2364ae;
+    border: 0;
+}
+
+/*05-10-1_aboutUs.html*/
+.aboutUs img
+{
+    width: 70%;
+    margin-top: 5rem;
+}
+
+.aboutUs #version
+{
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+    margin-bottom: 15%;
+}
+
+.aboutUs div
+{
+    margin: 0 0 5% 0;
+}
+
+    .aboutUs div a
+    {
+        text-decoration: none;
+        color: #323232;
+    }
+
+/*welcome*/
+#welcome .content
+{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+#welcome .swiper-container
+{
+    width: 100%;
+    height: 100%;
+}
+
+#welcome .swiper-slide
+{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+#welcome .enter{
+     margin:auto auto 60px auto;
+     color:#ff3412;
+     border:solid 1px #d4d4d4;
+     padding:4px;
+     border-radius:5px;
+}
+
+#welcome .swiper-slide:nth-child(1){
+    background:url(../images/welcome/welcome1.png);
+    background-size:100%;
+}
+#welcome .swiper-slide:nth-child(2){
+    background:url(../images/welcome/welcome2.png);
+    background-size:100%;
+}
+#welcome .swiper-slide:nth-child(3){
+    background:url(../images/welcome/welcome3.png);
+    background-size:100%;
+}
+

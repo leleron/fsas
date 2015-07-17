@@ -1,0 +1,196 @@
+<!--<html>-->
+
+<!--<head>-->
+
+    <!--<meta charset="utf-8" />-->
+
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />-->
+
+    <!--<title>飞科商城</title>-->
+
+    <!--<link href="../css/base.css" rel="stylesheet" type="text/css">-->
+
+    <!--<link href="../css/global.css" rel="stylesheet" type="text/css">-->
+
+    <!--<script src="js/jquery-1.7.2.min.js"></script>-->
+
+<!--</head>-->
+
+
+
+<!--<body>-->
+
+<!--<header class="all">-->
+
+    <!--<a href="javascript:;" class="home">-->
+
+        <!--<div class="home">-->
+
+        <!--</div>-->
+
+    <!--</a>-->
+
+    <!--请确认联系信息-->
+
+    <!--<a href="javascript:;" class="shortCar">-->
+
+        <!--<div class="shortCar">-->
+
+            <!--<span>1</span>-->
+
+        <!--</div>-->
+
+    <!--</a>-->
+
+<!--</header>-->
+
+
+
+
+
+<div class="applyTH applyRegNo">
+    <form id="buyWithout" check_status="false" >
+    <ul>
+        <div id="div_promoMsg"></div>
+        <!--<li class="tips">注册登陆用户获赠1000积分并可享受积分抵现</li>-->
+        <li>
+            <span>收货人姓名：</span>
+            <input id="buyWithoutUserName" name="address_consignee" type="text" placeholder="请填写真实姓名"/>
+        </li>
+        <li>
+            配送区域：
+            <!--<div id="div_buyWithoutAddress_province"></div>
+            <div id="div_buyWithoutAddress_city"></div>
+            <div id="div_buyWithoutAddress_area"></div>-->
+            <select id="buyWithoutAddress_province" name="address_province" class="acProvince"><option value="-1"> --请选择--  </option></select>
+            <select id="buyWithoutAddress_city" name="address_city" class="acCity"><option value="-1"> --请选择--  </option></select>
+            <select id="buyWithoutAddress_district" name="address_district" class="acDistrict"><option value="-1"> --请选择--  </option></select>
+        </li>
+
+        <li>
+            <span>详细地址：</span>
+            <input id="buyWithoutAddress_address" name="address_address" type="text" placeholder="不少于5个字"/>
+        </li>
+
+        <li>
+            <span>邮政编码：</span>
+            <input id="buyWithoutZipCode" name="address_zipcode"  type="text" maxlength="6" placeholder="6位数字"/>
+        </li>
+
+        <li>
+            <span>固定电话：</span>
+            <input id="buyWithoutPoneNumber" name="address_tel" type="text" maxlength="8" placeholder="8位数字"/>
+        </li>
+
+        <li>
+            <span>手机号码：</span>
+            <input id="buyWithoutMPoneNumber" name="address_mobile" type="text" maxlength="11" placeholder="11位数字"/>
+        </li>
+
+        <li>
+            <span>验证码：</span>
+            <input id="buyWithoutVericode" name="buyWithoutVericode" placeholder="填写验证码" type="text" />
+            <div id="buyWithoutSendCode" class="getCode">获取动态验证码</div>
+        </li>
+
+    </ul>
+        <a id="buyWithoutSubmit" class="blueBtn">提交</a>
+    </form>
+</div>
+
+
+<!--</tpl>-->
+<p style="display: none">
+    <textarea id="tpl_promoMsg">
+        <li class="tips">{$T}</li>
+    </textarea>
+    <textarea id="tpl_buyWithoutRegist">
+        <option value="-1"> --请选择--  </option>
+        {#foreach $T as Item}
+            <option value="{$T.Item.region_id}">{$T.Item.region_name}</option>
+        {#/for}
+    </textarea>
+</p>
+
+<!--<p style="display: none">
+    <textarea id="tpl_buyWithoutAddress_province">
+        配送区域：
+            <select id="buyWithoutAddress_province" name="buyWithoutAddress_province">
+                <option> --请选择--</option>
+                {#if $T!=""}
+                    {#foreach $T as Item}
+                        <option value="{$T.Item.region_id}">{$T.Item.region_name}</option>
+                    {#/for}
+                {#/if}
+            </select>
+    </textarea>
+    <textarea id="tpl_buyWithoutAddress_city">
+            <select id="buyWithoutAddress_city" name="buyWithoutAddress_city">
+                <option> --请选择--</option>
+                {#if $T!=""}
+                    {#foreach $T as Item}
+                        <option value="{$T.Item.region_id}">{$T.Item.region_name}</option>
+                    {#/for}
+                {#/if}
+            </select>
+    </textarea>
+    <textarea id="tpl_buyWithoutAddress_area">
+            <select id="buyWithoutAddress_area" name="buyWithoutAddress_area" class="long">
+                <option> --请选择--</option>
+                {#if $T!=""}
+                    {#foreach $T as Item}
+                        <option value="{$T.Item.region_id}">{$T.Item.region_name}</option>
+                    {#/for}
+                {#/if}
+            </select>
+    </textarea>
+</p>-->
+
+<!--</html>-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

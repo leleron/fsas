@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/svn/FSAS_MOBILE/!svn/ver/1031/trunk/fsas/plugins/com.phonegap.plugins.codeScan/src/android/CodeScan/src/com/sitech/oncon/barcode/executor
+END
+AsyncTaskExecManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 164
+/svn/FSAS_MOBILE/!svn/ver/1031/trunk/fsas/plugins/com.phonegap.plugins.codeScan/src/android/CodeScan/src/com/sitech/oncon/barcode/executor/AsyncTaskExecManager.java
+END
+AsyncTaskExecInterface.java
+K 25
+svn:wc:ra_dav:version-url
+V 166
+/svn/FSAS_MOBILE/!svn/ver/1031/trunk/fsas/plugins/com.phonegap.plugins.codeScan/src/android/CodeScan/src/com/sitech/oncon/barcode/executor/AsyncTaskExecInterface.java
+END
+DefaultAsyncTaskExecInterface.java
+K 25
+svn:wc:ra_dav:version-url
+V 173
+/svn/FSAS_MOBILE/!svn/ver/1031/trunk/fsas/plugins/com.phonegap.plugins.codeScan/src/android/CodeScan/src/com/sitech/oncon/barcode/executor/DefaultAsyncTaskExecInterface.java
+END
+PlatformSupportManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 166
+/svn/FSAS_MOBILE/!svn/ver/1031/trunk/fsas/plugins/com.phonegap.plugins.codeScan/src/android/CodeScan/src/com/sitech/oncon/barcode/executor/PlatformSupportManager.java
+END
+ResultHandler.java
+K 25
+svn:wc:ra_dav:version-url
+V 157
+/svn/FSAS_MOBILE/!svn/ver/1031/trunk/fsas/plugins/com.phonegap.plugins.codeScan/src/android/CodeScan/src/com/sitech/oncon/barcode/executor/ResultHandler.java
+END

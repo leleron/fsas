@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/FSAS_MOBILE/!svn/ver/348/trunk/fsas/platforms/ios/fsas/Plugins/cordova-plugin-camera
+END
+CDVCamera.m
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/FSAS_MOBILE/!svn/ver/348/trunk/fsas/platforms/ios/fsas/Plugins/cordova-plugin-camera/CDVCamera.m
+END
+CDVJpegHeaderWriter.m
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/FSAS_MOBILE/!svn/ver/348/trunk/fsas/platforms/ios/fsas/Plugins/cordova-plugin-camera/CDVJpegHeaderWriter.m
+END
+UIImage+CropScaleOrientation.h
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/FSAS_MOBILE/!svn/ver/348/trunk/fsas/platforms/ios/fsas/Plugins/cordova-plugin-camera/UIImage+CropScaleOrientation.h
+END
+CDVCamera.h
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/FSAS_MOBILE/!svn/ver/348/trunk/fsas/platforms/ios/fsas/Plugins/cordova-plugin-camera/CDVCamera.h
+END
+CDVExif.h
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/FSAS_MOBILE/!svn/ver/348/trunk/fsas/platforms/ios/fsas/Plugins/cordova-plugin-camera/CDVExif.h
+END
+CDVJpegHeaderWriter.h
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/FSAS_MOBILE/!svn/ver/348/trunk/fsas/platforms/ios/fsas/Plugins/cordova-plugin-camera/CDVJpegHeaderWriter.h
+END
+UIImage+CropScaleOrientation.m
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/FSAS_MOBILE/!svn/ver/348/trunk/fsas/platforms/ios/fsas/Plugins/cordova-plugin-camera/UIImage+CropScaleOrientation.m
+END

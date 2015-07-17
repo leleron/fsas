@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/FSAS_MOBILE/!svn/ver/156/trunk/fsas/platforms/android/bin/classes/org/apache/cordova/whitelist
+END
+WhitelistPlugin.class
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svn/FSAS_MOBILE/!svn/ver/156/trunk/fsas/platforms/android/bin/classes/org/apache/cordova/whitelist/WhitelistPlugin.class
+END
+WhitelistPlugin$CustomConfigXmlParser.class
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/svn/FSAS_MOBILE/!svn/ver/156/trunk/fsas/platforms/android/bin/classes/org/apache/cordova/whitelist/WhitelistPlugin$CustomConfigXmlParser.class
+END

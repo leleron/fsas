@@ -1,0 +1,134 @@
+<!--<html>-->
+
+<!--<head>-->
+
+    <!--<meta charset="utf-8" />-->
+
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />-->
+
+    <!--<title>飞科商城</title>-->
+
+    <!--<link href="../css/base.css" rel="stylesheet" type="text/css">-->
+
+    <!--<link href="../css/global.css" rel="stylesheet" type="text/css">-->
+
+    <!--<script src="js/jquery-1.7.2.min.js"></script>-->
+
+<!--</head>-->
+
+
+
+<!--<body>-->
+
+<header class="all">
+
+    <!--<a href="javascript:;" class="home">-->
+
+        <!--<div class="home">-->
+
+        <!--</div>-->
+
+    <!--</a>-->
+
+    <a href="#commodityDetails1"><span>
+
+            参数
+
+        </span></a>
+
+        <span class="cur">
+
+            详情
+
+        </span>
+
+        <a href="#commodityDetails3"><span>
+
+            评价
+
+        </span></a>
+
+    <!--<a href="javascript:;" class="shortCar">-->
+
+        <!--<div class="shortCar">-->
+
+            <!--<span>1</span>-->
+
+        <!--</div>-->
+
+    <!--</a>-->
+
+</header>
+
+
+
+<div class="productdetails">
+
+    <img src="images/mall/goods/FS359/FS359_000_01.jpg" />
+
+    <img src="images/mall/goods/FS359/FS359_000_02.jpg" />
+
+    <img src="images/mall/goods/FS359/FS359_000_03.jpg" />
+
+    <img src="images/mall/goods/FS359/FS359_000_04.jpg" />
+
+    <img src="images/mall/goods/FS359/FS359_000_05.jpg" />
+
+</div>
+
+
+
+
+
+<!--</body>-->
+
+
+
+<!--</html>-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

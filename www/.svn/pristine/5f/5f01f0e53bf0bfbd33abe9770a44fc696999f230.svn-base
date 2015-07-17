@@ -1,0 +1,95 @@
+<!--<html>-->
+<!--<head>-->
+<!--<meta charset="utf-8" />-->
+<!--<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />-->
+<!--<title>飞科商城</title>-->
+<!--<link href="../css/base.css" rel="stylesheet" type="text/css">-->
+<!--<link href="../css/global.css" rel="stylesheet" type="text/css">-->
+<!--<script src="js/jquery-1.7.2.min.js"></script>-->
+<!--</head>-->
+
+
+<!--<body>-->
+<!--<header class="all">-->
+<!--<a href="<?php echo get_app_url('mem_center/index/user_no_comment');?>" class="home">-->
+<!--<div class="home">-->
+<!--</div>-->
+<!--</a>-->
+<!--已评价-->
+<!--<a href="<?php echo get_app_url('mem_center/index/user_comment',array('app_page'=>null));?>" class="shortCar">-->
+<!--<div class="shortCar">-->
+<!--<span>1</span>-->
+<!--</div>-->
+<!--</a>-->
+<!--</header>-->
+<!--<div class="productPJList">-->
+<!--<ul>-->
+<!--<li>-->
+<!--<a href="#">-->
+<!--<strong>未评价</strong>-->
+<!--<em></em>-->
+<!--</a>-->
+<!--</li>-->
+<!--<li>-->
+<!--<a href="#">-->
+<!--<strong>已评价</strong>-->
+<!--<em></em>-->
+<!--</a>-->
+<!--</li>-->
+<!--</ul>-->
+<!--</div>-->
+
+<div class="productPJ" id="evaluationSubmitEvaluatedListDiv">
+</div>
+
+<p style="display: none">
+    <textarea id="evaluatedList_itemAdd">
+    <ul>
+            {#if $T==""}
+            <p style="text-align: center;">没有评价任何商品</p>
+            {#else}
+            {#foreach $T as Item}
+            <li class="tkListItem" order_sn="{$T.Item.order_sn}" goods_sn="{$T.Item.goods_sn}">
+            <div class="name name2">
+                    <img src="{$T.Item.goods_thumb}" />
+                    <strong>{$T.Item.goods_name}</strong>
+                <a href="#evaluateMore"><span>追加评价 ></span></a>
+            </div>
+            <div class="score score2">
+                <div class="starBg">
+                        <span class="star" style="{$T.Item.rankStarStyle}"></span>
+                </div>
+                    <span style="color:#ff7c44;">{$T.Item.comment_rank}分</span>
+                    <span>{$T.Item.commentRankString}</span>
+                    <span class="time">{$T.Item.add_time}</span>
+            </div>
+                <p>评论：{$T.Item.content}</p>
+                <img src="images/mall/goods/FS359/FS359_000_01--w_50_h_50.jpg"/>
+                <img src="images/mall/goods/FS359/FS359_000_01--w_50_h_50.jpg"/>
+                <img src="images/mall/goods/FS359/FS359_000_01--w_50_h_50.jpg"/>
+                <img src="images/mall/goods/FS359/FS359_000_01--w_50_h_50.jpg"/>
+                <img src="images/mall/goods/FS359/FS359_000_01--w_50_h_50.jpg"/>
+            <div class="gf">
+                    <span>官方回复：</span>{$T.Item.answer}
+            </div>
+
+
+            <div class="zj">
+                    <span>追加评论：</span>{$T.Item}
+            </div>
+            <div class="imgI">
+                <!--<img src="images/star.png" />-->
+                <!--<img src="images/star.png" />-->
+                <!--<img src="images/star.png" />-->
+            </div>
+
+
+        </li>
+            {#/for}
+            {/#if}
+    </ul>
+    </textarea>
+</p>
+
+<!--</body>-->
+<!--</html>-->

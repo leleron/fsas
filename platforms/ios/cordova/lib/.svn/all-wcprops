@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/FSAS_MOBILE/!svn/ver/348/trunk/fsas/platforms/ios/cordova/lib
+END
+run.js
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/FSAS_MOBILE/!svn/ver/348/trunk/fsas/platforms/ios/cordova/lib/run.js
+END
+check_reqs.js
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/FSAS_MOBILE/!svn/ver/348/trunk/fsas/platforms/ios/cordova/lib/check_reqs.js
+END
+spawn.js
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/FSAS_MOBILE/!svn/ver/348/trunk/fsas/platforms/ios/cordova/lib/spawn.js
+END
+start-emulator
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/FSAS_MOBILE/!svn/ver/348/trunk/fsas/platforms/ios/cordova/lib/start-emulator
+END
+versions.js
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/FSAS_MOBILE/!svn/ver/348/trunk/fsas/platforms/ios/cordova/lib/versions.js
+END
+list-emulator-images
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/FSAS_MOBILE/!svn/ver/348/trunk/fsas/platforms/ios/cordova/lib/list-emulator-images
+END
+list-started-emulators
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/FSAS_MOBILE/!svn/ver/348/trunk/fsas/platforms/ios/cordova/lib/list-started-emulators
+END
+build.js
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/FSAS_MOBILE/!svn/ver/348/trunk/fsas/platforms/ios/cordova/lib/build.js
+END
+copy-www-build-step.sh
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/FSAS_MOBILE/!svn/ver/348/trunk/fsas/platforms/ios/cordova/lib/copy-www-build-step.sh
+END
+list-devices
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/FSAS_MOBILE/!svn/ver/348/trunk/fsas/platforms/ios/cordova/lib/list-devices
+END
+clean.js
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/FSAS_MOBILE/!svn/ver/348/trunk/fsas/platforms/ios/cordova/lib/clean.js
+END
